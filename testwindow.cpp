@@ -15,5 +15,5 @@ TestWindow::~TestWindow()
 
 void TestWindow::testClick()
 {
-    ui->label->setText("Hi OmegaSquad");
+    ui->label->setText("Hi OmegaSquad, this is just a test...");
 }
