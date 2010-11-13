@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Yep</string>
+     <string>Yep, Folks</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
