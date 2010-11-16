@@ -1,11 +1,7 @@
 #include "CaseReport.h"
 
-CaseReport::CaseReport(int anId, int aRegionId, QDate aDate, int aDisease, int aQuantity):id(anId), regionId(aRegionId), dateOfReport(aDate), diseaseType(aDisease), quantity(aQuantity) {
-}
-
-CaseReport::~CaseReport() {
-    //Destructor
-}
+CaseReport::CaseReport(int anId, int aRegionId, QString aDate, int aDisease, int aQuantity):id(anId), regionId(aRegionId), dateOfReport(aDate), diseaseType(aDisease), quantity(aQuantity) {}
+CaseReport::~CaseReport() {}
 
 int CaseReport::getId() {
     return id;
@@ -15,7 +11,7 @@ int CaseReport::getRegionId() {
     return regionId;
 }
 
-QDate CaseReport::getDateOfReport() {
+QString CaseReport::getDateOfReport() {
     return dateOfReport;
 }
 

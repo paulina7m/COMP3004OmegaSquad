@@ -12,9 +12,23 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    CaseReport.cpp
+    CaseReport.cpp \
+    DiseaseType.cpp \
+    Inventory.cpp \
+    Region.cpp \
+    Shipment.cpp \
+    ShipmentDetail.cpp \
+    SupplyType.cpp \
+    User.cpp
 
 HEADERS  += mainwindow.h \
-    CaseReport.h
+    CaseReport.h \
+    DiseaseType.h \
+    Inventory.h \
+    Region.h \
+    Shipment.h \
+    ShipmentDetail.h \
+    SupplyType.h \
+    User.h
 
 FORMS    += mainwindow.ui
