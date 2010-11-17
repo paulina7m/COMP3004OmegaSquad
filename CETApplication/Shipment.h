@@ -17,7 +17,7 @@ public:
             Cancelled
         };
 
-        Shipment(int, int, int, shipmentState, QString);
+        Shipment(int, int, int, shipmentState, QString, QString);
         ~Shipment();
 
         int getId();
@@ -32,6 +32,8 @@ public:
         void setReceivedDate(QString);
         QString getCancelledDate();
         void setCancelledDate(QString);
+        QString getNotes();
+        void setNotes(QString);
 private:
         int id;
         int srcRegion;
@@ -41,6 +43,7 @@ private:
         QString shippedDate;
         QString receivedDate;
         QString cancelledDate;
+        QString notes;
 };
 
 #endif // SHIPMENT_H

@@ -1,6 +1,6 @@
 #include "Shipment.h"
 
-Shipment::Shipment(int anId, int aSrcRegion, int aDestRegion, shipmentState aShipmentState, QString aCreatedDate):id(anId), srcRegion(aSrcRegion), destRegion(aDestRegion), shipState(aShipmentState), createdDate(aCreatedDate) {}
+Shipment::Shipment(int anId, int aSrcRegion, int aDestRegion, shipmentState aShipmentState, QString aCreatedDate, QString someNotes):id(anId), srcRegion(aSrcRegion), destRegion(aDestRegion), shipState(aShipmentState), createdDate(aCreatedDate), notes(someNotes) {}
 Shipment::~Shipment() {}
 
 int Shipment::getId() {
@@ -49,4 +49,12 @@ QString Shipment::getCancelledDate() {
 
 void Shipment::setCancelledDate(QString cancelDate) {
     cancelledDate = cancelDate;
+}
+
+QString Shipment::getNotes() {
+    return notes;
+}
+
+void Shipment::setNotes(QString shipmentNotes) {
+    notes = shipmentNotes;
 }
