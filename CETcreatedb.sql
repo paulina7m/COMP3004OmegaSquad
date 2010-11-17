@@ -25,13 +25,13 @@
 
 drop table CaseReport;
 drop table DiseaseType;
-drop table Inventory;
 drop table Region;
 drop table Shipment;
 drop table ShipmentDetail;
+drop table Inventory;
 drop table SupplyType;
 drop table User;
-
+drop table IdNumbers;
 
 
 --CaseReport
@@ -60,21 +60,16 @@ create table DiseaseType(
 	);
 
 --inserting data into the table DiseaseType
---insert into DiseaseType values ();
+insert into DiseaseType values (6202, "Smallpox", 0, 1);
+insert into DiseaseType values (6203, "Measles", 1, 1);
+insert into DiseaseType values (6204, "Yellow Fever", 2, 1);
+insert into DiseaseType values (6205, "Influenza", 3, 1);
+insert into DiseaseType values (6206, "Cholera", 4, 1);
+insert into DiseaseType values (6207, "Typhus", 5, 1);
+insert into DiseaseType values (6208, "HIV/AIDS", 7, 1);
+insert into DiseaseType values (6209, "H1N1", 8, 1);
+insert into DiseaseType values (6210, "Dengue Fever", 9, 1);
 
-
-
---Inventory
---creating the Table called Inventory
-create table Inventory(
-	id integer NOT NULL primary key,
-	regionId integer NOT NULL references Region(id),
-	supplyType integer NOT NULL references SupplyType(id),
-	quantity integer NOT NULL
-	);
-
---inserting data into the table Inventory
---insert into Inventory values ();
 
 
 --Province
@@ -292,6 +287,19 @@ create table ShipmentDetail(
 --insert into ShipmentDetail values ();
 
 
+--Inventory
+--creating the Table called Inventory
+create table Inventory(
+	id integer NOT NULL primary key,
+	regionId integer NOT NULL references Region(id),
+	supplyType integer NOT NULL references SupplyType(id),
+	quantity integer NOT NULL
+	);
+
+--inserting data into the table Inventory
+--insert into Inventory values ();
+
+
 --SupplyType
 --creating the Table called SupplyType
 create table SupplyType(
@@ -302,8 +310,16 @@ create table SupplyType(
 	);
 
 --inserting data into the table SupplyType
---insert into SupplyType values ();
-
+insert into SupplyType values (6211, "Tamiflu", 0, 1);
+insert into SupplyType values (6212, "ECMO", 1, 1);
+insert into SupplyType values (6213, "Dialysis Machine", 2, 1);
+insert into SupplyType values (6214, "Medical Ventilator", 3, 1);
+insert into SupplyType values (6215, "Ibuprofen", 4, 1);
+insert into SupplyType values (6216, "YF-Vax", 5, 1);
+insert into SupplyType values (6217, "Vibramycin", 6, 1);
+insert into SupplyType values (6218, "Abacavir", 7, 1);
+insert into SupplyType values (6219, "Symmetrel", 8, 1);
+insert into SupplyType values (6220, "Panadol", 9, 1);
 
 --User
 --creating the Table called User
@@ -317,4 +333,18 @@ create table User(
 	);
 
 --inserting data into the table User
---insert into User values ();
+insert into User values (6221, "Paulina", "abc", 5, 0, "MedicalAdministrator");
+insert into User values (6222, "Mike", "abc", 5, 0, "MedicalClerk");
+insert into User values (6223, "Spencer", "abc", 5, 0, "MedicalClerk");
+insert into User values (6224, "Gavin", "abc", 5, 0, "SystemAdministrator");
+
+
+--IdNumbers
+--creating the Table called IdNumbers
+--Numbers will appear here when new entities are created
+create table IdNumbers(
+	id integer NOT NULL primary key
+);
+
+--inserting data into the table recipe
+insert into IdNumbers values (6224);
