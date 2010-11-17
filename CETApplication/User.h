@@ -25,6 +25,7 @@ public:
         bool getLocked();
         void setLocked(bool);
         User::role getUserRole();
+        QString getUserRoleStr(int);
 private:
         int id;
         QString name;
@@ -32,6 +33,7 @@ private:
         int defaultRegionId;
         bool locked;
         role userRole;
+        QString userStr;
 };
 
 #endif // USER_H

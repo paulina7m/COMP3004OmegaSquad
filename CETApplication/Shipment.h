@@ -24,6 +24,7 @@ public:
         int getSrcRegion();
         int getDestRegion();
         Shipment::shipmentState getShipmentState();
+        QString shipmentStateStr(int);
         void setShipmentState(shipmentState);
         QString getCreatedDate();
         QString getShippedDate();
@@ -39,6 +40,7 @@ private:
         int srcRegion;
         int destRegion;
         shipmentState shipState;
+        QString shipmentStr;
         QString createdDate;
         QString shippedDate;
         QString receivedDate;

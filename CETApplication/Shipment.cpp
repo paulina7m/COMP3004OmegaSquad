@@ -19,6 +19,24 @@ Shipment::shipmentState Shipment::getShipmentState() {
     return shipState;
 }
 
+QString Shipment::shipmentStateStr(int enumValue) {
+    switch (enumValue) {
+        case 0:
+            shipmentStr = "Created";
+            break;
+        case 1:
+            shipmentStr = "Shipped";
+            break;
+        case 2:
+            shipmentStr = "Received";
+            break;
+        case 3:
+            shipmentStr = "Cancelled";
+    }
+
+    return shipmentStr;
+}
+
 void Shipment::setShipmentState(shipmentState currentStatus) {
     shipState = currentStatus;
 }

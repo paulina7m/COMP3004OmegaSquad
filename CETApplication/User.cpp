@@ -26,3 +26,19 @@ void User::setLocked(bool changeLock) {
 User::role User::getUserRole() {
     return userRole;
 }
+
+QString User::getUserRoleStr(int enumValue) {
+    switch (enumValue) {
+        case 0:
+            userStr = "MedicalClerk";
+            break;
+        case 1:
+            userStr = "MedicalAdministrator";
+            break;
+        case 2:
+            userStr = "SystemAdministrator";
+            break;
+    }
+
+    return userStr;
+}
