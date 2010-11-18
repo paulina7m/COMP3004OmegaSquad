@@ -268,7 +268,7 @@ create table Shipment(
 	id integer NOT NULL primary key,
 	srcRegion integer NOT NULL references Region(id),
 	destRegion integer NOT NULL references Region(id),
-	shipmentState varchar(15) NOT NULL,
+	shipmentState int NOT NULL,
 	createdDate varchar(15) NOT NULL,
 	shippedDate varchar(15),
 	receivedDate varchar(15),
