@@ -83,11 +83,11 @@ QString DatabaseHandler::queryDatabase(QString xmlString) {
             }
         }
         else {
-            xmlReply = "<?xml version=\"1.0\"?><message><command>queryDatabase</command><status>BadRequest</status></message>";
+            xmlReply = "<?xml version=\"1.0\"?><message><command>ParseXml</command><status>BadRequest</status></message>";
             return xmlReply;
         }
     }
-    xmlReply = "<?xml version=\"1.0\"?><message><command>queryDatabase</command><status>BadRequest</status></message>";
+    xmlReply = "<?xml version=\"1.0\"?><message><command>ParseXml</command><status>BadRequest</status></message>";
     return xmlReply;
 }
 
