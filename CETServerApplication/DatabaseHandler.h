@@ -16,9 +16,7 @@ class DatabaseHandler
     //Opens the database with the database path/name of db passed
     bool openDB(QString, QString, QString);
 
-    //Runs any query (for testing)
-    QSqlQuery queryResultsFrom(QString sqlQuery);
-
+    //All xml strings are passed through here and filtered
     QString queryDatabase(QString xmlString);
 
     QString findEntities(QString xmlString);

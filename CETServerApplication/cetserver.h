@@ -22,6 +22,8 @@ public slots:
     void startServerButtonHandler();
     //Stop server button
     void stopServerButtonHandler();
+    //Output the command and reply status
+    void commandStatus(QString);
 
 private:
     Ui::CETServer *ui;
