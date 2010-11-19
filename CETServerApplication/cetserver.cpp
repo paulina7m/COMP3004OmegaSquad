@@ -31,6 +31,7 @@ CETServer::CETServer(QWidget *parent) :
 
 CETServer::~CETServer()
 {
+    //Close the database connections and delete instance
     sqLite->closeDB();
     delete sqLite;
     delete ui;
@@ -41,29 +42,24 @@ void CETServer::startServerButtonHandler() {
     ui->statusText->appendHtml("<br>Starting Server.<br>");
     ui->stopServerButton->setEnabled(true);
     ui->startServerButton->setEnabled(false);
-
+    //Start the server connection
 
     //This is a test query
-    QString List = sqLite->queryDatabase("<message><command>findEntities</command><findEntitiesRequest type=\"Province\"></findEntitiesRequest></message>");
-    ui->statusText->appendPlainText(List);
-    //Start the server connection
+    //QString List = sqLite->queryDatabase("<message><command>findEntities</command><findEntitiesRequest type=\"Province\"></findEntitiesRequest></message>");
+    //ui->statusText->appendPlainText(List);
+
 }
 
 /*Stop server button handler*/
 void CETServer::stopServerButtonHandler() {
     ui->statusText->appendHtml("<br>Stopping Server.<br>");
-    //Stop the server
-    //Close the database
-    //sqLite->closeDB();
-    //delete sqLite;
+
     ui->stopServerButton->setEnabled(false);
     ui->startServerButton->setEnabled(true);
-    ui->statusText->appendPlainText("<br>Database closed.<br>");
 }
 
 /*Press Exit in the menu*/
 void CETServer::on_actionExit_triggered()
 {
-    sqLite->closeDB();
     CETServer::close();
 }
