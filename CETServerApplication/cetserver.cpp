@@ -44,17 +44,18 @@ void CETServer::startServerButtonHandler() {
     ui->statusText->appendHtml("<b style=\"color:'green'\">Starting Server.</b>");
     ui->stopServerButton->setEnabled(true);
     ui->startServerButton->setEnabled(false);
-    //Start the server connection
+    //Start the server connection here
 
+    /*
     //This is a test query
-    QString List = sqLite->queryDatabase("<message><command>findEntities</command><findEntitiesRequest type=\"Province\"></findEntitiesRequest></message>");
+    QString List = sqLite->queryDatabase("<message<command>findEntities</command><findEntitiesRequest type=\"Province\"></findEntitiesRequest></message>");
     this->commandStatus(List);
-
+    */
 }
 
 /*Stop server button handler*/
 void CETServer::stopServerButtonHandler() {
-    ui->statusText->appendHtml("<b style=\"color:'red'\">Stopping Server.</b><br>");
+    ui->statusText->appendHtml("-----<br><b style=\"color:'red'\">Stopping Server.</b>");
 
     ui->stopServerButton->setEnabled(false);
     ui->startServerButton->setEnabled(true);
@@ -67,7 +68,7 @@ void CETServer::on_actionExit_triggered()
 }
 
 //Outputs the command and its request status in the text area
-//after queryingDatabase
+//after queryingDatabase (optional use)
 void CETServer::commandStatus(QString xmlString) {
     if (xmlString != "") {
         //Parse the xml string
@@ -81,11 +82,10 @@ void CETServer::commandStatus(QString xmlString) {
                 QDomElement e = n.toElement();
                 QDomNode f = n.nextSibling();
                 QDomElement m = f.toElement();
-                QString message = "<br>Command: ";
+                QString message = "-----<br>Command: ";
                 message.append(e.text());
                 message.append("<br>Status: ");
                 message.append(m.text());
-                message.append("<br>");
                 if (e.tagName() == "command" && e.text() == "findEntities") {
                     ui->statusText->appendHtml(message);
                 }
@@ -98,15 +98,19 @@ void CETServer::commandStatus(QString xmlString) {
                 else if (e.tagName() == "command" && e.text() == "login") {
                     ui->statusText->appendHtml(message);
                 }
+                else {
+                    ui->statusText->appendHtml("-----<br>Command: Querying database");
+                    ui->statusText->appendHtml("Status: Bad Request");
+                }
             }
         }
         else {
-            ui->statusText->appendHtml("<br>Command: Querying database<br>");
-            ui->statusText->appendHtml("Status: Bad Request<br>");
+            ui->statusText->appendHtml("-----<br>Command: Querying database");
+            ui->statusText->appendHtml("Status: Bad Request");
         }
     }
     else {
-        ui->statusText->appendHtml("<br>Command: Querying database<br>");
-        ui->statusText->appendHtml("Status: String malformed<br>");
+        ui->statusText->appendHtml("-----<br>Command: Querying database");
+        ui->statusText->appendHtml("Status: String malformed");
     }
 }
