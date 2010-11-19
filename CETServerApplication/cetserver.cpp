@@ -8,45 +8,62 @@ CETServer::CETServer(QWidget *parent) :
     ui(new Ui::CETServer)
 {
     ui->setupUi(this);
+    ui->stopServerButton->setEnabled(false);
+
+    /* CONNECT TO THE DATABASE */
+    //Set the path to the database
+    QString dbLocation = "/Users/mrtaka79/COMP3004OmegaSquad/CETdb.sqlite";
+    QString dbType = "QSQLITE";
+    QString dbHostName = "hostname";
+    sqLite = new DatabaseHandler();
+    //Check if the db file exists
+    const QFile sqlite_db(dbLocation);
+    if(sqlite_db.exists() && sqLite->openDB(dbType, dbLocation, dbHostName)) {
+        ui->statusText->appendHtml("<br>Opening database.<br>");
+    }
+    else {
+        ui->startServerButton->setEnabled(false);
+        //Don't start the server
+        ui->statusText->appendPlainText("Cannot open database. Check path of database or if it exists.");
+    }
+    /* END CONNECT TO DATABASE */
 }
 
 CETServer::~CETServer()
 {
     sqLite->closeDB();
+    delete sqLite;
     delete ui;
 }
 
 /*Start server button handler*/
 void CETServer::startServerButtonHandler() {
-    ui->statusText->appendPlainText("Starting Server.");
-    //Set the path to the database
-    QString dbLocation = "/Users/mrtaka79/COMP3004OmegaSquad/CETdb.sqlite";
-    sqLite = new DatabaseHandler();
-    const QFile sqlite_db(dbLocation);
-    if(sqlite_db.exists()) {
-        sqLite->openDB(dbLocation);
-        ui->statusText->appendPlainText("Opening database.");
-        //Start the server connection
-    }
-    else {
-        //Don't start the server
-        ui->statusText->appendPlainText("Cannot open database. Check path of database or if it exists.");
-    }    
+    ui->statusText->appendHtml("<br>Starting Server.<br>");
+    ui->stopServerButton->setEnabled(true);
+    ui->startServerButton->setEnabled(false);
+
+
+    //This is a test query
+    QString List = sqLite->queryDatabase("<message><command>findEntities</command><findEntitiesRequest type=\"Province\"></findEntitiesRequest></message>");
+    ui->statusText->appendPlainText(List);
+    //Start the server connection
 }
 
 /*Stop server button handler*/
 void CETServer::stopServerButtonHandler() {
-    ui->statusText->appendPlainText("Stopping Server.");
+    ui->statusText->appendHtml("<br>Stopping Server.<br>");
     //Stop the server
     //Close the database
-    sqLite->closeDB();
-    ui->statusText->appendPlainText("Database closed.");
+    //sqLite->closeDB();
+    //delete sqLite;
+    ui->stopServerButton->setEnabled(false);
+    ui->startServerButton->setEnabled(true);
+    ui->statusText->appendPlainText("<br>Database closed.<br>");
 }
 
 /*Press Exit in the menu*/
 void CETServer::on_actionExit_triggered()
 {
-    //Close the database
     sqLite->closeDB();
     CETServer::close();
 }

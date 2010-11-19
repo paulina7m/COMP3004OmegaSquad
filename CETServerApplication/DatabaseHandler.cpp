@@ -5,6 +5,7 @@
 #include <QtXml/QDomDocument>
 
 #include <QDebug>
+#include <QStringList>
 
 /*
 The following must be added to the .pro file
@@ -12,27 +13,28 @@ QT += sql
 QT += xml
 */
 
-bool DatabaseHandler::openDB(QString pathToDb) {
-    db = QSqlDatabase::addDatabase("QSQLITE");
+bool DatabaseHandler::openDB(QString dbType, QString pathToDb, QString hostName) {
+    db = QSqlDatabase::addDatabase(dbType);
     //path/to/database/databasename
     db.setDatabaseName(pathToDb);
-    db.setHostName("localhost");
+    db.setHostName(hostName);
     //DEBUG
     //qDebug() << "Database name: " << db.databaseName();
+    //qDebug() << "Host name: " << db.hostName();
     if (db.open()) {
         //DEBUG
         //qDebug() << "Connected to database";
         //Find the maxId for getIdNumbers method
         //Query the IdNumbers table for the biggest int
         //assign it to maxId
-        QSqlQuery query("SELECT MAX(id) FROM idNumbers", db);
+        QSqlQuery query("SELECT MAX(id) FROM idNumbers");
         if (query.next()) {
             maxId = query.value(0).toInt();
         }
         return true;
     }
     else {
-        //qDebug() << "Cannot open database";
+        qDebug() << "Cannot open database";
         return false;
     }
     return false;
@@ -40,7 +42,7 @@ bool DatabaseHandler::openDB(QString pathToDb) {
 
 //Runs and returns any query (for testing)
 QSqlQuery DatabaseHandler::queryResultsFrom(QString sqlQuery) {
-    QSqlQuery query(sqlQuery, db);
+    QSqlQuery query(sqlQuery);
     qDebug() << "running query";
     while (query.next()) {
         qDebug() << "In Loop";

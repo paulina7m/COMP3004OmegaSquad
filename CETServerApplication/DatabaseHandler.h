@@ -14,7 +14,7 @@ class DatabaseHandler
 {
   public:
     //Opens the database with the database path/name of db passed
-    bool openDB(QString);
+    bool openDB(QString, QString, QString);
 
     //Runs any query (for testing)
     QSqlQuery queryResultsFrom(QString sqlQuery);
