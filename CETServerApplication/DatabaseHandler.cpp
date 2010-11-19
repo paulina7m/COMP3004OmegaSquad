@@ -18,10 +18,10 @@ bool DatabaseHandler::openDB(QString pathToDb) {
     db.setDatabaseName(pathToDb);
     db.setHostName("localhost");
     //DEBUG
-    qDebug() << "Database name: " << db.databaseName();
+    //qDebug() << "Database name: " << db.databaseName();
     if (db.open()) {
         //DEBUG
-        qDebug() << "Connected to database";
+        //qDebug() << "Connected to database";
         //Find the maxId for getIdNumbers method
         //Query the IdNumbers table for the biggest int
         //assign it to maxId
@@ -32,7 +32,7 @@ bool DatabaseHandler::openDB(QString pathToDb) {
         return true;
     }
     else {
-        qDebug() << "Cannot open database";
+        //qDebug() << "Cannot open database";
         return false;
     }
     return false;
@@ -67,22 +67,22 @@ QString DatabaseHandler::queryDatabase(QString xmlString) {
             while(!n.isNull()) {
                 QDomElement e = n.toElement();
                 if (e.tagName() == "command" && e.text() == "findEntities") {
-                    qDebug() << "finding";
+                    //qDebug() << "finding";
                     xmlReply = this->findEntities(xmlString);
                     return xmlReply;
                 }
                 else if (e.tagName() == "command" && e.text() == "saveEntities") {
-                    qDebug() << "saving";
+                    //qDebug() << "saving";
                     xmlReply = this->saveEntities(xmlString);
                     return xmlReply;
                 }
                 else if (e.tagName() == "command" && e.text() == "getIdNumbers") {
-                    qDebug() << "get ids";
+                    //qDebug() << "get ids";
                     xmlReply = this->getIdNumbers(xmlString);
                     return xmlReply;
                 }
                 else if (e.tagName() == "command" && e.text() == "login") {
-                    qDebug() << "login";
+                    //qDebug() << "login";
                     xmlReply = this->checkLogin(xmlString);
                     return xmlReply;
                 }
@@ -146,7 +146,7 @@ QString DatabaseHandler::findEntities(QString xmlString) {
             }
             //qDebug() << queryString;
             //Execute the query
-            qDebug() << queryString;
+            //qDebug() << queryString;
             QSqlQuery query(queryString);
             QSqlRecord rec;
             int numOfCols = 0;
@@ -157,7 +157,7 @@ QString DatabaseHandler::findEntities(QString xmlString) {
                 int columnCount = 1;
                 rec = query.record();
                 numOfCols = rec.count();
-                qDebug() << numOfCols;
+                //qDebug() << numOfCols;
                 xmlReply.append("<entity type=\"");
                 xmlReply.append(entityType);
                 xmlReply.append("\" id=\"");
@@ -174,7 +174,7 @@ QString DatabaseHandler::findEntities(QString xmlString) {
                 xmlReply.append("</entity>");
             }
             xmlReply.append("</message>");
-            qDebug() << xmlReply;
+            //qDebug() << xmlReply;
             return xmlReply;
         }
     }
@@ -209,13 +209,13 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
             QString queryString;
             //Get the root element
             QDomElement root = doc.documentElement();
-            qDebug() << root.tagName();
+            //qDebug() << root.tagName();
             QDomNode n = root.firstChild();
             while(!n.isNull()) {
-                qDebug() << "looping";
+                //qDebug() << "looping";
                 queryString = "";
                 QDomElement e = n.toElement();
-                qDebug() << e.tagName();
+                //qDebug() << e.tagName();
                 if (e.tagName() == "entity") {
                     QDomNode m = e.firstChild();
                     //check the database and see if this entity already exists
@@ -224,7 +224,7 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
                     queryCheck.append(" WHERE id=");
                     queryCheck.append(e.attribute("id"));
                     QSqlQuery query(queryCheck);
-                    qDebug() << queryCheck;
+                    //qDebug() << queryCheck;
                     //if it exists, this command is meant to be an update
                     if (query.next()) {
                         //update
@@ -271,7 +271,7 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
                         queryString.append(")");
                     }
                 }
-                qDebug() << queryString;
+                //qDebug() << queryString;
                 //Execute the insert
                 QSqlQuery query(queryString);
                 n = n.nextSibling();
@@ -316,18 +316,18 @@ QString DatabaseHandler::checkLogin(QString xmlString) {
                         queryString.append(" WHERE ");
 
                         while (!m.isNull()) {
-                                if (andCounter >= 1) {
-                                    queryString.append(" AND ");
-                                }
-                                ++andCounter;
-                                QDomElement f = m.toElement();
-                                //Form the query
-                                queryString.append(f.tagName());
-                                queryString.append("=\"");
-                                queryString.append(f.text());
-                                queryString.append("\"");
+                            if (andCounter >= 1) {
+                                queryString.append(" AND ");
+                            }
+                            ++andCounter;
+                            QDomElement f = m.toElement();
+                            //Form the query
+                            queryString.append(f.tagName());
+                            queryString.append("=\"");
+                            queryString.append(f.text());
+                            queryString.append("\"");
 
-                                m = m.nextSibling();
+                            m = m.nextSibling();
                         }
                     }
                 }
@@ -336,7 +336,7 @@ QString DatabaseHandler::checkLogin(QString xmlString) {
 
             //Execute the query
             QSqlQuery query(queryString);
-            qDebug() << queryString;
+            //qDebug() << queryString;
             if (query.next()) {
                 QString role;
                 switch(query.value(5).toInt()) {
@@ -415,7 +415,7 @@ QString DatabaseHandler::getIdNumbers(QString xmlString){
             QString insert = "INSERT INTO IdNumbers values(";
             insert.append(num.setNum(blockEnd));
             insert.append(")");
-            qDebug() << insert;
+            //qDebug() << insert;
             query.prepare(insert);
             query.exec();
 

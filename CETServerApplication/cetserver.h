@@ -25,6 +25,7 @@ public slots:
 
 private:
     Ui::CETServer *ui;
+    DatabaseHandler *sqLite;
 
 private slots:
     void on_actionExit_triggered();
