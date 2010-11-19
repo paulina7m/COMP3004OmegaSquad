@@ -3,15 +3,6 @@
 #include <QSqlQuery>
 #include <QString>
 #include <QList>
-#include "DiseaseType.h"
-#include "CaseReport.h"
-#include "Inventory.h"
-#include "Region.h"
-#include "Province.h"
-#include "Shipment.h"
-#include "ShipmentDetail.h"
-#include "SupplyType.h"
-#include "User.h"
 
 /*
 The following must be added to the .pro file
@@ -28,17 +19,9 @@ class DatabaseHandler
     //Runs any query (for testing)
     QSqlQuery queryResultsFrom(QString sqlQuery);
 
-    //Find Entities, turn objects into query
-    //Send list of entities to Server Message class
-    QList<DiseaseType> findDiseaseType();
-    QList<SupplyType> findSupplyType();
-    QList<Inventory> findInventory(QString xmlString);
-    QList<Region> findRegion();
-    QList<Province> findProvince();
-    QList<Shipment> findShipment(QString xmlString);
-    QList<ShipmentDetail> findShipmentDetail(QString xmlString);
-    QList<CaseReport> findCaseReport(QString xmlString);
-    QList<User> findUser();
+    QString queryDatabase(QString xmlString);
+
+    QString findEntities(QString xmlString);
 
     //Save Entities (create entities)
     //NOTE: The client must request id numbers first, get a reply, then attach the id numbers to an object
@@ -50,20 +33,14 @@ class DatabaseHandler
     QString checkLogin(QString xmlString);
 
     //Get ID Numbers (for when creating entities)
-    QList<int> getIdNumbers(int blockSize);
+    QString getIdNumbers(QString xmlString);
 
     void closeDB();
   private:
-    QList<CaseReport> caseReportList;
-    QList<DiseaseType> diseaseList;
-    QList<SupplyType> supplyList;
-    QList<Region> regionList;
-    QList<Province> provinceList;
-    QList<User> userList;
-    QList<Shipment> shipmentList;
-    QList<Inventory> inventoryList;
-    QList<ShipmentDetail> shipmentDetailList;
-
+    QString xmlReply;
+    QString queryString;
+    QString entityType;
+    QString blockSize;
     QSqlDatabase db;
     int maxId;
 };

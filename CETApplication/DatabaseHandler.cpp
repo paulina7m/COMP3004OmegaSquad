@@ -1,5 +1,6 @@
 #include "DatabaseHandler.h"
 #include <QSqlQuery>
+#include <QSqlRecord>
 #include <QVariant>
 #include <QtXml/QDomDocument>
 
@@ -50,33 +51,58 @@ QSqlQuery DatabaseHandler::queryResultsFrom(QString sqlQuery) {
     return query;
 }
 
-//Find Entities, store them in a list
-//Send list of entities to Server Message class
-//Send list of Diseases
-QList<DiseaseType> DatabaseHandler::findDiseaseType() {
-    diseaseList.clear();
-    QSqlQuery query("SELECT * FROM DiseaseType");
-    while (query.next()) {
-        DiseaseType addDisease(query.value(0).toInt(), query.value(1).toString(), query.value(2).toInt(), query.value(3).toBool());
-        diseaseList.append(addDisease);
+
+
+QString DatabaseHandler::queryDatabase(QString xmlString) {
+    xmlReply = "";
+
+    if (xmlString != "") {
+        //Parse the xml string
+        //The name of the xml document
+        QDomDocument doc("xmldocument");
+        if (doc.setContent(xmlString)) {
+            //Get the root element
+            QDomElement root = doc.documentElement();
+            QDomNode n = root.firstChild();
+            while(!n.isNull()) {
+                QDomElement e = n.toElement();
+                if (e.tagName() == "command" && e.text() == "findEntities") {
+                    qDebug() << "finding";
+                    xmlReply = this->findEntities(xmlString);
+                    return xmlReply;
+                }
+                else if (e.tagName() == "command" && e.text() == "saveEntities") {
+                    qDebug() << "saving";
+                    xmlReply = this->saveEntities(xmlString);
+                    return xmlReply;
+                }
+                else if (e.tagName() == "command" && e.text() == "getIdNumbers") {
+                    qDebug() << "get ids";
+                    xmlReply = this->getIdNumbers(xmlString);
+                    return xmlReply;
+                }
+                else if (e.tagName() == "command" && e.text() == "login") {
+                    qDebug() << "login";
+                    xmlReply = this->checkLogin(xmlString);
+                    return xmlReply;
+                }
+                n = n.nextSibling();
+            }
+        }
+        else {
+            xmlReply = "<?xml version=\"1.0\"?><message><command>queryDatabase</command><status>BadRequest</status></message>";
+            return xmlReply;
+        }
     }
-    return diseaseList;
+    xmlReply = "<?xml version=\"1.0\"?><message><command>queryDatabase</command><status>BadRequest</status></message>";
+    return xmlReply;
 }
 
-//Send list of Supplies
-QList<SupplyType> DatabaseHandler::findSupplyType() {
-    supplyList.clear();
-    QSqlQuery query("SELECT * FROM SupplyType");
-    while (query.next()) {
-        SupplyType addSupply(query.value(0).toInt(), query.value(1).toString(), query.value(2).toInt(), query.value(3).toBool());
-        supplyList.append(addSupply);
-    }
-
-    return supplyList;
-}
-
-QList<Inventory> DatabaseHandler::findInventory(QString xmlString) {
-    inventoryList.clear();
+//Find entities, return xml
+QString DatabaseHandler::findEntities(QString xmlString) {
+    xmlReply = "";
+    queryString = "";
+    entityType = "";
 
     if (xmlString != "") {
         //Parse the xml string
@@ -85,13 +111,16 @@ QList<Inventory> DatabaseHandler::findInventory(QString xmlString) {
         if (doc.setContent(xmlString)) {
             int andCounter = 0;
             //Prepare the query and get data
-            QString queryString = "SELECT * FROM Inventory";
+
             //Get the root element
             QDomElement root = doc.documentElement();
             QDomNode n = root.firstChild();
             while(!n.isNull()) {
                 QDomElement e = n.toElement();
                 if (e.tagName() == "findEntitiesRequest") {
+                    queryString = "SELECT * FROM ";
+                    entityType = e.attribute("type");
+                    queryString.append(entityType);
                     QDomNode m = e.firstChild();
                     if (!m.isNull()) {
                         queryString.append(" WHERE ");
@@ -105,7 +134,9 @@ QList<Inventory> DatabaseHandler::findInventory(QString xmlString) {
                                 //Form the query
                                 queryString.append(f.attribute("key"));
                                 queryString.append(f.attribute("comparison"));
+                                queryString.append("\"");
                                 queryString.append(f.attribute("value"));
+                                queryString.append("\"");
 
                                 m = m.nextSibling();
                         }
@@ -115,248 +146,44 @@ QList<Inventory> DatabaseHandler::findInventory(QString xmlString) {
             }
             //qDebug() << queryString;
             //Execute the query
-            //qDebug() << queryString;
-            QSqlQuery query(queryString);
-            //Create a list of CaseReport objects
-            while (query.next()) {
-                Inventory addInventoryList(query.value(0).toInt(), query.value(1).toInt(), query.value(2).toInt(), query.value(3).toInt());
-                inventoryList.append(addInventoryList);
-            }
-        }
-    }
-    else {
-        //Empty string
-    }
-
-    return inventoryList;
-}
-
-QList<Region> DatabaseHandler::findRegion() {
-    regionList.clear();
-    QSqlQuery query("SELECT * FROM Region");
-    while (query.next()) {
-        Region addRegion(query.value(0).toInt(), query.value(1).toInt(), query.value(2).toString(), query.value(3).toInt(), query.value(4).toInt(), query.value(5).toString());
-        regionList.append(addRegion);
-    }
-
-    return regionList;
-}
-
-QList<Province> DatabaseHandler::findProvince() {
-    provinceList.clear();
-    QSqlQuery query("SELECT * FROM Province");
-    while (query.next()) {
-        Province addProvince(query.value(0).toInt(), query.value(1).toString());
-        provinceList.append(addProvince);
-    }
-
-    return provinceList;
-}
-
-QList<Shipment> DatabaseHandler::findShipment(QString xmlString) {
-    shipmentList.clear();
-
-    if (xmlString != "") {
-        //Parse the xml string
-        //The name of the xml document
-        QDomDocument doc("xmldocument");
-        if (doc.setContent(xmlString)) {
-            int andCounter = 0;
-            //Prepare the query and get data
-            QString queryString = "SELECT * FROM Shipment";
-            //Get the root element
-            QDomElement root = doc.documentElement();
-            QDomNode n = root.firstChild();
-            while(!n.isNull()) {
-                QDomElement e = n.toElement();
-                if (e.tagName() == "findEntitiesRequest") {
-                    QDomNode m = e.firstChild();
-                    if (!m.isNull()) {
-                        queryString.append(" WHERE ");
-
-                        while (!m.isNull()) {
-                            if (andCounter >= 1) {
-                                queryString.append(" AND ");
-                            }
-                            ++andCounter;
-                            QDomElement f = m.toElement();
-                            //Form the query
-                            queryString.append(f.attribute("key"));
-                            queryString.append(f.attribute("comparison"));
-                            if (f.attribute("key") == "createdDate" || f.attribute("key") == "shippedDate" || f.attribute("key") == "receivedDate" || f.attribute("key") == "cancelledDate") {
-                                //put double quotes around it since it's a string
-                                queryString.append("\"");
-                                queryString.append(f.attribute("value"));
-                                queryString.append("\"");
-                            }
-                            else {
-                                queryString.append(f.attribute("value"));
-                            }
-
-                            m = m.nextSibling();
-                        }
-                    }
-                }
-                n = n.nextSibling();
-            }
-
             qDebug() << queryString;
-            //Execute the query
             QSqlQuery query(queryString);
-            //Create a list of Shipment objects
+            QSqlRecord rec;
+            int numOfCols = 0;
+            //returns the number of columns in the query
+            xmlReply.append("<?xml version=\"1.0\"?><message><command>findEntities</command>");
+            xmlReply.append("<status>OK</status>");
             while (query.next()) {
-                Shipment addShipmentReport(query.value(0).toInt(), query.value(1).toInt(), query.value(2).toInt(), Shipment::shipmentState(query.value(3).toInt()), query.value(4).toString(), query.value(8).toString());
-                if (query.value(5).toString() != "" && query.value(6).toString() == "" && query.value(7).toString() == "") {
-                    addShipmentReport.setShippedDate(query.value(5).toString());
+                int columnCount = 1;
+                rec = query.record();
+                numOfCols = rec.count();
+                qDebug() << numOfCols;
+                xmlReply.append("<entity type=\"");
+                xmlReply.append(entityType);
+                xmlReply.append("\" id=\"");
+                xmlReply.append(query.value(0).toString());
+                xmlReply.append("\">");
+                while (columnCount <= (numOfCols-1)) {
+                    xmlReply.append("<attribute key=\"");
+                    xmlReply.append(rec.fieldName(columnCount));
+                    xmlReply.append("\" value=\"");
+                    xmlReply.append(query.value(columnCount).toString());
+                    xmlReply.append("\" />");
+                    columnCount++;
                 }
-                else if(query.value(5).toString() != "" && query.value(6).toString() != "" && query.value(7).toString() == "") {
-                    addShipmentReport.setShippedDate(query.value(5).toString());
-                    addShipmentReport.setReceivedDate(query.value(6).toString());
-                }
-                else if(query.value(7).toString() != "") {
-                    addShipmentReport.setShippedDate("");
-                    addShipmentReport.setReceivedDate("");
-                    addShipmentReport.setCancelledDate(query.value(7).toString());
-                }
-                shipmentList.append(addShipmentReport);
+                xmlReply.append("</entity>");
             }
+            xmlReply.append("</message>");
+            qDebug() << xmlReply;
+            return xmlReply;
         }
     }
     else {
-        //Invalid XML
+        xmlReply = "<?xml version=\"1.0\"?><message><command>findEntities</command><status>BadRequest</status></message>";
+        return xmlReply;
     }
-
-    return shipmentList;
-}
-
-QList<ShipmentDetail> DatabaseHandler::findShipmentDetail(QString xmlString) {
-    shipmentDetailList.clear();
-
-    if (xmlString != "") {
-        //Parse the xml string
-        //The name of the xml document
-        QDomDocument doc("xmldocument");
-        if (doc.setContent(xmlString)) {
-            int andCounter = 0;
-            //Prepare the query and get data
-            QString queryString = "SELECT * FROM ShipmentDetail";
-            //Get the root element
-            QDomElement root = doc.documentElement();
-            QDomNode n = root.firstChild();
-            while(!n.isNull()) {
-                QDomElement e = n.toElement();
-                if (e.tagName() == "findEntitiesRequest") {
-                    QDomNode m = e.firstChild();
-                    if (!m.isNull()) {
-                        queryString.append(" WHERE ");
-
-                        while (!m.isNull()) {
-                            if (andCounter >= 1) {
-                                queryString.append(" AND ");
-                            }
-                            ++andCounter;
-                            QDomElement f = m.toElement();
-                            //Form the query
-                            queryString.append(f.attribute("key"));
-                            queryString.append(f.attribute("comparison"));
-                            queryString.append(f.attribute("value"));
-                            m = m.nextSibling();
-                        }
-                    }
-                }
-                n = n.nextSibling();
-            }
-            //qDebug() << queryString;
-            //Execute the query
-            QSqlQuery query(queryString);
-            //Create a list of Shipment objects
-            while (query.next()) {
-                ShipmentDetail addShipmentDetail(query.value(0).toInt(), query.value(1).toInt(), query.value(2).toInt(), query.value(3).toInt(), query.value(4).toInt());
-                shipmentDetailList.append(addShipmentDetail);
-            }
-        }
-    }
-    else {
-        //Empty string
-    }
-
-
-    return shipmentDetailList;
-}
-
-QList<CaseReport> DatabaseHandler::findCaseReport(QString xmlString) {
-    caseReportList.clear();
-
-    if (xmlString != "") {
-        //Parse the xml string
-        //The name of the xml document
-        QDomDocument doc("xmldocument");
-        if (doc.setContent(xmlString)) {
-            int andCounter = 0;
-            //Prepare the query and get data
-            QString queryString = "SELECT * FROM CaseReport";
-            //Get the root element
-            QDomElement root = doc.documentElement();
-            QDomNode n = root.firstChild();
-            while(!n.isNull()) {
-                QDomElement e = n.toElement();
-                if (e.tagName() == "findEntitiesRequest") {
-                    QDomNode m = e.firstChild();
-                    if (!m.isNull()) {
-                        queryString.append(" WHERE ");
-
-                        while (!m.isNull()) {
-                            if (andCounter >= 1) {
-                                queryString.append(" AND ");
-                            }
-                            ++andCounter;
-                            QDomElement f = m.toElement();
-                            //Form the query
-                            queryString.append(f.attribute("key"));
-                            queryString.append(f.attribute("comparison"));
-                            if (f.attribute("key") == "dateOfReport") {
-                                //put double quotes around it since it's a string
-                                queryString.append("\"");
-                                queryString.append(f.attribute("value"));
-                                queryString.append("\"");
-                             }
-                             else {
-                                queryString.append(f.attribute("value"));
-                             }
-                            m = m.nextSibling();
-                        }
-                    }
-                }
-                n = n.nextSibling();
-            }
-            //qDebug() << queryString;
-            //Execute the query
-            QSqlQuery query(queryString);
-            //Create a list of CaseReport objects
-            while (query.next()) {
-                CaseReport addCaseReport(query.value(0).toInt(), query.value(1).toInt(), query.value(2).toString(), query.value(3).toInt(), query.value(4).toInt());
-                caseReportList.append(addCaseReport);
-            }
-        }
-    }
-    else {
-        //Empty string
-    }
-
-    return caseReportList;
-}
-
-//Return a list of users
-QList<User> DatabaseHandler::findUser() {
-    userList.clear();
-
-    QSqlQuery query("SELECT * FROM User");
-    while (query.next()) {
-        User addUser(query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toInt(), query.value(4).toBool(), User::role(query.value(5).toInt()));
-        userList.append(addUser);
-    }
-
-    return userList;
+    xmlReply = "<?xml version=\"1.0\"?><message><command>findEntities</command><status>PermissionDenied</status></message>";
+    return xmlReply;
 }
 
 //Save Entities (create entities)
@@ -370,6 +197,7 @@ QList<User> DatabaseHandler::findUser() {
 //      when doing insertions
 //Send Status message back to Server Message class
 QString DatabaseHandler::saveEntities(QString xmlString) {
+    xmlReply = "";
     //parse xml
     //qDebug() << xmlString;
     if (xmlString != "") {
@@ -384,6 +212,7 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
             qDebug() << root.tagName();
             QDomNode n = root.firstChild();
             while(!n.isNull()) {
+                qDebug() << "looping";
                 queryString = "";
                 QDomElement e = n.toElement();
                 qDebug() << e.tagName();
@@ -409,24 +238,10 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
                             //Form the query
                             queryString.append(f.attribute("key"));
                             queryString.append("=");
-                            if (f.attribute("key") == "createdDate" || f.attribute("key") == "shippedDate"  || f.attribute("key") == "receivedDate"  || f.attribute("key") == "cancelledDate"  || f.attribute("key") == "notes" || f.attribute("key") == "dateOfReport") {
-                                //put double quotes around it since it's a string
-                                queryString.append("\"");
-                                queryString.append(f.attribute("value"));
-                                queryString.append("\"");
-                                /*
-                                if (f.attribute("key") == "receivedDate" && f.attribute("value") != "") {
-                                    qDebug() << "Received a shipment!";
-                                    //Update
-                                    //Shipment (Update the created, shipped, received, cancelled date and corresponding shipmentState),
-                                    //Inventory (if Shipments update their received date and state,
-                                    //           update the Inventory quantity with the ShipmentDetails quantitiesShipped)
-                                }
-                                */
-                            }
-                            else {
-                                queryString.append(f.attribute("value"));
-                            }
+                            queryString.append("\"");
+                            queryString.append(f.attribute("value"));
+                            queryString.append("\"");
+
                             m = m.nextSibling();
                             if (!m.isNull()) {
                                 queryString.append(", ");
@@ -434,10 +249,6 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
                         }
                         queryString.append(" WHERE id=");
                         queryString.append(e.attribute("id"));
-                        qDebug() << queryString;
-                        //Execute the update
-                        QSqlQuery query(queryString);
-                        return "OK";
                     }
                     else {
                         //insert
@@ -451,43 +262,41 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
                             queryString.append(", ");
                             QDomElement f = m.toElement();
                             //Form the query
-                            if (f.attribute("key") == "createdDate" || f.attribute("key") == "shippedDate"  || f.attribute("key") == "receivedDate"  || f.attribute("key") == "cancelledDate"  || f.attribute("key") == "notes" || f.attribute("key") == "dateOfReport") {
-                                //put double quotes around it since it's a string
-                                queryString.append("\"");
-                                queryString.append(f.attribute("value"));
-                                queryString.append("\"");
-                            }
-                            else {
-                                queryString.append(f.attribute("value"));
-                            }
+                            queryString.append("\"");
+                            queryString.append(f.attribute("value"));
+                            queryString.append("\"");
 
                             m = m.nextSibling();
                         }
                         queryString.append(")");
                     }
                 }
-                n = n.nextSibling();
                 qDebug() << queryString;
                 //Execute the insert
                 QSqlQuery query(queryString);
+                n = n.nextSibling();
             }
-            return "OK";
+            xmlReply = "<?xml version=\"1.0\"?><message><command>saveEntities</command><status>OK</status></message>";
+            return xmlReply;
         }
         else {
-            return "BadRequest";
+            xmlReply = "<?xml version=\"1.0\"?><message><command>saveEntities</command><status>BadRequest</status></message>";
+            return xmlReply;
         }
     }
     //if empty xml string
     else {
-        return "BadRequest";
+        xmlReply = "<?xml version=\"1.0\"?><message><command>saveEntities</command><status>BadRequest</status></message>";
+        return xmlReply;
     }
-    return "PermissionDenied";
+    xmlReply = "<?xml version=\"1.0\"?><message><command>saveEntities</command><status>PermissionDenied</status></message>";
+    return xmlReply;
 }
 
 //Get login information
 //Send status message back to Server Message class
 QString DatabaseHandler::checkLogin(QString xmlString) {
-
+    xmlReply = "";
     if (xmlString != "") {
         //Parse the xml string
         //The name of the xml document
@@ -529,41 +338,110 @@ QString DatabaseHandler::checkLogin(QString xmlString) {
             QSqlQuery query(queryString);
             qDebug() << queryString;
             if (query.next()) {
-                return "OK";
+                QString role;
+                switch(query.value(5).toInt()) {
+                case 0:
+                    role = "MedicalClerk";
+                    break;
+                case 1:
+                    role = "MedicalAdministrator";
+                    break;
+                case 2:
+                    role = "SystemAdministrator";
+                    break;
+                }
+                xmlReply = "<?xml version=\"1.0\"?><message><command>login</command><status>OK</status><loginReply><role>";
+                xmlReply.append(role);
+                xmlReply.append("</role></loginReply></message>");
+                return xmlReply;
             }
         }
         else {
-            return "BadRequest";
+            xmlReply = "<?xml version=\"1.0\"?><message><command>login</command>";
+            xmlReply.append("<status>BadRequest</status><loginReply><role></role></loginReply></message>");
+            return xmlReply;
         }
     }
     else {
-        //bad string
-        return "BadRequest";
+        xmlReply = "<?xml version=\"1.0\"?><message><command>login</command>";
+        xmlReply.append("<status>BadRequest</status><loginReply><role></role></loginReply></message>");
+        return xmlReply;
     }
-    return "PermissionDenied";
+    xmlReply = "<?xml version=\"1.0\"?><message><command>login</command>";
+    xmlReply.append("<status>PermissionDenied</status><loginReply><role></role></loginReply></message>");
+    return xmlReply;
 }
 
 //Get ID Numbers (for when creating entities)
-QList<int> DatabaseHandler::getIdNumbers(int blockSize){
-    int blockStart = maxId + 1;
-    int blockEnd = blockStart + (blockSize - 1);
-    //iterate from blockStart to blockEnd and put in a list
-    QList<int> idList;
-    for (int i=blockStart; i <= blockEnd; i++) {
-        idList.append(i);
-    }
+QString DatabaseHandler::getIdNumbers(QString xmlString){
+    xmlReply = "";
+    blockSize = "";
 
-    //update the database table with the blockEnd number
-    QString num;
-    QString insert = "INSERT INTO IdNumbers values(";
-    insert.append(num.setNum(blockEnd));
-    insert.append(")");
-    qDebug() << insert;
-    QSqlQuery query;
-    query.prepare(insert);
-    query.exec();
+    if (xmlString != "") {
+        //Parse the xml string
+        //The name of the xml document
+        QDomDocument doc("xmldocument");
+        if (doc.setContent(xmlString)) {
+            //Prepare the query and get data
+            QString queryString = "SELECT MAX(id) FROM IdNumbers";
+            //Get the root element
+            QDomElement root = doc.documentElement();
+            QDomNode n = root.firstChild();
+            while(!n.isNull()) {
+                QDomElement e = n.toElement();
+                if (e.tagName() == "getIdNumbersRequest") {
+                    QDomNode m = e.firstChild();
+                    if (!m.isNull()) {
+                        QDomElement f = m.toElement();
+                        if (f.tagName() == "blockSize") {
+                            blockSize = f.text();
+                        }
+                    }
+                }
+                n = n.nextSibling();
+            }
 
-    return idList;
+            //query the database for the max number
+            int maxId;
+            int block;
+            QSqlQuery query(queryString);
+            if (query.next()) {
+                maxId = query.value(0).toInt();
+            }
+            block = blockSize.toInt();
+            int blockStart = maxId + 1;
+            int blockEnd = blockStart + (block - 1);
+            QString num;
+            QString insert = "INSERT INTO IdNumbers values(";
+            insert.append(num.setNum(blockEnd));
+            insert.append(")");
+            qDebug() << insert;
+            query.prepare(insert);
+            query.exec();
+
+            xmlReply = "<?xml version=\"1.0\"?><message><command>getIdNumbers</command><status>OK</status><getIdNumbersReply>";
+            xmlReply.append("<blockStart>");
+            xmlReply.append(num.setNum(blockStart));
+            xmlReply.append("</blockStart><blockEnd>");
+            xmlReply.append(num.setNum(blockEnd));
+            xmlReply.append("</blockEnd></getIdNumbersReply></message>");
+            return xmlReply;
+            }
+            else {
+                xmlReply = "<?xml version=\"1.0\"?><message><command>getIdNumbers</command>";
+                xmlReply.append("<status>BadRequest</status><getIdNumbersReply><blockStart></blockStart></getIdNumbersReply></message>");
+                return xmlReply;
+            }
+        }
+        else {
+            xmlReply = "<?xml version=\"1.0\"?><message><command>getIdNumbers</command>";
+            xmlReply.append("<status>BadRequest</status><getIdNumbersReply><blockStart></blockStart></getIdNumbersReply></message>");
+            return xmlReply;
+        }
+
+    xmlReply = "<?xml version=\"1.0\"?><message><command>getIdNumbers</command>";
+    xmlReply.append("<status>PermissionDenied</status><getIdNumbersReply><blockStart></blockStart></getIdNumbersReply></message>");
+    return xmlReply;
 }
 
 void DatabaseHandler::closeDB() {
