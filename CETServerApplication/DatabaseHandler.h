@@ -16,7 +16,6 @@ class DatabaseHandler
     //Opens the database with the database path/name of db passed
     bool openDB(QString, QString, QString);
 
-    //All xml strings are passed through here and filtered
     QString queryDatabase(QString xmlString);
 
     QString findEntities(QString xmlString);
@@ -39,6 +38,7 @@ class DatabaseHandler
     QString queryString;
     QString entityType;
     QString blockSize;
+    QString escapeString;
     QSqlDatabase db;
     int maxId;
 };
