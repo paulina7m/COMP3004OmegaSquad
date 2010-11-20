@@ -126,12 +126,7 @@ QString DatabaseHandler::findEntities(QString xmlString) {
                         queryString.append(f.attribute("key"));
                         queryString.append(f.attribute("comparison"));
                         queryString.append("\"");
-                        escapeString = f.attribute("value");
-                        //escape strings
-                        if (escapeString.contains("<")) {
-                            escapeString.replace("<", "&lt;");
-                        }
-                        queryString.append(escapeString);
+                        queryString.append(f.attribute("value"));
                         queryString.append("\"");
 
                         m = m.nextSibling();
