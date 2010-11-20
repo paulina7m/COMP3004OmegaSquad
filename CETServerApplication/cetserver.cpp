@@ -47,10 +47,17 @@ void CETServer::startServerButtonHandler() {
     //Start the server connection here
 
     /*
-    //This is a test query
+    //These are test queries
+    //Test 1
     QString List = sqLite->queryDatabase("<message<command>findEntities</command><findEntitiesRequest type=\"Province\"></findEntitiesRequest></message>");
     this->commandStatus(List);
+
+    //Test2
+    QString List = sqLite->queryDatabase("<message><command>findEntities</command><findEntitiesRequest type=\"Region\"></findEntitiesRequest></message>");
+    qDebug() << List;
+    ui->statusText->appendPlainText(List);
     */
+
 }
 
 /*Stop server button handler*/
