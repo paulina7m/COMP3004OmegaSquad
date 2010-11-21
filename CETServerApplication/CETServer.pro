@@ -7,6 +7,7 @@
 QT       += core gui
 QT       += sql
 QT       += xml
+QT 		 += network
 
 TARGET = CETServer
 TEMPLATE = app
