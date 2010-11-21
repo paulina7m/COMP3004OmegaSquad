@@ -24,10 +24,8 @@ CETServer::CETServer(QWidget *parent) :
     }
     else {
         ui->startServerButton->setEnabled(false);
-        //Don't start the server
         ui->statusText->appendPlainText("<b style=\"color:'red'\">Database file not found. Check paths.</b>");
     }
-    /* END CONNECT TO DATABASE */
 }
 
 //Destructor
@@ -46,15 +44,32 @@ void CETServer::startServerButtonHandler() {
     ui->startServerButton->setEnabled(false);
     //Start the server connection here
 
+    //This should be the XML request document coming from the client
+    QString xmlRequest;
+
+    //This should be the XML reply document created by the server
+    QString xmlReply = sqLite->queryDatabase(xmlRequest);
+
+    //This is an optional function that will output the status of the server reply,
+    //ie. "OK", "BadRequest" or "PermissionDenied"
+    this->commandStatus(xmlReply);
+
+
+
+
+
     /*
-    //These are test queries
+    //These are hardcoded XML documents being tested
     //Test 1
     QString List = sqLite->queryDatabase("<message<command>findEntities</command><findEntitiesRequest type=\"Province\"></findEntitiesRequest></message>");
+    //Output the status of the server reply
     this->commandStatus(List);
 
     //Test2
     QString List = sqLite->queryDatabase("<message><command>findEntities</command><findEntitiesRequest type=\"Region\"></findEntitiesRequest></message>");
+    //Spit output to console
     qDebug() << List;
+    //Spit output to statusText box in plain text (should not be html)
     ui->statusText->appendPlainText(List);
     */
 
