@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QUrl>
+#include <QWebElement>
+#include "googlemap.h"
 
 //Spencer has added a comment
 
@@ -16,6 +19,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+private slots:
+    void initializeMap();
 
 private:
     Ui::MainWindow *ui;

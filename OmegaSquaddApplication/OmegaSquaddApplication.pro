@@ -4,15 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui webkit network
 
 TARGET = OmegaSquaddApplication
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    googlemap.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    googlemap.h
 
 FORMS    += mainwindow.ui
