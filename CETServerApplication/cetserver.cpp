@@ -16,6 +16,7 @@ CETServer::CETServer(QWidget *parent) :
     QString dbLocation = "/Users/mrtaka79/COMP3004OmegaSquad/CETdb.sqlite";
     QString dbType = "QSQLITE";
     QString dbHostName = "hostname";
+    //Create instance
     sqLite = new DatabaseHandler();
     //Check if the db file exists
     const QFile sqlite_db(dbLocation);
