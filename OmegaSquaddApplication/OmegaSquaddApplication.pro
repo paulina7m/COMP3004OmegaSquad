@@ -12,9 +12,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    googlemap.cpp
+    googlemap.cpp 
+
 
 HEADERS  += mainwindow.h \
-    googlemap.h
+    googlemap.h 
+
 
 FORMS    += mainwindow.ui
