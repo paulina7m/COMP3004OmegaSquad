@@ -13,7 +13,7 @@ CETServer::CETServer(QWidget *parent) :
 
     /* CONNECT TO THE DATABASE */
     //Set the path to the database
-    QString dbLocation = "/Users/mrtaka79/COMP3004OmegaSquad/CETdb.sqlite";
+    QString dbLocation = "C:\\Documents and Settings\\Owner\\COMP3004OmegaSquad\\CETdb.sqlite";
     QString dbType = "QSQLITE";
     QString dbHostName = "hostname";
     //Create instance
