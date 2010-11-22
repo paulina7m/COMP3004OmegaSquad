@@ -5,8 +5,8 @@
 #include <QtXml/QDomDocument>
 
 CETServer::CETServer(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::CETServer)
+        QMainWindow(parent),
+        ui(new Ui::CETServer)
 {
     ui->setupUi(this);
     ui->stopServerButton->setEnabled(false);
@@ -34,6 +34,7 @@ CETServer::~CETServer()
 {
     //Close the database connections and delete instance
     sqLite->closeDB();
+
     delete sqLite;
     delete ui;
 }
@@ -56,6 +57,12 @@ void CETServer::startServerButtonHandler() {
     this->commandStatus(xmlReply);
 
 
+
+
+    //Start the server, pass it the handler so it can perform queries
+    connect(&server, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
+
+    server.listen(QHostAddress::Any, 6789);
 
 
 
@@ -88,6 +95,16 @@ void CETServer::stopServerButtonHandler() {
 void CETServer::on_actionExit_triggered()
 {
     CETServer::close();
+}
+
+
+void CETServer::acceptConnection()
+{
+    client = server.nextPendingConnection();
+
+
+    connect(client, SIGNAL(readyRead()), this, SLOT(startRead()));
+
 }
 
 //Outputs the command and its request status in the text area
@@ -136,4 +153,57 @@ void CETServer::commandStatus(QString xmlString) {
         ui->statusText->appendHtml("-----<br>Command: Querying database");
         ui->statusText->appendHtml("Status: String malformed");
     }
+}
+
+
+
+//readmessages and respond
+void CETServer::startRead()
+{
+    char buffer[1024] = {0};
+
+    client->read(buffer, client->bytesAvailable());
+
+    QString readIn;
+
+    //cout << "Received: " << buffer << endl;
+
+    readIn = (QString) buffer;
+
+    //ui->statusText->appendPlainText("Received: " + readIn);
+
+    //New messages in will be opened with the xml version tag
+    //if we receive said tag we need to clear our query
+    if (readIn.contains("<?xml version =\"1.0\"?>",Qt::CaseSensitive))
+    {
+        //cout<<"Clearing query."<<endl;
+
+        xmlQuery = "";
+    }
+
+    //add the line received to the query string
+    xmlQuery += readIn;
+
+    //if we have the clsoe message tag in our query it is tiem to do stuf with the query
+    if(xmlQuery.contains("</message>"))
+    {
+        //do stuff with query
+
+        //cout<<"Query received: "<<xmlQuery.toStdString()<<endl;
+        ui->statusText->appendPlainText("Query received:" + xmlQuery);
+
+        QString reply = this->sqLite->queryDatabase(xmlQuery);
+        xmlQuery = "";
+
+        if(client->isWritable()){
+
+            client->write(reply.toAscii(),reply.length()+1);
+
+
+            //cout<<"Message sent to client"<<endl;
+        }else{
+            //cout<<"Client not writable"<<endl;
+        }
+    }
+    client->close();
 }

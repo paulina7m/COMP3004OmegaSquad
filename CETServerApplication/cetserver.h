@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "DatabaseHandler.h"
+#include <QtNetwork>
+
 
 namespace Ui {
     class CETServer;
@@ -16,6 +18,7 @@ public:
     explicit CETServer(QWidget *parent = 0);
     ~CETServer();
 
+
 /*UI Handlers*/
 public slots:
     //Start server button
@@ -25,9 +28,17 @@ public slots:
     //Output the command and reply status
     void commandStatus(QString);
 
+    void acceptConnection();
+    void startRead();
+
 private:
     Ui::CETServer *ui;
     DatabaseHandler *sqLite;
+    //Server server;
+
+    QTcpServer server;
+    QTcpSocket* client;
+    QString xmlQuery;
 
 private slots:
     void on_actionExit_triggered();
