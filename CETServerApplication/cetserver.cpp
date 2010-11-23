@@ -3,40 +3,48 @@
 #include <QDebug>
 #include <QFile>
 #include <QtXml/QDomDocument>
+#include <QFileDialog>
 
 CETServer::CETServer(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::CETServer)
 {
     ui->setupUi(this);
+    ui->startServerButton->setEnabled(false);
     ui->stopServerButton->setEnabled(false);
-
-    /* CONNECT TO THE DATABASE */
-    //Set the path to the database
-    QString dbLocation = "C:\\Documents and Settings\\Owner\\COMP3004OmegaSquad\\CETdb.sqlite";
-    QString dbType = "QSQLITE";
-    QString dbHostName = "hostname";
-    //Create instance
-    sqLite = new DatabaseHandler();
-    //Check if the db file exists
-    const QFile sqlite_db(dbLocation);
-    if(sqlite_db.exists() && sqLite->openDB(dbType, dbLocation, dbHostName)) {
-        ui->statusText->appendHtml("<b style=\"color:'green'\">Opening database.</b>");
-    }
-    else {
-        ui->startServerButton->setEnabled(false);
-        ui->statusText->appendPlainText("<b style=\"color:'red'\">Database file not found. Check paths.</b>");
-    }
+    databaseOpen = false;
 }
 
 //Destructor
 CETServer::~CETServer()
 {
-    //Close the database connections and delete instance
-    sqLite->closeDB();
-
-    delete sqLite;
+    if (databaseOpen) {
+        //Close the database connections and delete instance
+        sqLite->closeDB();
+        delete sqLite;
+    }
     delete ui;
+}
+
+void CETServer::openDatabaseButtonHandler() {
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Database"), "./CETdb.sqlite", tr("Database Files (*.sqlite)"));
+    QString dbType = "QSQLITE";
+    QString dbHostName = "hostname";
+    sqLite = new DatabaseHandler();
+    //Check if the db file exists
+    const QFile sqlite_db(fileName);
+    if(sqlite_db.exists() && sqLite->openDB(dbType, fileName, dbHostName)) {
+        ui->statusText->appendHtml("<b style=\"color:'green'\">Opening database.</b>");
+        databaseOpen = true;
+        ui->startServerButton->setEnabled(true);
+        ui->toolButton->setEnabled(false);
+
+    }
+    else {
+        ui->startServerButton->setEnabled(false);
+        ui->statusText->appendPlainText("<b style=\"color:'red'\">Database file not found. Check paths.</b>");
+        databaseOpen = false;
+    }
 }
 
 /*Start server button handler*/

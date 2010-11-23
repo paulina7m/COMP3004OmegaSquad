@@ -21,6 +21,8 @@ public:
 
 /*UI Handlers*/
 public slots:
+    //Open database button
+    void openDatabaseButtonHandler();
     //Start server button
     void startServerButtonHandler();
     //Stop server button
@@ -34,6 +36,7 @@ public slots:
 private:
     Ui::CETServer *ui;
     DatabaseHandler *sqLite;
+    bool databaseOpen;
     //Server server;
 
     QTcpServer server;
