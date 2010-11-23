@@ -1063,8 +1063,8 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
 }
 
 //Update Shipments
-//quantityShipped will be an int when actually shipped
-//-1 is NULL if nothing in quantityShipped
+//quantityShipped created when actually shipped
+//quantityShipped is -1 if shipped date empty string
 QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int quantityShipped, QString shippedDate, QString receivedDate, QString cancelledDate, QString notes) {
     QString replyStatus;
     QString xmlStatus;
@@ -1107,7 +1107,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
         xmlUpdateRequest.append("\" />");
     }
     xmlUpdateRequest.append("</entity>");
-    if (quantityShipped != -1) {
+    if (shippedDate != "" && quantityShipped != -1) {
         xmlUpdateRequest.append("<entity type=\"ShipmentDetail\" id=\"");
         xmlUpdateRequest.append(anId.setNum(shipmentDetailId));
         xmlUpdateRequest.append("\">");

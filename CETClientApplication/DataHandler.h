@@ -31,6 +31,8 @@ public:
     QString saveCaseReport(int, QString, int, int);
     QString updateCaseReport(int, int, QString, int, int);
     QString saveShipment(int, int, QString, int, int, QString);
+    //quantityShipped created when actually shipped
+    //quantityShipped is -1 if shipped date empty string
     QString updateShipment(int, int, int, QString, QString, QString, QString);
     QString saveInventory(int, int, int);
     QString updateInventory(int, int);
