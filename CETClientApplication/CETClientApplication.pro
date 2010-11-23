@@ -20,7 +20,7 @@ SOURCES += \
     Inventory.cpp \
     DiseaseType.cpp \
     CaseReport.cpp \
-    datahandler.cpp
+    DataHandler.cpp
 
 HEADERS  += \
     User.h \
@@ -32,6 +32,6 @@ HEADERS  += \
     Inventory.h \
     DiseaseType.h \
     CaseReport.h \
-    datahandler.h
+    DataHandler.h
 
 FORMS    +=
