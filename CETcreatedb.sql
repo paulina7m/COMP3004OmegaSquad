@@ -324,11 +324,13 @@ create table Inventory(
 	id integer NOT NULL primary key,
 	regionId integer NOT NULL references Region(id),
 	supplyType integer NOT NULL references SupplyType(id),
-	quantity integer NOT NULL
+	quantity integer
 	);
 
 --inserting data into the table Inventory
---insert into Inventory values ();
+insert into Inventory values (16, 6001, 6211, 15);
+insert into Inventory values (17, 6002, 6212, 9);
+insert into Inventory values (18, 6003, 6213, null);
 
 
 --SupplyType

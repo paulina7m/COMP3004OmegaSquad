@@ -5,6 +5,7 @@
 
 DataHandler::DataHandler() {}
 
+
 //getCaseReports
 //all parameters should be optional/nullable (-1 indicates this)
 //parameters are used to shape xml query
@@ -94,7 +95,7 @@ QList<CaseReport> DataHandler::getCaseReports()
     xmlRequest.append("</findEntitiesRequest></message>");
 
     //send xml query to  communication component
-
+    QString xmlReply;
 
 
 
@@ -102,7 +103,7 @@ QList<CaseReport> DataHandler::getCaseReports()
 
     //receive xml result from component
     //Dummy reply
-    QString xmlReply = "<?xml version=\"1.0\"?><message><command>findEntities</command><status>OK</status><entity type=\"CaseReport\" id=\"14\"><attribute key=\"regionId\" value=\"5931\" /><attribute key=\"dateOfReport\" value=\"2010-11-09\" /><attribute key=\"diseaseType\" value=\"6202\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"15\" /></entity><entity type=\"CaseReport\" id=\"15\"><attribute key=\"regionId\" value=\"5932\" /><attribute key=\"dateOfReport\" value=\"2010-10-09\" /><attribute key=\"diseaseType\" value=\"6202\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"20\" /></entity><entity type=\"CaseReport\" id=\"16\"><attribute key=\"regionId\" value=\"5932\" /><attribute key=\"dateOfReport\" value=\"2010-10-30\" /><attribute key=\"diseaseType\" value=\"6203\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"16\" /></entity></message>";
+    //QString xmlReply = "<?xml version=\"1.0\"?><message><command>findEntities</command><status>OK</status><entity type=\"CaseReport\" id=\"14\"><attribute key=\"regionId\" value=\"5931\" /><attribute key=\"dateOfReport\" value=\"2010-11-09\" /><attribute key=\"diseaseType\" value=\"6202\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"15\" /></entity><entity type=\"CaseReport\" id=\"15\"><attribute key=\"regionId\" value=\"5932\" /><attribute key=\"dateOfReport\" value=\"2010-10-09\" /><attribute key=\"diseaseType\" value=\"6202\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"20\" /></entity><entity type=\"CaseReport\" id=\"16\"><attribute key=\"regionId\" value=\"5932\" /><attribute key=\"dateOfReport\" value=\"2010-10-30\" /><attribute key=\"diseaseType\" value=\"6203\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"16\" /></entity></message>";
 
     //dissect xml data and populate it into returnList
     int id;
@@ -128,7 +129,7 @@ QList<CaseReport> DataHandler::getCaseReports()
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                             if (!j.isNull()) {
                                 while (!j.isNull()) {
@@ -139,7 +140,7 @@ QList<CaseReport> DataHandler::getCaseReports()
                                     else if (f.attribute("key") == "dateOfReport") {
                                         date = f.attribute("value");
                                     }
-                                    else if (f.attribute("key") == "diseasetype") {
+                                    else if (f.attribute("key") == "diseaseType") {
                                         disease = f.attribute("value").toInt();
                                     }
                                     else if (f.attribute("key") == "correction") {
@@ -216,7 +217,7 @@ QList<DiseaseType> DataHandler::getDiseaseTypes()
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                             if (!j.isNull()) {
                                 while (!j.isNull()) {
@@ -290,7 +291,7 @@ QList<Inventory> DataHandler::getInventory() {
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                             if (!j.isNull()) {
                                 while (!j.isNull()) {
@@ -301,7 +302,7 @@ QList<Inventory> DataHandler::getInventory() {
                                     else if (f.attribute("key") == "supplyType") {
                                         supplyType = f.attribute("value").toInt();
                                     }
-                                    else if (f.attribute("key") == "enabled") {
+                                    else if (f.attribute("key") == "quantity") {
                                         quantity = f.attribute("value").toInt();
                                     }
                                     j = j.nextSibling();
@@ -370,7 +371,7 @@ QList<Region> DataHandler::getRegions()
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                             if (!j.isNull()) {
                                 while (!j.isNull()) {
@@ -454,7 +455,7 @@ QList<Province> DataHandler::getProvinces()
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                             if (!j.isNull()) {
                                 while (!j.isNull()) {
@@ -529,7 +530,7 @@ QList<Shipment> DataHandler::getShipments()
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                             if (!j.isNull()) {
                                 while (!j.isNull()) {
@@ -541,7 +542,18 @@ QList<Shipment> DataHandler::getShipments()
                                         destRegion = f.attribute("value").toInt();
                                     }
                                     else if (f.attribute("key") == "shipmentState") {
-                                        shipmentState = f.attribute("value").toInt();
+                                        if (f.attribute("value") == "Created") {
+                                            shipmentState = 0;
+                                        }
+                                        else if (f.attribute("value") == "Shipped") {
+                                            shipmentState = 1;
+                                        }
+                                        else if (f.attribute("value") == "Received") {
+                                            shipmentState = 2;
+                                        }
+                                        else if (f.attribute("value") == "Cancelled") {
+                                            shipmentState = 3;
+                                        }
                                     }
                                     else if (f.attribute("key") == "createdDate") {
                                         created = f.attribute("value");
@@ -562,6 +574,9 @@ QList<Shipment> DataHandler::getShipments()
                                 }
                             }
                             Shipment aShipment(id, srcRegion, destRegion, Shipment::shipmentState(shipmentState), created, notes);
+                            aShipment.setShippedDate(shipped);
+                            aShipment.setReceivedDate(received);
+                            aShipment.setCancelledDate(cancelled);
                             returnList.append(aShipment);
                             g = g.nextSibling();
                         }
@@ -620,7 +635,7 @@ QList<ShipmentDetail> DataHandler::getShipmentDetails()
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                             if (!j.isNull()) {
                                 while (!j.isNull()) {
@@ -699,7 +714,7 @@ QList<SupplyType> DataHandler::getSupplyTypes()
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                             if (!j.isNull()) {
                                 while (!j.isNull()) {
@@ -779,7 +794,7 @@ QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int
                     QDomNode g = e.nextSibling();
                     if(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        //id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                         if (!j.isNull()) {
                             while (!j.isNull()) {
@@ -852,7 +867,9 @@ QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int
 }
 
 //Update CaseReport
-QString DataHandler::updateCaseReport(int id, int regionID, QString date, int disease, int quantity) {
+//Can only adjust quantity
+//IMPORTANT: ID MUST ALREADY EXIST
+QString DataHandler::updateCaseReport(int id, int quantity) {
     QString replyStatus;
     QString xmlStatus;
 
@@ -866,6 +883,7 @@ QString DataHandler::updateCaseReport(int id, int regionID, QString date, int di
     xmlUpdateRequest.append("<entity type=\"CaseReport\" id=\"");
     xmlUpdateRequest.append(anId.setNum(id));
     xmlUpdateRequest.append("\">");
+    /*
     xmlUpdateRequest.append("<attribute key=\"regionId\" value=\"");
     xmlUpdateRequest.append(aRegion.setNum(regionID));
     xmlUpdateRequest.append("\" />");
@@ -875,6 +893,7 @@ QString DataHandler::updateCaseReport(int id, int regionID, QString date, int di
     xmlUpdateRequest.append("<attribute key=\"diseaseType\" value=\"");
     xmlUpdateRequest.append(aDisease.setNum(disease));
     xmlUpdateRequest.append("\" />");
+    */
     xmlUpdateRequest.append("<attribute key=\"correction\" value=\"0\" />");
     xmlUpdateRequest.append("<attribute key=\"quantity\" value=\"");
     xmlUpdateRequest.append(aQuantity.setNum(quantity));
@@ -964,7 +983,7 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
                     QDomNode g = e.nextSibling();
                     if(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        //id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                         if (!j.isNull()) {
                             while (!j.isNull()) {
@@ -1024,7 +1043,7 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
     xmlSaveRequest.append("<attribute key=\"quantityRequested\" value=\"");
     xmlSaveRequest.append(aQuantity.setNum(quantityRequested));
     xmlSaveRequest.append("\" />");
-    xmlSaveRequest.append("<attribute key=\"quantityShipped\" value=\"null\" /></entity>");
+    xmlSaveRequest.append("<attribute key=\"quantityShipped\" value=\"null\" />");
     xmlSaveRequest.append("</entity></message>");
     qDebug() << xmlSaveRequest;
 
@@ -1064,7 +1083,7 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
 
 //Update Shipments
 //quantityShipped created when actually shipped
-//quantityShipped is -1 if shipped date empty string
+//quantityShipped is 0 if shipped date empty string
 QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int quantityShipped, QString shippedDate, QString receivedDate, QString cancelledDate, QString notes) {
     QString replyStatus;
     QString xmlStatus;
@@ -1107,7 +1126,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
         xmlUpdateRequest.append("\" />");
     }
     xmlUpdateRequest.append("</entity>");
-    if (shippedDate != "" && quantityShipped != -1) {
+    if (shippedDate != "" && quantityShipped > 0) {
         xmlUpdateRequest.append("<entity type=\"ShipmentDetail\" id=\"");
         xmlUpdateRequest.append(anId.setNum(shipmentDetailId));
         xmlUpdateRequest.append("\">");
@@ -1116,6 +1135,9 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
         xmlUpdateRequest.append("\" />");
         xmlUpdateRequest.append("</entity></message>");
 
+    }
+    else {
+        xmlUpdateRequest.append("</message>");
     }
     //qDebug() << xmlUpdateRequest;
 
@@ -1199,7 +1221,7 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
                     QDomNode g = e.nextSibling();
                     if(!g.isNull()) {
                         QDomElement i = g.toElement();
-                        id = i.text().toInt();
+                        //id = i.attribute("id").toInt();
                         QDomNode j = i.firstChild();
                         if (!j.isNull()) {
                             while (!j.isNull()) {
@@ -1271,7 +1293,7 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
 }
 
 //Update Inventory
-QString updateInventory(int id, int quantity) {
+QString DataHandler::updateInventory(int id, int quantity) {
     QString replyStatus;
     QString xmlStatus;
 
