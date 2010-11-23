@@ -37,8 +37,7 @@ void CETServer::openDatabaseButtonHandler() {
         ui->statusText->appendHtml("<b style=\"color:'green'\">Opening database.</b>");
         databaseOpen = true;
         ui->startServerButton->setEnabled(true);
-        ui->toolButton->setEnabled(false);
-
+        ui->openDatabaseButton->setEnabled(false);
     }
     else {
         ui->startServerButton->setEnabled(false);
