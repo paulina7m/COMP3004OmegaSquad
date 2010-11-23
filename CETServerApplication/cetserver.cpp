@@ -21,8 +21,8 @@ CETServer::~CETServer()
     if (databaseOpen) {
         //Close the database connections and delete instance
         sqLite->closeDB();
-        delete sqLite;
     }
+    delete sqLite;
     delete ui;
 }
 
