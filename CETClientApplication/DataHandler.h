@@ -18,6 +18,7 @@ class DataHandler
 {
 public:
     DataHandler();
+    ~DataHandler();
     //QList<CaseReport> getCaseReports(int,int, int,QString, QString,int,int,int);
     QList<CaseReport> getCaseReports();
     QList<DiseaseType> getDiseaseTypes();

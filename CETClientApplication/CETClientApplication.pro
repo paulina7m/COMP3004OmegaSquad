@@ -1,16 +1,21 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2010-11-21T19:57:35
+# Project created by QtCreator 2010-11-23T20:24:23
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core
+QT       += xml
+QT       -= gui
 
 TARGET = CETClientApplication
+CONFIG   += console
+CONFIG   -= app_bundle
+
 TEMPLATE = app
 
 
-SOURCES += \
+SOURCES += main.cpp \
     User.cpp \
     SupplyType.cpp \
     ShipmentDetail.cpp \
@@ -19,10 +24,10 @@ SOURCES += \
     Province.cpp \
     Inventory.cpp \
     DiseaseType.cpp \
-    CaseReport.cpp \
-    DataHandler.cpp
+    DataHandler.cpp \
+    CaseReport.cpp
 
-HEADERS  += \
+HEADERS += \
     User.h \
     SupplyType.h \
     ShipmentDetail.h \
@@ -31,7 +36,5 @@ HEADERS  += \
     Province.h \
     Inventory.h \
     DiseaseType.h \
-    CaseReport.h \
-    DataHandler.h
-
-FORMS    +=
+    DataHandler.h \
+    CaseReport.h

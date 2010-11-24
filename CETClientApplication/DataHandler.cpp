@@ -4,7 +4,7 @@
 #include <QDebug>
 
 DataHandler::DataHandler() {}
-
+DataHandler::~DataHandler() {}
 
 //getCaseReports
 //all parameters should be optional/nullable (-1 indicates this)
@@ -95,15 +95,15 @@ QList<CaseReport> DataHandler::getCaseReports()
     xmlRequest.append("</findEntitiesRequest></message>");
 
     //send xml query to  communication component
-    QString xmlReply;
-
 
 
 
 
     //receive xml result from component
     //Dummy reply
-    //QString xmlReply = "<?xml version=\"1.0\"?><message><command>findEntities</command><status>OK</status><entity type=\"CaseReport\" id=\"14\"><attribute key=\"regionId\" value=\"5931\" /><attribute key=\"dateOfReport\" value=\"2010-11-09\" /><attribute key=\"diseaseType\" value=\"6202\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"15\" /></entity><entity type=\"CaseReport\" id=\"15\"><attribute key=\"regionId\" value=\"5932\" /><attribute key=\"dateOfReport\" value=\"2010-10-09\" /><attribute key=\"diseaseType\" value=\"6202\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"20\" /></entity><entity type=\"CaseReport\" id=\"16\"><attribute key=\"regionId\" value=\"5932\" /><attribute key=\"dateOfReport\" value=\"2010-10-30\" /><attribute key=\"diseaseType\" value=\"6203\" /><attribute key=\"correction\" value=\"0\" /><attribute key=\"quantity\" value=\"16\" /></entity></message>";
+    QString xmlReply = "Response from server";
+
+
 
     //dissect xml data and populate it into returnList
     int id;
@@ -190,7 +190,7 @@ QList<DiseaseType> DataHandler::getDiseaseTypes()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply;
+    QString xmlReply = "Response from server";
 
 
 
@@ -266,7 +266,7 @@ QList<Inventory> DataHandler::getInventory() {
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply;
+    QString xmlReply = "Response from server";
 
 
     //dissect xml data and populate it into returnList
@@ -344,7 +344,7 @@ QList<Region> DataHandler::getRegions()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply;
+    QString xmlReply = "Response from server";
 
 
     //dissect xml data and populate it into returnList
@@ -432,7 +432,7 @@ QList<Province> DataHandler::getProvinces()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply;
+    QString xmlReply = "Response from server";
 
 
     //dissect xml data and populate it into returnList
@@ -500,7 +500,8 @@ QList<Shipment> DataHandler::getShipments()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply;
+    QString xmlReply = "Response from server";
+
 
 
     //dissect xml data and populate it into returnList
@@ -609,7 +610,7 @@ QList<ShipmentDetail> DataHandler::getShipmentDetails()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply;
+    QString xmlReply = "Response from server";
 
 
     //dissect xml data and populate it into returnList
@@ -687,9 +688,7 @@ QList<SupplyType> DataHandler::getSupplyTypes()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply;
-    //Just another test
-    //xmlReply = "<?xml version=\"1.0\"?><message><command>findEntities</command><status>OK</status><entity type=\"SupplyType\" id=\"6211\"><attribute key=\"name\" value=\"Tamiflu\" /><attribute key=\"colorIndex\" value=\"0\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6212\"><attribute key=\"name\" value=\"ECMO\" /><attribute key=\"colorIndex\" value=\"1\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6213\"><attribute key=\"name\" value=\"Dialysis Machine\" /><attribute key=\"colorIndex\" value=\"2\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6214\"><attribute key=\"name\" value=\"Medical Ventilator\" /><attribute key=\"colorIndex\" value=\"3\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6215\"><attribute key=\"name\" value=\"Ibuprofen\" /><attribute key=\"colorIndex\" value=\"4\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6216\"><attribute key=\"name\" value=\"YF-Vax\" /><attribute key=\"colorIndex\" value=\"5\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6217\"><attribute key=\"name\" value=\"Vibramycin\" /><attribute key=\"colorIndex\" value=\"6\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6218\"><attribute key=\"name\" value=\"Abacavir\" /><attribute key=\"colorIndex\" value=\"7\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6219\"><attribute key=\"name\" value=\"Symmetrel\" /><attribute key=\"colorIndex\" value=\"8\" /><attribute key=\"enabled\" value=\"1\" /></entity><entity type=\"SupplyType\" id=\"6220\"><attribute key=\"name\" value=\"Panadol\" /><attribute key=\"colorIndex\" value=\"9\" /><attribute key=\"enabled\" value=\"1\" /></entity></message>";
+    QString xmlReply = "Response from server";
 
 
     //dissect xml data and populate it into returnList
@@ -771,7 +770,7 @@ QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int
 
     //SPENCE
     //Get a response back
-    QString xmlReply;
+    QString xmlReply = "Response from server";
 
 
 
@@ -839,8 +838,7 @@ QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int
 
 
     //get a status response string
-    //test
-    xmlStatus = "<?xml version=\"1.0\"?><message><command>saveEntities</command><status>OK</status></message>";
+    xmlStatus = "Response from server";
 
     //Parse the xml
     if (xmlStatus != "") {
@@ -867,8 +865,6 @@ QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int
 }
 
 //Update CaseReport
-//Can only adjust quantity
-//IMPORTANT: ID MUST ALREADY EXIST
 QString DataHandler::updateCaseReport(int id, int quantity) {
     QString replyStatus;
     QString xmlStatus;
@@ -903,10 +899,8 @@ QString DataHandler::updateCaseReport(int id, int quantity) {
     //send xml query to  communication component
 
 
-
     //get a status response string
-    //test
-    xmlStatus = "<?xml version=\"1.0\"?><message><command>saveEntities</command><status>OK</status></message>";
+    xmlStatus = "Response from server";
 
     //Parse the xml
     if (xmlStatus != "") {
@@ -956,7 +950,7 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
 
 
     //SPENCE
-    QString xmlReply;
+    QString xmlReply = "Response from server";
 
 
 
@@ -1045,7 +1039,7 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
     xmlSaveRequest.append("\" />");
     xmlSaveRequest.append("<attribute key=\"quantityShipped\" value=\"null\" />");
     xmlSaveRequest.append("</entity></message>");
-    qDebug() << xmlSaveRequest;
+    //qDebug() << xmlSaveRequest;
 
     //SPENCE
     //send xml query to  communication component
@@ -1053,8 +1047,7 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
 
     //SPENCE
     //get a status response string
-    xmlStatus;
-
+    xmlStatus = "Response from server";
 
 
     //Parse the xml
@@ -1139,7 +1132,6 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
     else {
         xmlUpdateRequest.append("</message>");
     }
-    //qDebug() << xmlUpdateRequest;
 
     //SPENCE
     //send xml query to  communication component
@@ -1147,8 +1139,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
 
     //SPENCE
     //get a status response string
-    xmlStatus;
-
+    xmlStatus = "Response from server";
 
     //Parse the xml
     if (xmlStatus != "") {
@@ -1195,10 +1186,9 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
 
 
 
-
     //SPENCE
     //Get a response back
-    QString xmlReply;
+    QString xmlReply = "Response from server";
 
 
 
@@ -1264,7 +1254,7 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
 
     //SPENCE
     //get a status response string
-    xmlStatus;
+    xmlStatus = "Response from server";
 
 
 
@@ -1313,10 +1303,9 @@ QString DataHandler::updateInventory(int id, int quantity) {
     //SPENCE
     //send xml query to  communication component
 
-
     //SPENCE
     //get a status response string
-    xmlStatus;
+    xmlStatus = "Response from server";
 
 
 
