@@ -41,7 +41,7 @@ void CETServer::openDatabaseButtonHandler() {
     }
     else {
         ui->startServerButton->setEnabled(false);
-        ui->statusText->appendPlainText("<b style=\"color:'red'\">Database file not found. Check paths.</b>");
+        ui->statusText->appendHtml("<b style=\"color:'red'\">Database file not found. Check paths.</b>");
         databaseOpen = false;
     }
 }
