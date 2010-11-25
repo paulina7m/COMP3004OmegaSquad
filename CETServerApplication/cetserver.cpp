@@ -33,7 +33,10 @@ void CETServer::openDatabaseButtonHandler() {
     sqLite = new DatabaseHandler();
     //Check if the db file exists
     const QFile sqlite_db(fileName);
-    if(sqlite_db.exists() && sqLite->openDB(dbType, fileName, dbHostName)) {
+    if (fileName == "") {
+    	//Do nothing
+    }
+    else if(sqlite_db.exists() && sqLite->openDB(dbType, fileName, dbHostName)) {
         ui->statusText->appendHtml("<b style=\"color:'green'\">Opening database.</b>");
         databaseOpen = true;
         ui->startServerButton->setEnabled(true);
