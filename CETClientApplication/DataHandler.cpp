@@ -1,9 +1,12 @@
 #include "datahandler.h"
 #include <QtXml/QDomDocument>
+#include "clientconnection.h"
 
 #include <QDebug>
 
-DataHandler::DataHandler() {}
+DataHandler::DataHandler() {
+    connection = new ClientConnection();
+}
 DataHandler::~DataHandler() {}
 
 //getCaseReports
@@ -101,7 +104,7 @@ QList<CaseReport> DataHandler::getCaseReports()
 
     //receive xml result from component
     //Dummy reply
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlRequest);
 
 
 
@@ -190,7 +193,7 @@ QList<DiseaseType> DataHandler::getDiseaseTypes()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlRequest);
 
 
 
@@ -344,7 +347,7 @@ QList<Region> DataHandler::getRegions()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlRequest);
 
 
     //dissect xml data and populate it into returnList
@@ -432,7 +435,7 @@ QList<Province> DataHandler::getProvinces()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlRequest);
 
 
     //dissect xml data and populate it into returnList
@@ -500,7 +503,7 @@ QList<Shipment> DataHandler::getShipments()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlRequest);
 
 
 
@@ -610,7 +613,7 @@ QList<ShipmentDetail> DataHandler::getShipmentDetails()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlRequest);
 
 
     //dissect xml data and populate it into returnList
@@ -688,7 +691,7 @@ QList<SupplyType> DataHandler::getSupplyTypes()
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlRequest);
 
 
     //dissect xml data and populate it into returnList
@@ -770,7 +773,7 @@ QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int
 
     //SPENCE
     //Get a response back
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlIdRequest);
 
 
 
@@ -900,7 +903,7 @@ QString DataHandler::updateCaseReport(int id, int quantity) {
 
 
     //get a status response string
-    xmlStatus = "Response from server";
+    xmlStatus = connection->sendRequest(xmlUpdateRequest);
 
     //Parse the xml
     if (xmlStatus != "") {
@@ -950,7 +953,7 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
 
 
     //SPENCE
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlIdRequest);
 
 
 
@@ -1139,7 +1142,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
 
     //SPENCE
     //get a status response string
-    xmlStatus = "Response from server";
+    xmlStatus = connection->sendRequest(xmlUpdateRequest);
 
     //Parse the xml
     if (xmlStatus != "") {
@@ -1188,7 +1191,7 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
 
     //SPENCE
     //Get a response back
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlIdRequest);
 
 
 
@@ -1305,7 +1308,7 @@ QString DataHandler::updateInventory(int id, int quantity) {
 
     //SPENCE
     //get a status response string
-    xmlStatus = "Response from server";
+    xmlStatus = connection->sendRequest(xmlUpdateRequest);
 
 
 

@@ -12,6 +12,7 @@
 #include "User.h"
 #include <QList>
 #include <QString>
+#include "clientconnection.h"
 
 
 class DataHandler
@@ -37,6 +38,9 @@ public:
     QString updateShipment(int, int, int, QString, QString, QString, QString);
     QString saveInventory(int, int, int);
     QString updateInventory(int, int);
+
+private:
+    ClientConnection* connection;
 
 };
 

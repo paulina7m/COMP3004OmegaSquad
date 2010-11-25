@@ -202,6 +202,17 @@ void CETServer::startRead()
         QString reply = this->sqLite->queryDatabase(xmlQuery);
         xmlQuery = "";
 
+        ///////////test a delay///
+        ////this shoudl work with client
+        /*int x,y;
+        for(x = 0; x < 2000; x++)
+        {
+            for(y = 0; y < 2000000; y++)
+            {
+            }
+        }*/
+        ////////////////
+
         if(client->isWritable()){
 
             client->write(reply.toAscii(),reply.length()+1);

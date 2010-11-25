@@ -7,6 +7,7 @@
 QT       += core
 QT       += xml
 QT       -= gui
+QT += network
 
 TARGET = CETClientApplication
 CONFIG   += console
@@ -25,7 +26,8 @@ SOURCES += main.cpp \
     Inventory.cpp \
     DiseaseType.cpp \
     DataHandler.cpp \
-    CaseReport.cpp
+    CaseReport.cpp \
+    clientconnection.cpp
 
 HEADERS += \
     User.h \
@@ -37,4 +39,5 @@ HEADERS += \
     Inventory.h \
     DiseaseType.h \
     DataHandler.h \
-    CaseReport.h
+    CaseReport.h \
+    clientconnection.h
