@@ -838,11 +838,8 @@ QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int
     xmlSaveRequest.append("</entity></message>");
 
     //send xml query to  communication component
-
-
-
     //get a status response string
-    xmlStatus = "Response from server";
+    xmlStatus= connection->sendRequest(xmlSaveRequest);
 
     //Parse the xml
     if (xmlStatus != "") {
@@ -902,8 +899,6 @@ QString DataHandler::updateCaseReport(int id, int quantity) {
     xmlUpdateRequest.append("</entity></message>");
 
     //send xml query to  communication component
-
-
     //get a status response string
     xmlStatus = connection->sendRequest(xmlUpdateRequest);
 
@@ -951,16 +946,7 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
 
     //SPENCE
     //send xml query to  communication component
-
-
-
-
-
-    //SPENCE
     QString xmlReply = connection->sendRequest(xmlIdRequest);
-
-
-
 
 
     //create a simple array to store the two id numbers
@@ -1050,11 +1036,8 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
 
     //SPENCE
     //send xml query to  communication component
-
-
-    //SPENCE
     //get a status response string
-    xmlStatus = "Response from server";
+    xmlStatus= connection->sendRequest(xmlSaveRequest);
 
 
     //Parse the xml
@@ -1144,9 +1127,6 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
 
     //SPENCE
     //send xml query to  communication component
-
-
-    //SPENCE
     //get a status response string
     xmlStatus = connection->sendRequest(xmlUpdateRequest);
 
@@ -1193,10 +1173,6 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
 
     //SPENCE
     //send xml query to  communication component
-
-
-
-    //SPENCE
     //Get a response back
     QString xmlReply = connection->sendRequest(xmlIdRequest);
 
@@ -1260,12 +1236,8 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
 
     //SPENCE
     //send xml query to  communication component
-
-
-    //SPENCE
     //get a status response string
-    xmlStatus = "Response from server";
-
+    xmlStatus= connection->sendRequest(xmlSaveRequest);
 
 
     //Parse the xml
@@ -1313,12 +1285,8 @@ QString DataHandler::updateInventory(int id, int quantity) {
 
     //SPENCE
     //send xml query to  communication component
-
-    //SPENCE
     //get a status response string
     xmlStatus = connection->sendRequest(xmlUpdateRequest);
-
-
 
 
     //Parse the xml
