@@ -27,13 +27,6 @@ bool DatabaseHandler::openDB(QString dbType, QString pathToDb, QString hostName)
         qDebug() << "Connected to database";
         Find the maxId for getIdNumbers method
         */
-        //Query the IdNumbers table for the biggest int
-        //assign it to maxId
-        QSqlQuery query("SELECT MAX(id) FROM idNumbers");
-        if (query.next()) {
-            maxId = query.value(0).toInt();
-        }
-        //qDebug() << maxId;
         return true;
     }
     else {
@@ -123,11 +116,34 @@ QString DatabaseHandler::findEntities(QString xmlString) {
                         ++andCounter;
                         QDomElement f = m.toElement();
                         //Form the query
-                        queryString.append(f.attribute("key"));
-                        queryString.append(f.attribute("comparison"));
-                        queryString.append("\"");
-                        queryString.append(f.attribute("value"));
-                        queryString.append("\"");
+                        int state;
+                        QString stateStr;
+                        if (f.attribute("key") == "shipmentState") {
+                            queryString.append(f.attribute("key"));
+                            if (f.attribute("value") == "Created") {
+                                state = 0;
+                            }
+                            else if (f.attribute("value") == "Shipped") {
+                                state = 1;
+                            }
+                            else if (f.attribute("value") == "Received") {
+                                state = 2;
+                            }
+                            else if (f.attribute("value") == "Cancelled") {
+                                state = 3;
+                            }
+                            queryString.append(f.attribute("comparison"));
+                            queryString.append("\"");
+                            queryString.append(stateStr.setNum(state));
+                            queryString.append("\"");
+                        }
+                        else {
+                            queryString.append(f.attribute("key"));
+                            queryString.append(f.attribute("comparison"));
+                            queryString.append("\"");
+                            queryString.append(f.attribute("value"));
+                            queryString.append("\"");
+                        }
 
                         m = m.nextSibling();
                     }
@@ -154,11 +170,33 @@ QString DatabaseHandler::findEntities(QString xmlString) {
             xmlReply.append(query.value(0).toString());
             xmlReply.append("\">");
             while (columnCount <= (numOfCols-1)) {
-                xmlReply.append("<attribute key=\"");
-                xmlReply.append(rec.fieldName(columnCount));
-                xmlReply.append("\" value=\"");
-                xmlReply.append(query.value(columnCount).toString());
-                xmlReply.append("\" />");
+                if (rec.fieldName(columnCount) == "shipmentState") {
+                    QString state;
+                    if (query.value(columnCount).toInt() == 0) {
+                        state = "Created";
+                    }
+                    else if (query.value(columnCount).toInt() == 1) {
+                        state = "Shipped";
+                    }
+                    else if (query.value(columnCount).toInt() == 2) {
+                        state = "Received";
+                    }
+                    else if (query.value(columnCount).toInt() == 3) {
+                        state = "Cancelled";
+                    }
+                    xmlReply.append("<attribute key=\"");
+                    xmlReply.append(rec.fieldName(columnCount));
+                    xmlReply.append("\" value=\"");
+                    xmlReply.append(state);
+                    xmlReply.append("\" />");
+                }
+                else {
+                    xmlReply.append("<attribute key=\"");
+                    xmlReply.append(rec.fieldName(columnCount));
+                    xmlReply.append("\" value=\"");
+                    xmlReply.append(query.value(columnCount).toString());
+                    xmlReply.append("\" />");
+                }
                 columnCount++;
             }
             xmlReply.append("</entity>");
@@ -224,11 +262,35 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
                     while (!m.isNull()) {
                         QDomElement f = m.toElement();
                         //Form the query
-                        queryString.append(f.attribute("key"));
-                        queryString.append("=");
-                        queryString.append("\"");
-                        queryString.append(f.attribute("value"));
-                        queryString.append("\"");
+                        if (f.attribute("key") == "shipmentState") {
+                            //qDebug() << "hi";
+                            int state;
+                            QString stateStr;
+                            if (f.attribute("value") == "Created") {
+                                state = 0;
+                            }
+                            else if (f.attribute("value") == "Shipped") {
+                                state = 1;
+                            }
+                            else if (f.attribute("value") == "Received") {
+                                state = 2;
+                            }
+                            else if (f.attribute("value") == "Cancelled") {
+                                state = 3;
+                            }
+                            queryString.append(f.attribute("key"));
+                            queryString.append("=");
+                            queryString.append("\"");
+                            queryString.append(stateStr.setNum(state));
+                            queryString.append("\"");
+                        }
+                        else {
+                            queryString.append(f.attribute("key"));
+                            queryString.append("=");
+                            queryString.append("\"");
+                            queryString.append(f.attribute("value"));
+                            queryString.append("\"");
+                        }
 
                         m = m.nextSibling();
                         if (!m.isNull()) {
@@ -250,10 +312,37 @@ QString DatabaseHandler::saveEntities(QString xmlString) {
                         queryString.append(", ");
                         QDomElement f = m.toElement();
                         //Form the query
-                        queryString.append("\"");
-                        queryString.append(f.attribute("value"));
-                        queryString.append("\"");
-
+                        int state;
+                        QString stateStr;
+                        if (f.attribute("value") == "Created") {
+                            state = 0;
+                            queryString.append("\"");
+                            queryString.append(stateStr.setNum(state));
+                            queryString.append("\"");
+                        }
+                        else if (f.attribute("value") == "Shipped") {
+                            state = 1;
+                            queryString.append("\"");
+                            queryString.append(stateStr.setNum(state));
+                            queryString.append("\"");
+                        }
+                        else if (f.attribute("value") == "Received") {
+                            state = 2;
+                            queryString.append("\"");
+                            queryString.append(stateStr.setNum(state));
+                            queryString.append("\"");
+                        }
+                        else if (f.attribute("value") == "Cancelled") {
+                            state = 3;
+                            queryString.append("\"");
+                            queryString.append(stateStr.setNum(state));
+                            queryString.append("\"");
+                        }
+                        else {
+                            queryString.append("\"");
+                            queryString.append(f.attribute("value"));
+                            queryString.append("\"");
+                        }
                         m = m.nextSibling();
                     }
                     queryString.append(")");
@@ -373,7 +462,7 @@ QString DatabaseHandler::getIdNumbers(QString xmlString){
                     QDomElement f = m.toElement();
                     if (f.tagName() == "blockSize") {
                         blockSize = f.text();
-                        qDebug() << blockSize;
+                        //qDebug() << blockSize;
                     }
                 }
             }
@@ -381,11 +470,13 @@ QString DatabaseHandler::getIdNumbers(QString xmlString){
         }
 
         //query the database for the max number
-        //int maxId;
-        //QSqlQuery query(queryString);
-        //if (query.next()) {
-            //maxId = query.value(0).toInt();
-        //}
+        //Query the IdNumbers table for the biggest int
+        //assign it to maxId
+        QSqlQuery query("SELECT MAX(id) FROM idNumbers");
+        if (query.next()) {
+            maxId = query.value(0).toInt();
+        }
+        //qDebug() << maxId;
         int block = blockSize.toInt();
         int blockStart = maxId + 1;
         int blockEnd = blockStart + (block - 1);
@@ -396,7 +487,7 @@ QString DatabaseHandler::getIdNumbers(QString xmlString){
         insert.append(num.setNum(blockEnd));
         insert.append(")");
         //qDebug() << insert;
-        QSqlQuery query(insert);
+        QSqlQuery insertquery(insert);
 
         xmlReply = "<?xml version=\"1.0\"?><message><command>getIdNumbers</command><status>OK</status><getIdNumbersReply>";
         xmlReply.append("<blockStart>");
