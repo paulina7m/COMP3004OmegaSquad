@@ -9,11 +9,8 @@ DataHandler::DataHandler() {
 }
 DataHandler::~DataHandler() {}
 
-//getCaseReports
-//all parameters should be optional/nullable (-1 indicates this)
-//parameters are used to shape xml query
-//from is >=
-//to is <=
+//Retrieve Case Reports
+//This is the old function call, just in case, ignore this
 //QList<CaseReport> DataHandler::getCaseReports(int idFrom, int idTo, int regionID, QString dateFrom, QString dateTo, int diseaseType, int quantityFrom, int quantityTo)
 QList<CaseReport> DataHandler::getCaseReports()
 {
@@ -175,7 +172,7 @@ QList<CaseReport> DataHandler::getCaseReports()
 }
 
 
-//getDiseaseTypes
+//Retrieve Disease Types
 //no parameters passed in because it doesn't make sense
 //of course it can be changed
 QList<DiseaseType> DataHandler::getDiseaseTypes()
@@ -255,6 +252,7 @@ QList<DiseaseType> DataHandler::getDiseaseTypes()
     return returnList;
 }
 
+//Retrieve Inventory
 QList<Inventory> DataHandler::getInventory() {
     QList<Inventory> returnList;
 
@@ -329,7 +327,7 @@ QList<Inventory> DataHandler::getInventory() {
     return returnList;
 }
 
-//getRegions
+//Retrieve Regions
 //no parameters passed in because it doesn't make sense
 //of course it can be changed
 QList<Region> DataHandler::getRegions()
@@ -417,7 +415,7 @@ QList<Region> DataHandler::getRegions()
 
 
 
-//getProvinces
+//Retrieve Provinces
 //no parameters passed in because it doesn't make sense
 //of course it can be changed
 QList<Province> DataHandler::getProvinces()
@@ -488,6 +486,7 @@ QList<Province> DataHandler::getProvinces()
 
 }
 
+//Retrieve Shipments
 QList<Shipment> DataHandler::getShipments()
 {
     QList<Shipment> returnList;
@@ -598,6 +597,7 @@ QList<Shipment> DataHandler::getShipments()
 
 }
 
+//Retrieve Shipment Details, always in conjunction with retrieving Shipments
 QList<ShipmentDetail> DataHandler::getShipmentDetails()
 {
     QList<ShipmentDetail> returnList;
@@ -676,7 +676,7 @@ QList<ShipmentDetail> DataHandler::getShipmentDetails()
     return returnList;
 }
 
-
+//Retrieve Supply Types
 QList<SupplyType> DataHandler::getSupplyTypes()
 {
     QList<SupplyType> returnList;
@@ -752,6 +752,7 @@ QList<SupplyType> DataHandler::getSupplyTypes()
 
 /*SAVING AND UPDATING*/
 //Save CaseReports
+//Required inputs: Region Id of the case, the date ("YYYY-MM-DD" format), the disease type and the quantity
 QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int quantity) {
     QString replyStatus;
     QString xmlStatus;
@@ -868,6 +869,7 @@ QString DataHandler::saveCaseReport(int regionID, QString date, int disease, int
 }
 
 //Update CaseReport
+//Required inputs: id of the case report and the adjusted quantity
 QString DataHandler::updateCaseReport(int id, int quantity) {
     QString replyStatus;
     QString xmlStatus;
@@ -932,6 +934,8 @@ QString DataHandler::updateCaseReport(int id, int quantity) {
 }
 
 //Save Shipments
+//Required inputs: source region id number , the destination region id number, the date of creation ("YYYY-MM-DD") and Quantity requested
+//Optional inputs: notes (this can be empty string)
 QString DataHandler::saveShipment(int srcRegion, int destRegion, QString createdDate, int supplyType, int quantityRequested, QString notes) {
     QString replyStatus;
     QString xmlStatus;
@@ -1078,8 +1082,10 @@ QString DataHandler::saveShipment(int srcRegion, int destRegion, QString created
 }
 
 //Update Shipments
-//quantityShipped created when actually shipped
-//quantityShipped is 0 if shipped date empty string
+//Required inputs: shipment id number , shipmentdetail id number and any one of ShippedDate, ReceivedDate or CancelledDate. 
+//NOTE: Any dates you're not updating must be passed in as empty strings.
+//If you pass in a shippedDate string, make sure you pass in a quantityShipped number (greater than 0), otherwise, the quantityShipped number should be 0
+//Optional inputs: notes (this can be empty string)
 QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int quantityShipped, QString shippedDate, QString receivedDate, QString cancelledDate, QString notes) {
     QString replyStatus;
     QString xmlStatus;
@@ -1171,6 +1177,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
 }
 
 //Save Inventory
+//Required inputs: region id associated with inventory, the supply type and Quantity of supply
 QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
     QString replyStatus;
     QString xmlStatus;
@@ -1286,6 +1293,7 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
 }
 
 //Update Inventory
+//Required inputs: Inventory id number, adjusted quantity
 QString DataHandler::updateInventory(int id, int quantity) {
     QString replyStatus;
     QString xmlStatus;
