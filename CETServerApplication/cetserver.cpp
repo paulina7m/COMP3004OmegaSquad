@@ -56,6 +56,7 @@ void CETServer::startServerButtonHandler() {
     ui->startServerButton->setEnabled(false);
     //Start the server connection here
 
+    /*
     //This should be the XML request document coming from the client
     QString xmlRequest;
 
@@ -65,6 +66,7 @@ void CETServer::startServerButtonHandler() {
     //This is an optional function that will output the status of the server reply,
     //ie. "OK", "BadRequest" or "PermissionDenied"
     this->commandStatus(xmlReply);
+    */
 
 
 
@@ -96,7 +98,7 @@ void CETServer::startServerButtonHandler() {
 /*Stop server button handler*/
 void CETServer::stopServerButtonHandler() {
     ui->statusText->appendHtml("-----<br><b style=\"color:'red'\">Stopping Server.</b>");
-
+    server.close();
     ui->stopServerButton->setEnabled(false);
     ui->startServerButton->setEnabled(true);
 }
