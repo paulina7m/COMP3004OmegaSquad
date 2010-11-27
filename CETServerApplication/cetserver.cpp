@@ -207,6 +207,8 @@ void CETServer::startRead()
         QString reply = this->sqLite->queryDatabase(xmlQuery);
         xmlQuery = "";
 
+        this->commandStatus(reply);
+
         ///////////test a delay///
         ////this shoudl work with client
         /*int x,y;
