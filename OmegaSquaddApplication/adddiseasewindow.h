@@ -15,6 +15,14 @@ public:
     explicit AddDiseaseWindow(QWidget *parent = 0);
     ~AddDiseaseWindow();
 
+public slots:
+    void MapHandler();
+    void AddSupplyHandler();
+    void CreateShipmentHandler();
+    void ManageShipmentsHandler();
+    void ViewDiseasesHandler();
+    void ViewSuppliesHandler();
+
 private:
     Ui::AddDiseaseWindow *ui;
 };

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>CET System</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -95,6 +95,12 @@
      <string>File</string>
     </property>
     <addaction name="actionClose"/>
+    <addaction name="actionMap"/>
+    <addaction name="actionAdd_Disease"/>
+    <addaction name="actionAdd_Supply"/>
+    <addaction name="actionCreate_Shipment"/>
+    <addaction name="actionManage_Shipment"/>
+    <addaction name="actionView_Supplies"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -132,6 +138,36 @@
   <action name="actionZoom_Out">
    <property name="text">
     <string>Zoom Out</string>
+   </property>
+  </action>
+  <action name="actionMap">
+   <property name="text">
+    <string>Map</string>
+   </property>
+  </action>
+  <action name="actionAdd_Disease">
+   <property name="text">
+    <string>Add Disease</string>
+   </property>
+  </action>
+  <action name="actionAdd_Supply">
+   <property name="text">
+    <string>Add Supply</string>
+   </property>
+  </action>
+  <action name="actionCreate_Shipment">
+   <property name="text">
+    <string>Create Shipment</string>
+   </property>
+  </action>
+  <action name="actionManage_Shipment">
+   <property name="text">
+    <string>Manage Shipment</string>
+   </property>
+  </action>
+  <action name="actionView_Supplies">
+   <property name="text">
+    <string>View Supplies</string>
    </property>
   </action>
  </widget>

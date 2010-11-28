@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>CET System</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -35,6 +35,9 @@
       <width>113</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>DD/MM/YYYY</string>
     </property>
    </widget>
    <widget class="QCalendarWidget" name="calendarWidget">
@@ -129,6 +132,24 @@
      <string>Submit</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>30</y>
+      <width>301</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Supplies Data Entry Form</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -144,6 +165,12 @@
      <string>File</string>
     </property>
     <addaction name="actionClose"/>
+    <addaction name="actionMap"/>
+    <addaction name="actionAdd_Disease"/>
+    <addaction name="actionCreate_Shipment"/>
+    <addaction name="actionManage_Shipment"/>
+    <addaction name="actionView_Diseases"/>
+    <addaction name="actionView_Supplies"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -183,7 +210,124 @@
     <string>Zoom Out</string>
    </property>
   </action>
+  <action name="actionMap">
+   <property name="text">
+    <string>Map</string>
+   </property>
+  </action>
+  <action name="actionAdd_Disease">
+   <property name="text">
+    <string>Add Disease</string>
+   </property>
+  </action>
+  <action name="actionCreate_Shipment">
+   <property name="text">
+    <string>Create Shipment</string>
+   </property>
+  </action>
+  <action name="actionManage_Shipment">
+   <property name="text">
+    <string>Manage Shipment</string>
+   </property>
+  </action>
+  <action name="actionView_Diseases">
+   <property name="text">
+    <string>View Diseases</string>
+   </property>
+  </action>
+  <action name="actionView_Supplies">
+   <property name="text">
+    <string>View Supplies</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionClose</sender>
+   <signal>activated()</signal>
+   <receiver>AddSupplyWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMap</sender>
+   <signal>activated()</signal>
+   <receiver>AddSupplyWindow</receiver>
+   <slot>MapHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAdd_Disease</sender>
+   <signal>activated()</signal>
+   <receiver>AddSupplyWindow</receiver>
+   <slot>AddDiseaseHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCreate_Shipment</sender>
+   <signal>activated()</signal>
+   <receiver>AddSupplyWindow</receiver>
+   <slot>CreateShipmentHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionManage_Shipment</sender>
+   <signal>activated()</signal>
+   <receiver>AddSupplyWindow</receiver>
+   <slot>ManageShipmentHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>MapHandler()</slot>
+  <slot>AddDiseaseHandler()</slot>
+  <slot>CreateShipmentHandler()</slot>
+  <slot>ManageShipmentHandler()</slot>
+ </slots>
 </ui>
