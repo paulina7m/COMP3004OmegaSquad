@@ -101,8 +101,9 @@ QList<CaseReport> DataHandler::getCaseReports()
 
     //receive xml result from component
     //Dummy reply
+    //qDebug() << "creating connection";
     QString xmlReply = connection->sendRequest(xmlRequest);
-
+    //qDebug() << "connection created";
 
 
     //dissect xml data and populate it into returnList
@@ -267,7 +268,7 @@ QList<Inventory> DataHandler::getInventory() {
 
     //SPENCE
     //receive xml result from component
-    QString xmlReply = "Response from server";
+    QString xmlReply = connection->sendRequest(xmlRequest);
 
 
     //dissect xml data and populate it into returnList
