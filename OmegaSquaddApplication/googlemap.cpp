@@ -3,7 +3,6 @@
     GoogleMap::GoogleMap(QWidget *parent, QMainWindow *pwindow): QWebView(parent){
         this->pwindow = pwindow;
         mapWebPage = new QWebPage(this);
-        message = "this is it. m jackson.";
         //read map definition, html file
         QFile file;
         file.setFileName(":/mapDefinition.html");
@@ -20,7 +19,6 @@
         frame->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
         frame->setHtml(mapHTML);
 
-//        message = "testing message";
         connect(frame,
                    SIGNAL(javaScriptWindowObjectCleared()),
                    this,
@@ -30,7 +28,7 @@
 //                   SIGNAL(javaScriptAlert(QWebPage, QString)),
 //                   this,
 //                   SLOT(processMapAlert(QWebPage, QString)));
-
+         setupMarkers();
 
 
     }
@@ -47,27 +45,51 @@
 
 
     void GoogleMap::processMapAlert(QString name, QString id){
-      // QStringList  scriptStr;
+        emit mapItemClicked(name, id);
+    }
+
+    void GoogleMap::setupMarkers(){
+
+        // QStringList  scriptStr;
+
+        // scriptStr
+        //          << "for( var i=0; i<markers.length; ++i ) {"
+          //        << "   bounds.extend(markers[i].getPoint());"
+            //      << "   map.addOverlay(markers[i]);"
+              //    <<    "}"
+                //  <<    "map.setCenter(bounds.getCenter());";
 
 
-        emit mapItemClicked(name, id, name);
-
-      // scriptStr
-      //          << "for( var i=0; i<markers.length; ++i ) {"
-        //        << "   bounds.extend(markers[i].getPoint());"
-          //      << "   map.addOverlay(markers[i]);"
-            //    <<    "}"
-              //  <<    "map.setCenter(bounds.getCenter());";
+          //this->page()->mainFrame()->evaluateJavaScript( scriptStr.join("\n") );
 
 
-        //this->page()->mainFrame()->evaluateJavaScript( scriptStr.join("\n") );
 
+
+
+
+
+
+        // QStringList  scriptStr;
+
+        // scriptStr
+        //          << "for( var i=0; i<markers.length; ++i ) {"
+          //        << "   bounds.extend(markers[i].getPoint());"
+            //      << "   map.addOverlay(markers[i]);"
+              //    <<    "}"
+                //  <<    "map.setCenter(bounds.getCenter());";
+
+
+          //this->page()->mainFrame()->evaluateJavaScript( scriptStr.join("\n") );
+
+    }
+
+    void GoogleMap::mapTilesLoaded(){
+        emit notifyMapTilesLoaded();
     }
 
 
     void QWebPage::javaScriptAlert ( QWebFrame * frame, const QString & msg ){
         qDebug() << "Event received!!!!:" << msg;
-
     }
 
 

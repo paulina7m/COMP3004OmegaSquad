@@ -5,8 +5,8 @@
 #include <QUrl>
 #include <QWebElement>
 #include "googlemap.h"
+#include "aboutCET.h"
 
-//Spencer has added a comment
 
 namespace Ui {
     class MainWindow;
@@ -22,12 +22,19 @@ public:
 
 private slots:
     void initializeMap();
+    void currentIndexChangedForESSelector(int index);
+    void showAboutCETDialog();
+    void closeAboutCETDialog();
 
 public Q_SLOTS:
-    void setNameIDValue(QString name, QString id, QString value);
+    void setNameIDValue(QString name, QString id);
+    void hideLoadingLabel();
 
 private:
     Ui::MainWindow *ui;
+    QStringList fetchListOfDiseases();
+    QStringList fetchListOfSupplyTypes();
+    AboutCETDialog *aboutDialog;
 };
 
 #endif // MAINWINDOW_H

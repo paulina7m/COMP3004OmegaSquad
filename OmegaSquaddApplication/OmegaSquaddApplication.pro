@@ -12,14 +12,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    googlemap.cpp 
+    googlemap.cpp \ 
+    aboutCET.cpp
 
 
 HEADERS  += mainwindow.h \
-    googlemap.h 
+    googlemap.h \ 
+    aboutCET.h
 
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    aboutCET.ui
 
 RESOURCES += \
     mapDefinitionFile.qrc

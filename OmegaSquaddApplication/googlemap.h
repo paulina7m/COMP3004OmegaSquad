@@ -21,13 +21,15 @@ private:
 
 public Q_SLOTS:
     void processMapAlert(QString name, QString id);
+    void mapTilesLoaded();
 
 public:
     explicit GoogleMap(QWidget *parent = 0, QMainWindow *pwindow = 0);
-
+    void setupMarkers();
 
 signals:
-    void mapItemClicked(QString name, QString id, QString value);
+    void mapItemClicked(QString name, QString id);
+    void notifyMapTilesLoaded();
 
 public slots:
 
