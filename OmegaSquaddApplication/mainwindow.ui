@@ -141,7 +141,7 @@
     </widget>
     <widget class="QTextEdit" name="namebox">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -154,7 +154,7 @@
     </widget>
     <widget class="QTextEdit" name="idbox">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
