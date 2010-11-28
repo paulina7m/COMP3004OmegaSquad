@@ -18,10 +18,23 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 void MainWindow::initializeMap()
 {
 
-    GoogleMap *gmap = new GoogleMap(ui->mapView);
+    GoogleMap *gmap = new GoogleMap(ui->mapView, this);
+    QObject::connect(gmap, SIGNAL(mapItemClicked(QString, QString, QString)),
+                         this, SLOT(setNameIDValue(QString, QString, QString)));
     gmap->show();
 
+
+
 }
+
+void MainWindow::setNameIDValue(QString name, QString id, QString value)
+{
+
+    this->ui->namebox->setText(name);
+    this->ui->idbox->setText(id);
+
+}
+
 
 
 

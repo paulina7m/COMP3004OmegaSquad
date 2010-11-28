@@ -23,6 +23,9 @@ public:
 private slots:
     void initializeMap();
 
+public Q_SLOTS:
+    void setNameIDValue(QString name, QString id, QString value);
+
 private:
     Ui::MainWindow *ui;
 };
