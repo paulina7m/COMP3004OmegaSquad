@@ -1,0 +1,243 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<!-- <style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0px; padding: 0px }
+  #map_canvas { height: 100% }
+</style> -->
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+
+	var myLatlng = new google.maps.LatLng(64.396938,-99.667969);
+	var map;
+	var geoXmlbritishcolumbia;
+	var geoXmlalberta;
+	var geoXmlsaskatchewan;
+	var geoXmlmanitoba;
+	var geoXmlontario1;
+	var geoXmlontario2;
+	var geoXmlontario3;
+	var geoXmlquebec;
+	var geoXmllabrador;
+	var geoXmlprinceedward;
+	var geoXmlnovascotiazones;
+	var geoXmlnewbrunswick;
+	var geoXmlterritories1;
+	var geoXmlterritories2;
+	var geoXmlnunavut1;
+	var geoXmlnunavut2;
+	var geoXmlnunavut3;
+	var geoXmlnunavut4;
+	var geoXmlnunavut5;
+	
+  function initialize() {
+	naviOptions = {
+	  position: google.maps.ControlPosition.TOP_LEFT,
+	  style: google.maps.NavigationControlStyle.ZOOM_PAN
+	}
+	myOptions = {
+	  zoom: 3,
+	  center: myLatlng,
+	  draggable: false,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  keyboardShortcuts: false,
+	  mapTypeControl: true,
+	  navigationControl: true,
+	  scrollwheel: false,
+	  disableDoubleClickZoom: true,
+	  streetViewControl: false,
+	  disableDefaultUI:true,
+	  navigationControlOptions: naviOptions
+	}
+		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		 geoXmlbritishcolumbia = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/britishcolumbia.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlalberta = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/alberta12.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlsaskatchewan = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/saskatchewan.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlmanitoba = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/manitoba.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlontario1 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/ontario1.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlontario2 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/ontario2.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlontario3 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/ontario3.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlquebec = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/quebec.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmllabrador = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/labrador.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlprinceedward = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/princeedward.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlnovascotiazones = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/novascotiazones.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlnewbrunswick = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/newbrunswick.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlterritories1 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/territories1.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlterritories2 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/territories2.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlnunavut1 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/nunavut1.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlnunavut2 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/nunavut2.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlnunavut3 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/nunavut3.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlnunavut4 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/nunavut4.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		 geoXmlnunavut5 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/nunavut5.kml', {suppressInfoWindows: false, preserveViewport: true, map:map});
+		
+		    //name, id
+		
+		map.setCenter(myLatlng);
+			
+			google.maps.event.addListener(geoXmlbritishcolumbia, 'click', function(event) {
+			  var text = event.featureData.description;
+			  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+			  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+			  GoogleMapObjectInQ.processMapAlert(name, id);
+			
+			});
+			google.maps.event.addListener(geoXmlalberta, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlsaskatchewan, 'click', function(event) {
+			 	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlmanitoba, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlontario1, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlontario2, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlontario3, 'click', function(event) {
+			 	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlquebec, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmllabrador, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlprinceedward, 'click', function(event) {
+			 	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlnovascotiazones, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlnewbrunswick, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlterritories1, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlterritories2, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlnunavut1, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, id);
+			});
+			google.maps.event.addListener(geoXmlnunavut2, 'click', function(event) {
+			 	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				 // var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, '6201');
+			});
+			google.maps.event.addListener(geoXmlnunavut3, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				  //var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, '6201');
+			});
+			google.maps.event.addListener(geoXmlnunavut4, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				 // var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, '6201');
+			});
+			google.maps.event.addListener(geoXmlnunavut5, 'click', function(event) {
+			  	var text = event.featureData.description;
+				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
+				//  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
+				  GoogleMapObjectInQ.processMapAlert(name, '6201');
+			});
+			
+						
+										// google.maps.event.addListener(map, "rightclick", function(event) { 
+										// 																			  	
+										// 																			
+										// 																			    var lat = event.latLng;
+										// 																			    GoogleMapObjectInQ.processMapAlert(lat, '6201');
+										// 																			});
+			
+			google.maps.event.addListener(geoXmlnunavut5, 'metadata_changed', 
+			function(){ 
+			        setTimeout('GoogleMapObjectInQ.mapTilesLoaded();', 14000)
+					setTimeout('setupMarkers();', 15000)
+			});
+			
+
+		
+		                     
+		
+		
+  }
+
+ function setupMarkers(){
+			//alert(geoXmlmanitoba.getDefaultViewport().getCenter());
+			var lat = geoXmlmanitoba.getDefaultViewport().getCenter();
+			var marker = new google.maps.Marker({
+			        position: lat, 
+			        map: map
+			});
+ }
+
+
+
+</script>
+</head>
+<body onload="initialize()">
+  <div id="map_canvas" style="width: 765px; height: 445px"></div>
+</body>
+</html>
+
+
+
+
