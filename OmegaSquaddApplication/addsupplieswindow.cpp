@@ -65,7 +65,6 @@ QStringList AddSuppliesWindow::fetchListOfSupplies() {
     return list;
 }
 
-<<<<<<< HEAD
 void AddSuppliesWindow::addSuppliesSubmitButtonHandler() {
     if (ui->spinBox->value() == 0)
     {
@@ -112,24 +111,14 @@ void AddSuppliesWindow::addSuppliesSubmitButtonHandler() {
 
 void AddSuppliesWindow::addSuppliesCancelButtonHandler() {
     AddSuppliesWindow::close();
-=======
-QStringList AddSuppliesWindow::fetchListOfSupplies()
-{
-    QStringList list;
-
-    supplyList = dh->getSupplyTypes();
-    for(int i = 0; i < regionList.size(); i++)
-        list.push_front(supplyList[i].getName());
-
-    return list;
 }
 
 void AddSuppliesWindow::SubmitButtonHandler()
 {
     if(ui->spinBox->value() == 0)
     {
-        messageBox.setText("Quantity must be greater than 0.");
-        messageBox.exec();
+        msgBox.setText("Quantity must be greater than 0.");
+        msgBox.exec();
     }
     else
     {
@@ -150,10 +139,9 @@ void AddSuppliesWindow::SubmitButtonHandler()
 
         date = ui->dateEdit->text();
 
-        messageBox.setText("Supply report has been saved.");
-        messageBox.exec();
+        msgBox.setText("Supply report has been saved.");
+        msgBox.exec();
 
         this->close();
     }
->>>>>>> 52cbc344018b1185dd9a38258f6e53a3aa5879f4
 }

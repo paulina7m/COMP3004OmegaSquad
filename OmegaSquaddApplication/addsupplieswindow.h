@@ -3,15 +3,12 @@
 
 #include <QDialog>
 #include <QMessageBox>
-<<<<<<< HEAD
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/SupplyType.h"
 #include "../CETClientApplication/Region.h"
-=======
 #include "DataHandler.h"
 #include "SupplyType.h"
 #include "Region.h"
->>>>>>> 52cbc344018b1185dd9a38258f6e53a3aa5879f4
 
 namespace Ui {
     class AddSuppliesWindow;
@@ -32,7 +29,6 @@ private:
     DataHandler *dh;
     QList<SupplyType> supplyList;
     QList<Region> regionList;
-<<<<<<< HEAD
     QMessageBox msgBox;
     SupplyType *aSupply;
     SupplyType *bSupply;
@@ -42,13 +38,10 @@ private:
 private slots:
     void addSuppliesSubmitButtonHandler();
     void addSuppliesCancelButtonHandler();
-=======
-    QMessageBox messageBox;
 
 private slots:
     void SubmitButtonHandler();
 
->>>>>>> 52cbc344018b1185dd9a38258f6e53a3aa5879f4
 };
 
 #endif // ADDSUPPLIESWINDOW_H
