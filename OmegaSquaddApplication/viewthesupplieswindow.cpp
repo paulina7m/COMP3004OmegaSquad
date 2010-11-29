@@ -6,6 +6,7 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
     ui(new Ui::ViewTheSuppliesWindow)
 {
     ui->setupUi(this);
+    this->setGeometry(100,167,1000, 539);
     dh = new DataHandler;
     regionNamesList = FetchListOfRegions();
     supplyNamesList = FetchListOfSupplies();

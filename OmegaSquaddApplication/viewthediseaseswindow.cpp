@@ -6,6 +6,7 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
     ui(new Ui::ViewTheDiseasesWindow)
 {
     ui->setupUi(this);
+    this->setGeometry(100,167,1000, 539);
 }
 
 ViewTheDiseasesWindow::~ViewTheDiseasesWindow()

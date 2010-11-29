@@ -7,6 +7,7 @@ AddSuppliesWindow::AddSuppliesWindow(QWidget *parent) :
     ui(new Ui::AddSuppliesWindow)
 {
     ui->setupUi(this);
+    this->setGeometry(100,167,1000, 539);
     ui->comboBox->addItems(fetchListOfRegions());
     ui->comboBox_2->addItems(fetchListOfSupplies());
     dh = new DataHandler;

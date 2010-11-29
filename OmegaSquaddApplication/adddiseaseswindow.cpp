@@ -7,6 +7,7 @@ AddDiseasesWindow::AddDiseasesWindow(QWidget *parent) :
     ui(new Ui::AddDiseasesWindow)
 {
     ui->setupUi(this);
+    this->setGeometry(100,167,1000, 539);
     ui->dateEdit->setDate(QDate::currentDate());
     ui->comboBox->addItems(fetchListOfRegions());
     ui->comboBox_2->addItems(fetchListOfDiseases());

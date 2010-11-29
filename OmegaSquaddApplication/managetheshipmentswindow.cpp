@@ -6,6 +6,7 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
     ui(new Ui::ManageTheShipmentsWindow)
 {
     ui->setupUi(this);
+    this->setGeometry(100,167,1000, 539);
 }
 
 ManageTheShipmentsWindow::~ManageTheShipmentsWindow()
