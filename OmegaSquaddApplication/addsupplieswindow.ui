@@ -148,5 +148,57 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddSuppliesWindow</receiver>
+   <slot>SubmitButtonHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>417</x>
+     <y>351</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dateEdit</sender>
+   <signal>dateChanged(QDate)</signal>
+   <receiver>calendarWidget</receiver>
+   <slot>setSelectedDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>164</x>
+     <y>130</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>177</x>
+     <y>227</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>calendarWidget</sender>
+   <signal>clicked(QDate)</signal>
+   <receiver>dateEdit</receiver>
+   <slot>setDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>177</x>
+     <y>227</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>164</x>
+     <y>130</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>SubmitButtonHandler()</slot>
+ </slots>
 </ui>

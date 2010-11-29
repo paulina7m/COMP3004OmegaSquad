@@ -2,6 +2,7 @@
 #define ADDSUPPLIESWINDOW_H
 
 #include <QDialog>
+#include <QMessageBox>
 #include "DataHandler.h"
 #include "SupplyType.h"
 #include "Region.h"
@@ -25,8 +26,10 @@ private:
     DataHandler *dh;
     QList<SupplyType> supplyList;
     QList<Region> regionList;
+    QMessageBox messageBox;
 
 private slots:
+    void SubmitButtonHandler();
 
 };
 
