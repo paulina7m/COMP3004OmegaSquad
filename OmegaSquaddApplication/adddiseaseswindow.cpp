@@ -66,7 +66,7 @@ void AddDiseasesWindow::addCaseSubmitButtonHandler() {
 
     //Get the diseaseType ID
     for (int i = 0; i < diseaseList.size(); i++) {
-        if (ui->comboBox->currentText() == diseaseList[i].getName()) {
+        if (ui->comboBox_2->currentText() == diseaseList[i].getName()) {
             diseaseType = diseaseList[i].getId();
         }
     }
