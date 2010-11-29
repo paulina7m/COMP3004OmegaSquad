@@ -40,9 +40,10 @@ void ClientConnection::setAddress(QString addr){
     address = addr;
 }
 
-QString ClientConnection::sendRequest(QString xmlReq)
+QString ClientConnection::sendRequest(QString &xmlReq)
 {
 
+    qDebug() << xmlReq;
     this->xmlRequest = xmlReq;
 
     QHostAddress addr(address);
@@ -52,7 +53,7 @@ QString ClientConnection::sendRequest(QString xmlReq)
         client.write(xmlRequest.toAscii(),xmlRequest.length()+1);
     }
 
-    char message[1024] = {0};
+    char message[1024*2] = {0};
 
     if(client.waitForReadyRead(30000)){
 

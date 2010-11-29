@@ -13,7 +13,7 @@ public:
   ~ClientConnection();
 
     void start(QString address, quint16 port);
-  QString sendRequest(QString);
+  QString sendRequest(QString &);
   void setAddress(QString);
   QString getAddress();
 

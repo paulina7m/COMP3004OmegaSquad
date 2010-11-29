@@ -133,6 +133,7 @@
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>AddSuppliesWindow</receiver>
+<<<<<<< HEAD
    <slot>addSuppliesSubmitButtonHandler()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -142,10 +143,22 @@
     <hint type="destinationlabel">
      <x>168</x>
      <y>491</y>
+=======
+   <slot>SubmitButtonHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>417</x>
+     <y>351</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>399</y>
+>>>>>>> 52cbc344018b1185dd9a38258f6e53a3aa5879f4
     </hint>
    </hints>
   </connection>
   <connection>
+<<<<<<< HEAD
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
    <receiver>AddSuppliesWindow</receiver>
@@ -158,12 +171,46 @@
     <hint type="destinationlabel">
      <x>314</x>
      <y>419</y>
+=======
+   <sender>dateEdit</sender>
+   <signal>dateChanged(QDate)</signal>
+   <receiver>calendarWidget</receiver>
+   <slot>setSelectedDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>164</x>
+     <y>130</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>177</x>
+     <y>227</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>calendarWidget</sender>
+   <signal>clicked(QDate)</signal>
+   <receiver>dateEdit</receiver>
+   <slot>setDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>177</x>
+     <y>227</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>164</x>
+     <y>130</y>
+>>>>>>> 52cbc344018b1185dd9a38258f6e53a3aa5879f4
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
+<<<<<<< HEAD
   <slot>addSuppliesSubmitButtonHandler()</slot>
   <slot>addSuppliesCancelButtonHandler()</slot>
+=======
+  <slot>SubmitButtonHandler()</slot>
+>>>>>>> 52cbc344018b1185dd9a38258f6e53a3aa5879f4
  </slots>
 </ui>

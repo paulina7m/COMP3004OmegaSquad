@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addsupplieswindow.ui'
 **
-** Created: Mon Nov 29 01:28:23 2010
+** Created: Mon Nov 29 12:34:59 2010
 **      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -83,6 +83,9 @@ public:
         spinBox->setGeometry(QRect(150, 390, 42, 22));
 
         retranslateUi(AddSuppliesWindow);
+        QObject::connect(pushButton, SIGNAL(clicked()), AddSuppliesWindow, SLOT(SubmitButtonHandler()));
+        QObject::connect(dateEdit, SIGNAL(dateChanged(QDate)), calendarWidget, SLOT(setSelectedDate(QDate)));
+        QObject::connect(calendarWidget, SIGNAL(clicked(QDate)), dateEdit, SLOT(setDate(QDate)));
 
         QMetaObject::connectSlotsByName(AddSuppliesWindow);
     } // setupUi

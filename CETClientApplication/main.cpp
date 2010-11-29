@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
 
     DataHandler *dh = new DataHandler();
     qDebug() << "Creating DataHandler";
-    QList<Region> temp = dh->getRegions();
-    qDebug() << "Getting a list of cases";
+    QList<Province> temp = dh->getProvinces();
+    qDebug() << "Getting a list of provinces";
     for (int i = 0; i < temp.size(); i++) {
         qDebug() << "Objects";
         qDebug() << temp[i].getName();
