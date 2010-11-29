@@ -2,9 +2,10 @@
 #define ADDSUPPLIESWINDOW_H
 
 #include <QDialog>
-#include "DataHandler.h"
-#include "SupplyType.h"
-#include "Region.h"
+#include <QMessageBox>
+#include "../CETClientApplication/DataHandler.h"
+#include "../CETClientApplication/SupplyType.h"
+#include "../CETClientApplication/Region.h"
 
 namespace Ui {
     class AddSuppliesWindow;
@@ -25,9 +26,15 @@ private:
     DataHandler *dh;
     QList<SupplyType> supplyList;
     QList<Region> regionList;
+    QMessageBox msgBox;
+    SupplyType *aSupply;
+    SupplyType *bSupply;
+    Region *aRegion;
+    Region *bRegion;
 
 private slots:
-
+    void addSuppliesSubmitButtonHandler();
+    void addSuppliesCancelButtonHandler();
 };
 
 #endif // ADDSUPPLIESWINDOW_H

@@ -17,13 +17,22 @@ AddDiseasesWindow::AddDiseasesWindow(QWidget *parent) :
 QStringList AddDiseasesWindow::fetchListOfDiseases() {
     QStringList list;
 
+    /*
+    //Real call but doesn't work!
     diseaseList = dh->getDiseaseTypes();
     for (int i = 0; i < diseaseList.size(); i++) {
         list.push_front(diseaseList[i].getName());
     }
+    */
 
-    //Just a test
-    //list.push_front("H1N1");
+    //Temp workaround
+    aDisease = new DiseaseType(6202, "Small Pox", 0, 1);
+    bDisease = new DiseaseType(6203, "H1N1", 1, 1);
+    diseaseList.append(*aDisease);
+    diseaseList.append(*bDisease);
+    for (int i = 0; i < diseaseList.size(); i++) {
+        list.push_front(diseaseList[i].getName());
+    }
 
     return list;
 }
@@ -32,13 +41,22 @@ QStringList AddDiseasesWindow::fetchListOfDiseases() {
 QStringList AddDiseasesWindow::fetchListOfRegions() {
     QStringList list;
 
+    /*
+    //Real call but doesn't work!
     regionList = dh->getRegions();
     for (int i = 0; i < regionList.size(); i++) {
         list.push_front(regionList[i].getName());
     }
+    */
 
-    //Just a test
-    //list.push_front("Vancouver");
+    //Workaround
+    aRegion = new Region(5931, 2, "Richmond", 0, 0);
+    bRegion = new Region(5932, 2, "Vancouver", 0, 0);
+    regionList.append(*aRegion);
+    regionList.append(*bRegion);
+    for (int i = 0; i < regionList.size(); i++) {
+        list.push_front(regionList[i].getName());
+    }
 
     return list;
 }
@@ -81,15 +99,20 @@ void AddDiseasesWindow::addCaseSubmitButtonHandler() {
 
     //Save CaseReports
     //Required inputs: Region Id of the case, the date ("YYYY-MM-DD" format), the disease type and the quantity
+    //DOES NOT WORK
     //dh->saveCaseReport(regionID, date, diseaseType, quantity);
 
     //Use a confirmation popup dialog
-    //GAVIN: This needs to be more robust, like a confirmation box for going ahead or cancelling.
     msgBox.setText("Case report has been saved.");
     msgBox.exec();
     //close the window
     AddDiseasesWindow::close();
     }
+}
+
+//Save the case report
+void AddDiseasesWindow::addCaseCancelButtonHandler() {
+    AddDiseasesWindow::close();
 }
 
 AddDiseasesWindow::~AddDiseasesWindow()
