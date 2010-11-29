@@ -7,6 +7,7 @@
 #include "googlemap.h"
 #include "aboutCET.h"
 #include "../CETClientApplication/DiseaseType.h"
+#include "../CETClientApplication/DataHandler.h"
 
 namespace Ui {
     class MainWindow;

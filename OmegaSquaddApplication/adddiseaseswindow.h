@@ -3,9 +3,9 @@
 
 #include <QDialog>
 #include <QMessageBox>
-#include "DataHandler.h"
-#include "DiseaseType.h"
-#include "Region.h"
+#include "../CETClientApplication/DataHandler.h"
+#include "../CETClientApplication/DiseaseType.h"
+#include "../CETClientApplication/Region.h"
 
 namespace Ui {
     class AddDiseasesWindow;
@@ -27,9 +27,15 @@ private:
     QList<DiseaseType> diseaseList;
     QList<Region> regionList;
     QMessageBox msgBox;
+    DiseaseType *aDisease;
+    DiseaseType *bDisease;
+    Region *aRegion;
+    Region *bRegion;
+
 
 private slots:
     void addCaseSubmitButtonHandler();
+    void addCaseCancelButtonHandler();
 };
 
 #endif // ADDDISEASESWINDOW_H

@@ -434,7 +434,9 @@ QList<Province> DataHandler::getProvinces()
 
     //SPENCE
     //receive xml result from component
+    qDebug() << "test1";
     QString xmlReply = connection->sendRequest(xmlRequest);
+    qDebug() << "test2";
 
 
     //dissect xml data and populate it into returnList

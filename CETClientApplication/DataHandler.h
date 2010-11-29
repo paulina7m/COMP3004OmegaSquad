@@ -73,7 +73,7 @@ public:
     QString updateInventory(int, int);
 
 private:
-    ClientConnection* connection;
+    ClientConnection *connection;
 
 };
 

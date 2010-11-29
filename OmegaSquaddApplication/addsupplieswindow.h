@@ -3,6 +3,9 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include "../CETClientApplication/DataHandler.h"
+#include "../CETClientApplication/SupplyType.h"
+#include "../CETClientApplication/Region.h"
 #include "DataHandler.h"
 #include "SupplyType.h"
 #include "Region.h"
@@ -26,7 +29,15 @@ private:
     DataHandler *dh;
     QList<SupplyType> supplyList;
     QList<Region> regionList;
-    QMessageBox messageBox;
+    QMessageBox msgBox;
+    SupplyType *aSupply;
+    SupplyType *bSupply;
+    Region *aRegion;
+    Region *bRegion;
+
+private slots:
+    void addSuppliesSubmitButtonHandler();
+    void addSuppliesCancelButtonHandler();
 
 private slots:
     void SubmitButtonHandler();

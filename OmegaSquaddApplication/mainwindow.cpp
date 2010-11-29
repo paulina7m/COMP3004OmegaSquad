@@ -57,7 +57,6 @@ QStringList MainWindow::fetchListOfDiseases(){
 
     //TODO: fetch list from data handler
     //list =
-
     list.push_front("H1N1");
     list.push_front("ChickenPox");
     list.push_front("HIV");
