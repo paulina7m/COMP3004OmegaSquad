@@ -2,6 +2,10 @@
 #define ADDDISEASESWINDOW_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include "../CETClientApplication/DataHandler.h"
+#include "../CETClientApplication/DiseaseType.h"
+#include "../CETClientApplication/Region.h"
 
 namespace Ui {
     class AddDiseasesWindow;
@@ -17,6 +21,15 @@ public:
 
 private:
     Ui::AddDiseasesWindow *ui;
+    QStringList fetchListOfDiseases();
+    QStringList fetchListOfRegions();
+    DataHandler *dh;
+    QList<DiseaseType> diseaseList;
+    QList<Region> regionList;
+    QMessageBox msgBox;
+
+private slots:
+    void addCaseSubmitButtonHandler();
 };
 
 #endif // ADDDISEASESWINDOW_H

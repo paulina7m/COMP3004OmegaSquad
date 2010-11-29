@@ -10,6 +10,8 @@
 #include "createshipmentswindow.h"
 #include "managetheshipmentswindow.h"
 
+
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
         this->setGeometry(100,100, 998,569);
         ui->setupUi(this);
@@ -18,8 +20,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         initializeMap();
         QObject::connect(ui->e_s_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForESSelector(int)));
         QObject::connect(ui->actionAbout_CET,SIGNAL(triggered()),this,SLOT(showAboutCETDialog()));
-
-
 }
 
 

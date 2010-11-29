@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui webkit network
+QT       += core gui webkit network xml
 
 TARGET = OmegaSquaddApplication
 TEMPLATE = app

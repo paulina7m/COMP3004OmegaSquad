@@ -6,7 +6,7 @@
 #include <QWebElement>
 #include "googlemap.h"
 #include "aboutCET.h"
-
+#include "../CETClientApplication/DiseaseType.h"
 
 namespace Ui {
     class MainWindow;

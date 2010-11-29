@@ -191,8 +191,8 @@ QList<DiseaseType> DataHandler::getDiseaseTypes()
 
     //SPENCE
     //receive xml result from component
+    //qDebug() << xmlRequest;
     QString xmlReply = connection->sendRequest(xmlRequest);
-
 
 
 
