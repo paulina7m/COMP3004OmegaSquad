@@ -3,9 +3,9 @@
 
 #include <QDialog>
 #include <QMessageBox>
-#include "../CETClientApplication/DataHandler.h"
-#include "../CETClientApplication/DiseaseType.h"
-#include "../CETClientApplication/Region.h"
+#include "DataHandler.h"
+#include "DiseaseType.h"
+#include "Region.h"
 
 namespace Ui {
     class AddDiseasesWindow;
