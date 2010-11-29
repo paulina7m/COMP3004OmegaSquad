@@ -19,7 +19,13 @@ SOURCES += main.cpp\
     manageshipmentswindow.cpp \
     createshipmentwindow.cpp \
     addsupplywindow.cpp \
-    adddiseasewindow.cpp
+    adddiseasewindow.cpp \
+    adddiseaseswindow.cpp \
+    addsupplieswindow.cpp \
+    createshipmentswindow.cpp \
+    managetheshipmentswindow.cpp \
+    viewthediseaseswindow.cpp \
+    viewthesupplieswindow.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -30,7 +36,13 @@ HEADERS  += mainwindow.h \
     manageshipmentswindow.h \
     createshipmentwindow.h \
     addsupplywindow.h \
-    adddiseasewindow.h
+    adddiseasewindow.h \
+    adddiseaseswindow.h \
+    addsupplieswindow.h \
+    createshipmentswindow.h \
+    managetheshipmentswindow.h \
+    viewthediseaseswindow.h \
+    viewthesupplieswindow.h
 
 
 FORMS    += mainwindow.ui \
@@ -40,7 +52,13 @@ FORMS    += mainwindow.ui \
     manageshipmentswindow.ui \
     createshipmentwindow.ui \
     addsupplywindow.ui \
-    AddDiseaseWindow.ui
+    AddDiseaseWindow.ui \
+    adddiseaseswindow.ui \
+    addsupplieswindow.ui \
+    createshipmentswindow.ui \
+    managetheshipmentswindow.ui \
+    viewthediseaseswindow.ui \
+    viewthesupplieswindow.ui
 
 RESOURCES += \
     mapDefinitionFile.qrc
