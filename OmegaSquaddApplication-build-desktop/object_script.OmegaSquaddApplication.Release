@@ -9,6 +9,12 @@ INPUT(
 ./release\createshipmentwindow.o
 ./release\addsupplywindow.o
 ./release\adddiseasewindow.o
+./release\adddiseaseswindow.o
+./release\addsupplieswindow.o
+./release\createshipmentswindow.o
+./release\managetheshipmentswindow.o
+./release\viewthediseaseswindow.o
+./release\viewthesupplieswindow.o
 ./release\moc_mainwindow.o
 ./release\moc_googlemap.o
 ./release\moc_aboutCET.o
@@ -18,5 +24,11 @@ INPUT(
 ./release\moc_createshipmentwindow.o
 ./release\moc_addsupplywindow.o
 ./release\moc_adddiseasewindow.o
+./release\moc_adddiseaseswindow.o
+./release\moc_addsupplieswindow.o
+./release\moc_createshipmentswindow.o
+./release\moc_managetheshipmentswindow.o
+./release\moc_viewthediseaseswindow.o
+./release\moc_viewthesupplieswindow.o
 ./release\qrc_mapDefinitionFile.o
 );

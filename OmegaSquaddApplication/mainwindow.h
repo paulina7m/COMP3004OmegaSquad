@@ -24,7 +24,8 @@ private slots:
     void initializeMap();
     void currentIndexChangedForESSelector(int index);
     void showAboutCETDialog();
-    void closeAboutCETDialog();
+    void closeAboutCETDialog(); // close function already exists - Gavin
+    void AddDiseaseHandler();
 
 public Q_SLOTS:
     void setNameIDValue(QString name, QString id);

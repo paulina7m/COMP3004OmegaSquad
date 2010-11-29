@@ -3,7 +3,7 @@
 #include <QtGui>
 #include <QtWebKit>
 #include <QList>
-
+#include "adddiseaseswindow.h"
 
 
 
@@ -116,4 +116,10 @@ void MainWindow::closeAboutCETDialog(){
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::AddDiseaseHandler()
+{
+    AddDiseasesWindow *addDiseasesWindow = new AddDiseasesWindow;
+    addDiseasesWindow->showNormal();
 }
