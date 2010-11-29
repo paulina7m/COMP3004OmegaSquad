@@ -2,6 +2,9 @@
 #define ADDSUPPLIESWINDOW_H
 
 #include <QDialog>
+#include "DataHandler.h"
+#include "SupplyType.h"
+#include "Region.h"
 
 namespace Ui {
     class AddSuppliesWindow;
@@ -17,7 +20,14 @@ public:
 
 private:
     Ui::AddSuppliesWindow *ui;
-    QList fetchListOfDiseases();
+    QStringList fetchListOfSupplies();
+    QStringList fetchListOfRegions();
+    DataHandler *dh;
+    QList<SupplyType> supplyList;
+    QList<Region> regionList;
+
+private slots:
+
 };
 
 #endif // ADDSUPPLIESWINDOW_H
