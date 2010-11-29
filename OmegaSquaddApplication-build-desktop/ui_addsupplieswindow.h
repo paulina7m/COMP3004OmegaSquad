@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addsupplieswindow.ui'
 **
-** Created: Sun Nov 28 21:27:46 2010
+** Created: Mon Nov 29 00:54:18 2010
 **      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -20,8 +20,8 @@
 #include <QtGui/QDialog>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
+#include <QtGui/QSpinBox>
 
 QT_BEGIN_NAMESPACE
 
@@ -33,12 +33,12 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QCalendarWidget *calendarWidget;
-    QLineEdit *lineEdit_2;
     QLabel *label_5;
     QComboBox *comboBox;
     QComboBox *comboBox_2;
     QPushButton *pushButton;
     QDateEdit *dateEdit;
+    QSpinBox *spinBox;
 
     void setupUi(QDialog *AddSuppliesWindow)
     {
@@ -63,9 +63,6 @@ public:
         calendarWidget = new QCalendarWidget(AddSuppliesWindow);
         calendarWidget->setObjectName(QString::fromUtf8("calendarWidget"));
         calendarWidget->setGeometry(QRect(50, 150, 256, 155));
-        lineEdit_2 = new QLineEdit(AddSuppliesWindow);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(150, 390, 113, 20));
         label_5 = new QLabel(AddSuppliesWindow);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(30, 390, 111, 16));
@@ -81,6 +78,9 @@ public:
         dateEdit = new QDateEdit(AddSuppliesWindow);
         dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
         dateEdit->setGeometry(QRect(110, 120, 110, 22));
+        spinBox = new QSpinBox(AddSuppliesWindow);
+        spinBox->setObjectName(QString::fromUtf8("spinBox"));
+        spinBox->setGeometry(QRect(150, 390, 42, 22));
 
         retranslateUi(AddSuppliesWindow);
 
@@ -93,7 +93,7 @@ public:
         label->setText(QApplication::translate("AddSuppliesWindow", "Add Supply Data", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("AddSuppliesWindow", "Date:", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("AddSuppliesWindow", "Region:", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("AddSuppliesWindow", "Disease:", 0, QApplication::UnicodeUTF8));
+        label_4->setText(QApplication::translate("AddSuppliesWindow", "Supply:", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("AddSuppliesWindow", "Number of Supplies:", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("AddSuppliesWindow", "Submit", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

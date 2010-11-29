@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'addsupplieswindow.h'
 **
-** Created: Sun Nov 28 19:01:18 2010
+** Created: Mon Nov 29 00:56:08 2010
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!

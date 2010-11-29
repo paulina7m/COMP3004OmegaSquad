@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Disease Data Entry</string>
+    <string>Case Data Entry</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">

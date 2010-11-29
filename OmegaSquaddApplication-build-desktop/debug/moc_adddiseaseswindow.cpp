@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'adddiseaseswindow.h'
 **
-** Created: Sun Nov 28 19:01:17 2010
+** Created: Mon Nov 29 00:56:03 2010
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,18 +23,21 @@ static const uint qt_meta_data_AddDiseasesWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       1,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: signature, parameters, type, tag, flags
+      19,   18,   18,   18, 0x08,
+
        0        // eod
 };
 
 static const char qt_meta_stringdata_AddDiseasesWindow[] = {
-    "AddDiseasesWindow\0"
+    "AddDiseasesWindow\0\0addCaseSubmitButtonHandler()\0"
 };
 
 const QMetaObject AddDiseasesWindow::staticMetaObject = {
@@ -64,6 +67,13 @@ int AddDiseasesWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: addCaseSubmitButtonHandler(); break;
+        default: ;
+        }
+        _id -= 1;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE
