@@ -248,8 +248,8 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionShipments"/>
     <addaction name="actionSupplies_Data"/>
+    <addaction name="actionTabular_Diseases_Data"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -346,6 +346,11 @@ p, li { white-space: pre-wrap; }
     <string>Close</string>
    </property>
   </action>
+  <action name="actionTabular_Diseases_Data">
+   <property name="text">
+    <string>Tabular Diseases Data</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -389,8 +394,93 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAdd_Supplies_Data</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AddSupplyHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>498</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionTabular_Diseases_Data</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ViewDiseasesHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>498</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSupplies_Data</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ViewSuppliesHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>498</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAdd_New_Shipment</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AddShipmentHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>498</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionManage_Shipments</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ManageShipmentsHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>498</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>AddDiseaseHandler()</slot>
+  <slot>AddSupplyHandler()</slot>
+  <slot>ViewDiseasesHandler()</slot>
+  <slot>ViewSuppliesHandler()</slot>
+  <slot>AddShipmentHandler()</slot>
+  <slot>ManageShipmentsHandler()</slot>
  </slots>
 </ui>

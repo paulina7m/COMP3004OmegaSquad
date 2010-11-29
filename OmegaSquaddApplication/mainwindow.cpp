@@ -4,8 +4,11 @@
 #include <QtWebKit>
 #include <QList>
 #include "adddiseaseswindow.h"
-
-
+#include "addsupplieswindow.h"
+#include "viewthediseaseswindow.h"
+#include "viewthesupplieswindow.h"
+#include "createshipmentswindow.h"
+#include "managetheshipmentswindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
         this->setGeometry(100,100, 998,569);
@@ -122,4 +125,34 @@ void MainWindow::AddDiseaseHandler()
 {
     AddDiseasesWindow *addDiseasesWindow = new AddDiseasesWindow;
     addDiseasesWindow->showNormal();
+}
+
+void MainWindow::AddSupplyHandler()
+{
+    AddSuppliesWindow *addSuppliesWindow = new AddSuppliesWindow;
+    addSuppliesWindow->showNormal();
+}
+
+void MainWindow::ViewDiseasesHandler()
+{
+    ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
+    viewTheDiseasesWindow->showNormal();
+}
+
+void MainWindow::ViewSuppliesHandler()
+{
+    ViewTheSuppliesWindow *viewTheSuppliesWindow = new ViewTheSuppliesWindow;
+    viewTheSuppliesWindow->showNormal();
+}
+
+void MainWindow::AddShipmentHandler()
+{
+    CreateShipmentsWindow *createShipmentsWindow = new CreateShipmentsWindow;
+    createShipmentsWindow->showNormal();
+}
+
+void MainWindow::ManageShipmentsHandler()
+{
+    ManageTheShipmentsWindow *manageTheShipmentsWindow = new ManageTheShipmentsWindow;
+    manageTheShipmentsWindow->showNormal();
 }

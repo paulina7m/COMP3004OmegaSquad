@@ -26,6 +26,11 @@ private slots:
     void showAboutCETDialog();
     void closeAboutCETDialog(); // close function already exists - Gavin
     void AddDiseaseHandler();
+    void AddSupplyHandler();
+    void ViewDiseasesHandler();
+    void ViewSuppliesHandler();
+    void AddShipmentHandler();
+    void ManageShipmentsHandler();
 
 public Q_SLOTS:
     void setNameIDValue(QString name, QString id);

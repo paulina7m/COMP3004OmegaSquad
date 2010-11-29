@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun Nov 28 17:16:43 2010
+** Created: Sun Nov 28 19:40:54 2010
 **      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -44,6 +44,8 @@ public:
     QAction *actionSupplies_Data;
     QAction *actionShipments_2;
     QAction *actionMap;
+    QAction *actionClose;
+    QAction *actionTabular_Diseases_Data;
     QWidget *centralWidget;
     QLabel *label;
     QComboBox *e_s_selector;
@@ -95,6 +97,10 @@ public:
         actionShipments_2->setObjectName(QString::fromUtf8("actionShipments_2"));
         actionMap = new QAction(MainWindow);
         actionMap->setObjectName(QString::fromUtf8("actionMap"));
+        actionClose = new QAction(MainWindow);
+        actionClose->setObjectName(QString::fromUtf8("actionClose"));
+        actionTabular_Diseases_Data = new QAction(MainWindow);
+        actionTabular_Diseases_Data->setObjectName(QString::fromUtf8("actionTabular_Diseases_Data"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setMouseTracking(false);
@@ -146,7 +152,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 998, 22));
+        menuBar->setGeometry(QRect(0, 0, 998, 21));
         menuBar->setNativeMenuBar(false);
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
@@ -171,11 +177,9 @@ public:
         menuBar->addAction(menuView->menuAction());
         menuBar->addAction(menuShipments->menuAction());
         menuBar->addAction(menuHelp->menuAction());
-        menuFile->addAction(actionOpen);
-        menuView->addAction(actionMap);
-        menuView->addAction(actionShipments_2);
-        menuView->addAction(actionShipments);
+        menuFile->addAction(actionClose);
         menuView->addAction(actionSupplies_Data);
+        menuView->addAction(actionTabular_Diseases_Data);
         menuHelp->addAction(actionAbout_CET);
         menuEnter_New_Data->addAction(actionAdd_Disease_Data);
         menuEnter_New_Data->addAction(actionAdd_Supplies_Data);
@@ -183,6 +187,13 @@ public:
         menuShipments->addAction(actionManage_Shipments);
 
         retranslateUi(MainWindow);
+        QObject::connect(actionClose, SIGNAL(activated()), MainWindow, SLOT(close()));
+        QObject::connect(actionAdd_Disease_Data, SIGNAL(activated()), MainWindow, SLOT(AddDiseaseHandler()));
+        QObject::connect(actionAdd_Supplies_Data, SIGNAL(activated()), MainWindow, SLOT(AddSupplyHandler()));
+        QObject::connect(actionTabular_Diseases_Data, SIGNAL(activated()), MainWindow, SLOT(ViewDiseasesHandler()));
+        QObject::connect(actionSupplies_Data, SIGNAL(activated()), MainWindow, SLOT(ViewSuppliesHandler()));
+        QObject::connect(actionAdd_New_Shipment, SIGNAL(activated()), MainWindow, SLOT(AddShipmentHandler()));
+        QObject::connect(actionManage_Shipments, SIGNAL(activated()), MainWindow, SLOT(ManageShipmentsHandler()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -201,6 +212,8 @@ public:
         actionSupplies_Data->setText(QApplication::translate("MainWindow", "Tabular Supplies Data", 0, QApplication::UnicodeUTF8));
         actionShipments_2->setText(QApplication::translate("MainWindow", "Shipments Manager", 0, QApplication::UnicodeUTF8));
         actionMap->setText(QApplication::translate("MainWindow", "Map", 0, QApplication::UnicodeUTF8));
+        actionClose->setText(QApplication::translate("MainWindow", "Close", 0, QApplication::UnicodeUTF8));
+        actionTabular_Diseases_Data->setText(QApplication::translate("MainWindow", "Tabular Diseases Data", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "Show data for:", 0, QApplication::UnicodeUTF8));
         e_s_selector->clear();
         e_s_selector->insertItems(0, QStringList()
@@ -222,8 +235,8 @@ public:
         loadinglabel->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Lucida Grande'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Loading Health Unit Zones...</p></body></html>", 0, QApplication::UnicodeUTF8));
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Lucida Grande'; font-size:13pt;\">Loading Health Unit Zones...</span></p></body></html>", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
         menuView->setTitle(QApplication::translate("MainWindow", "View", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0, QApplication::UnicodeUTF8));
