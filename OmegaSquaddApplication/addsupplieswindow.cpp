@@ -9,7 +9,7 @@ AddSuppliesWindow::AddSuppliesWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->dateEdit->setDate(QDate::currentDate());
     ui->comboBox->addItems(fetchListOfRegions());
-    //ui->comboBox_2->addItems(fetchListOfSupplies());
+    ui->comboBox_2->addItems(fetchListOfSupplies());
     dh = new DataHandler;
 }
 

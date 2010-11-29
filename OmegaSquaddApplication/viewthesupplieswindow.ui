@@ -40,9 +40,12 @@
      <height>192</height>
     </rect>
    </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>150</number>
+   </attribute>
    <column>
     <property name="text">
-     <string>City</string>
+     <string>Region</string>
     </property>
    </column>
    <column>
@@ -53,11 +56,6 @@
    <column>
     <property name="text">
      <string>Number of Supplies</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Edit</string>
     </property>
    </column>
   </widget>
@@ -76,5 +74,25 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ViewTheSuppliesWindow</receiver>
+   <slot>AddNewSupplyHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>290</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>AddNewSupplyHandler()</slot>
+ </slots>
 </ui>

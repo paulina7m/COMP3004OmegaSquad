@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'viewthesupplieswindow.ui'
 **
-** Created: Mon Nov 29 03:40:25 2010
+** Created: Mon Nov 29 14:35:40 2010
 **      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -41,23 +41,23 @@ public:
         font.setPointSize(20);
         label->setFont(font);
         tableWidget = new QTableWidget(ViewTheSuppliesWindow);
-        if (tableWidget->columnCount() < 4)
-            tableWidget->setColumnCount(4);
+        if (tableWidget->columnCount() < 3)
+            tableWidget->setColumnCount(3);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setGeometry(QRect(90, 140, 431, 192));
+        tableWidget->horizontalHeader()->setDefaultSectionSize(150);
         pushButton = new QPushButton(ViewTheSuppliesWindow);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(180, 380, 221, 23));
 
         retranslateUi(ViewTheSuppliesWindow);
+        QObject::connect(pushButton, SIGNAL(clicked()), ViewTheSuppliesWindow, SLOT(AddNewSupplyHandler()));
 
         QMetaObject::connectSlotsByName(ViewTheSuppliesWindow);
     } // setupUi
@@ -67,13 +67,11 @@ public:
         ViewTheSuppliesWindow->setWindowTitle(QApplication::translate("ViewTheSuppliesWindow", "View Supplies", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("ViewTheSuppliesWindow", "Supplies Data", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("ViewTheSuppliesWindow", "City", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem->setText(QApplication::translate("ViewTheSuppliesWindow", "Region", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("ViewTheSuppliesWindow", "Type of Supplies", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
         ___qtablewidgetitem2->setText(QApplication::translate("ViewTheSuppliesWindow", "Number of Supplies", 0, QApplication::UnicodeUTF8));
-        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("ViewTheSuppliesWindow", "Edit", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("ViewTheSuppliesWindow", "Add New Supplies Data", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
