@@ -9,6 +9,17 @@ INPUT(
 ./debug\managetheshipmentswindow.o
 ./debug\viewthediseaseswindow.o
 ./debug\viewthesupplieswindow.o
+./debug\User.o
+./debug\SupplyType.o
+./debug\ShipmentDetail.o
+./debug\Shipment.o
+./debug\Region.o
+./debug\Province.o
+./debug\Inventory.o
+./debug\DiseaseType.o
+./debug\DataHandler.o
+./debug\clientconnection.o
+./debug\CaseReport.o
 ./debug\moc_mainwindow.o
 ./debug\moc_googlemap.o
 ./debug\moc_aboutCET.o
@@ -18,5 +29,6 @@ INPUT(
 ./debug\moc_managetheshipmentswindow.o
 ./debug\moc_viewthediseaseswindow.o
 ./debug\moc_viewthesupplieswindow.o
+./debug\moc_clientconnection.o
 ./debug\qrc_mapDefinitionFile.o
 );

@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::AddSuppliesWindow *ui;
+    QList fetchListOfDiseases();
 };
 
 #endif // ADDSUPPLIESWINDOW_H

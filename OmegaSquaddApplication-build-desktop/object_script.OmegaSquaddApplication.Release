@@ -9,6 +9,17 @@ INPUT(
 ./release\managetheshipmentswindow.o
 ./release\viewthediseaseswindow.o
 ./release\viewthesupplieswindow.o
+./release\User.o
+./release\SupplyType.o
+./release\ShipmentDetail.o
+./release\Shipment.o
+./release\Region.o
+./release\Province.o
+./release\Inventory.o
+./release\DiseaseType.o
+./release\DataHandler.o
+./release\clientconnection.o
+./release\CaseReport.o
 ./release\moc_mainwindow.o
 ./release\moc_googlemap.o
 ./release\moc_aboutCET.o
@@ -18,5 +29,6 @@ INPUT(
 ./release\moc_managetheshipmentswindow.o
 ./release\moc_viewthediseaseswindow.o
 ./release\moc_viewthesupplieswindow.o
+./release\moc_clientconnection.o
 ./release\qrc_mapDefinitionFile.o
 );
