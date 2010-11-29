@@ -62,3 +62,6 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     mapDefinitionFile.qrc
+
+OTHER_FILES += \
+    mapDefinition.html
