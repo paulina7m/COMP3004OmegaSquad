@@ -3,12 +3,6 @@ INPUT(
 ./debug\mainwindow.o
 ./debug\googlemap.o
 ./debug\aboutCET.o
-./debug\viewsupplieswindow.o
-./debug\viewdiseasewindow.o
-./debug\manageshipmentswindow.o
-./debug\createshipmentwindow.o
-./debug\addsupplywindow.o
-./debug\adddiseasewindow.o
 ./debug\adddiseaseswindow.o
 ./debug\addsupplieswindow.o
 ./debug\createshipmentswindow.o
@@ -18,12 +12,6 @@ INPUT(
 ./debug\moc_mainwindow.o
 ./debug\moc_googlemap.o
 ./debug\moc_aboutCET.o
-./debug\moc_viewsupplieswindow.o
-./debug\moc_viewdiseasewindow.o
-./debug\moc_manageshipmentswindow.o
-./debug\moc_createshipmentwindow.o
-./debug\moc_addsupplywindow.o
-./debug\moc_adddiseasewindow.o
 ./debug\moc_adddiseaseswindow.o
 ./debug\moc_addsupplieswindow.o
 ./debug\moc_createshipmentswindow.o

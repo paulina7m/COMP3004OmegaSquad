@@ -14,45 +14,56 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     googlemap.cpp \ 
     aboutCET.cpp \
-    viewsupplieswindow.cpp \
-    viewdiseasewindow.cpp \
-    manageshipmentswindow.cpp \
-    createshipmentwindow.cpp \
-    addsupplywindow.cpp \
-    adddiseasewindow.cpp \
     adddiseaseswindow.cpp \
     addsupplieswindow.cpp \
     createshipmentswindow.cpp \
     managetheshipmentswindow.cpp \
     viewthediseaseswindow.cpp \
-    viewthesupplieswindow.cpp
+    viewthesupplieswindow.cpp \
+    ../CETClientApplication/User.cpp \
+    ../CETClientApplication/SupplyType.cpp \
+    ../CETClientApplication/ShipmentDetail.cpp \
+    ../CETClientApplication/Shipment.cpp \
+    ../CETClientApplication/Region.cpp \
+    ../CETClientApplication/Province.cpp \
+    ../CETClientApplication/Inventory.cpp \
+    ../CETClientApplication/DiseaseType.cpp \
+    ../CETClientApplication/DataHandler.cpp \
+    ../CETClientApplication/clientconnection.cpp \
+    ../CETClientApplication/CaseReport.cpp
 
 
 HEADERS  += mainwindow.h \
     googlemap.h \ 
     aboutCET.h \
-    viewsupplieswindow.h \
-    viewdiseasewindow.h \
-    manageshipmentswindow.h \
-    createshipmentwindow.h \
-    addsupplywindow.h \
-    adddiseasewindow.h \
     adddiseaseswindow.h \
     addsupplieswindow.h \
     createshipmentswindow.h \
     managetheshipmentswindow.h \
     viewthediseaseswindow.h \
-    viewthesupplieswindow.h
+    viewthesupplieswindow.h \
+    ../CETClientApplication/clientconnection.h \
+    ../CETClientApplication/CaseReport.h \
+    viewthesupplieswindow.h \
+    viewthediseaseswindow.h \
+    managetheshipmentswindow.h \
+    mainwindow.h \
+    googlemap.h \
+    createshipmentswindow.h \
+    addsupplieswindow.h \
+    ../CETClientApplication/DataHandler.h \
+    ../CETClientApplication/DiseaseType.h \
+    ../CETClientApplication/Inventory.h \
+    ../CETClientApplication/Province.h \
+    ../CETClientApplication/Region.h \
+    ../CETClientApplication/Shipment.h \
+    ../CETClientApplication/ShipmentDetail.h \
+    ../CETClientApplication/SupplyType.h \
+    ../CETClientApplication/User.h
 
 
 FORMS    += mainwindow.ui \
     aboutCET.ui \
-    viewsupplieswindow.ui \
-    viewdiseasewindow.ui \
-    manageshipmentswindow.ui \
-    createshipmentwindow.ui \
-    addsupplywindow.ui \
-    AddDiseaseWindow.ui \
     adddiseaseswindow.ui \
     addsupplieswindow.ui \
     createshipmentswindow.ui \
