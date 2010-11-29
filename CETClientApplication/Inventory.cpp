@@ -1,6 +1,6 @@
 #include "Inventory.h"
 
-Inventory::Inventory(int anId, int aRegionId, int aSupplyType, int aQuantity):id(anId), regionId(aRegionId), supplyType(aSupplyType), quantity(aQuantity) {}
+Inventory::Inventory(int anId, int aRegionId, int aSupplyType, int aQuantity, int aRequired):id(anId), regionId(aRegionId), supplyType(aSupplyType), quantity(aQuantity), required(aRequired) {}
 Inventory::~Inventory() {}
 
 int Inventory::getId() {
@@ -21,4 +21,12 @@ int Inventory::getQuantity() {
 
 void Inventory::setQuantity(int changeQuantity) {
     quantity = changeQuantity;
+}
+
+int Inventory::getRequired() {
+	return required;
+}
+
+void Inventory::setRequired(int changeRequired) {
+	required = changeRequired;
 }

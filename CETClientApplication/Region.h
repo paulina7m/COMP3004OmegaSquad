@@ -15,9 +15,8 @@ private:
         QString name;
         int centerX;
         int centerY;
-        QString polygonPoints;
 public:
-        Region(int, int, QString, int, int, QString);
+        Region(int, int, QString, int, int);
         ~Region();
 
         int getId();
@@ -25,7 +24,6 @@ public:
         QString getName();
         int getCenterX();
         int getCenterY();
-        QString getPolygonPoints();
 };
 
 #endif // REGION_H

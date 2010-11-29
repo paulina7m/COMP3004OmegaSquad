@@ -12,8 +12,9 @@ private:
         int regionId;
         int supplyType;
         int quantity;
+        int required;
 public:
-        Inventory(int, int, int, int);
+        Inventory(int, int, int, int, int);
         ~Inventory();
 
         int getId();
@@ -21,6 +22,8 @@ public:
         int getSupplyType();
         int getQuantity();
         void setQuantity(int);
+        int getRequired();
+        void setRequired(int);
 };
 
 

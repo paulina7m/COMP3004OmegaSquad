@@ -276,6 +276,7 @@ QList<Inventory> DataHandler::getInventory() {
     int regionId;
     int supplyType;
     int quantity;
+    int required;
     if (xmlReply != "") {
             //Parse the xml string
             //The name of the xml document
@@ -307,10 +308,13 @@ QList<Inventory> DataHandler::getInventory() {
                                     else if (f.attribute("key") == "quantity") {
                                         quantity = f.attribute("value").toInt();
                                     }
+                                    else if (f.attribute("key") == "Required") {
+                                        required = f.attribute("value").toInt();
+                                    }
                                     j = j.nextSibling();
                                 }
                             }
-                            Inventory anInventory(id, regionId, supplyType, quantity);
+                            Inventory anInventory(id, regionId, supplyType, quantity, required);
                             returnList.append(anInventory);
                             g = g.nextSibling();
                         }
@@ -355,7 +359,6 @@ QList<Region> DataHandler::getRegions()
     QString name;
     int centerX;
     int centerY;
-    QString polygonPoints;
     if (xmlReply != "") {
             //Parse the xml string
             //The name of the xml document
@@ -390,13 +393,10 @@ QList<Region> DataHandler::getRegions()
                                     else if (f.attribute("key") == "centerY") {
                                         centerY = f.attribute("value").toInt();
                                     }
-                                    else if (f.attribute("key") == "polygonPoints") {
-                                        polygonPoints = f.attribute("value");
-                                    }
                                     j = j.nextSibling();
                                 }
                             }
-                            Region aRegion(id, provinceId, name, centerX, centerY, polygonPoints);
+                            Region aRegion(id, provinceId, name, centerX, centerY);
                             returnList.append(aRegion);
                             g = g.nextSibling();
                         }
@@ -1162,6 +1162,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
 QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
     QString replyStatus;
     QString xmlStatus;
+    int required = 0;
 
     //get an ID number first
     int id;
@@ -1218,6 +1219,7 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
     QString aRegion;
     QString aSupply;
     QString aQuantity;
+    QString aRequired;
 
     QString xmlSaveRequest = "<?xml version=\"1.0\"?><message><command>saveEntities</command>";
     xmlSaveRequest.append("<entity type=\"Inventory\" id=\"");
@@ -1231,6 +1233,9 @@ QString DataHandler::saveInventory(int regionID, int supplyType, int quantity) {
     xmlSaveRequest.append("\" />");
     xmlSaveRequest.append("<attribute key=\"quantity\" value=\"");
     xmlSaveRequest.append(aQuantity.setNum(quantity));
+    xmlSaveRequest.append("\" />");
+    xmlSaveRequest.append("<attribute key=\"Required\" value=\"");
+    xmlSaveRequest.append(aRequired.setNum(required));
     xmlSaveRequest.append("\" />");
     xmlSaveRequest.append("</entity></message>");
     //qDebug() << xmlSaveRequest;

@@ -68,6 +68,8 @@ void CETServer::startServerButtonHandler() {
     this->commandStatus(xmlReply);
     */
 
+    //QString reply = sqLite->queryDatabase("<message><command>findEntities</command> <findEntitiesRequest type=\"CaseReport\"><query key=\"diseaseType\" value=\"8\" comparison=\"=\" /> <query key=\"dateOfReport\" value=\"2010-10-01\" comparison=\"&gt;=\" /> <query key=\"dateOfReport\" value=\"2010-10-31\" comparison=\"&lt;=\" /></findEntitiesRequest> </message>");
+    //qDebug() << reply;
 
 
 
@@ -206,6 +208,8 @@ void CETServer::startRead()
 
         QString reply = this->sqLite->queryDatabase(xmlQuery);
         xmlQuery = "";
+
+        //qDebug() << reply;
 
         this->commandStatus(reply);
 

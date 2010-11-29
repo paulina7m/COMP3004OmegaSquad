@@ -1,6 +1,6 @@
 #include "Region.h"
 
-Region::Region(int anId, int aProvinceId, QString aName, int aCenterX, int aCenterY, QString somePolygonPoints):id(anId), provinceId(aProvinceId), name(aName), centerX(aCenterX), centerY(aCenterY), polygonPoints(somePolygonPoints) {}
+Region::Region(int anId, int aProvinceId, QString aName, int aCenterX, int aCenterY):id(anId), provinceId(aProvinceId), name(aName), centerX(aCenterX), centerY(aCenterY) {}
 Region::~Region() {}
 
 int Region::getId() {
@@ -21,8 +21,4 @@ int Region::getCenterX() {
 
 int Region::getCenterY() {
     return centerY;
-}
-
-QString Region::getPolygonPoints() {
-    return polygonPoints;
 }
