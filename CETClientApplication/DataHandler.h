@@ -1,4 +1,4 @@
-#ifndef DATAHANDLER_H
+#ifndef DATAHANDLER_H 
 #define DATAHANDLER_H
 
 #include "CaseReport.h"

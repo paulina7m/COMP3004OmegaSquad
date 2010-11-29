@@ -1,4 +1,4 @@
---CET Application
+--CET Application 
 --This file is for creating and populating data into tables
 
 --Type: sqlite3 nameofdatabase.extension

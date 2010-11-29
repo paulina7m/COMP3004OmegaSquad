@@ -11,6 +11,7 @@
 The following must be added to the .pro file
 QT += sql
 QT += xml
+in order to process xml and sql
 */
 
 bool DatabaseHandler::openDB(QString dbType, QString pathToDb, QString hostName) {

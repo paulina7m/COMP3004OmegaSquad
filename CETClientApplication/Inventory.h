@@ -26,5 +26,4 @@ public:
         void setRequired(int);
 };
 
-
 #endif // INVENTORY_H

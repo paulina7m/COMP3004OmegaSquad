@@ -5,7 +5,6 @@
 
 //Region.h
 //Defines a region
-//Based on teamJAG's DesignReview p.25
 
 //Region class definition
 class Region {

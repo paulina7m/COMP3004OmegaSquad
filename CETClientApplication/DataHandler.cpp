@@ -10,7 +10,7 @@ DataHandler::DataHandler() {
 DataHandler::~DataHandler() {}
 
 //Retrieve Case Reports
-//This is the old function call, just in case, ignore this
+//This is the old function call, just in case, ignore this for now
 //QList<CaseReport> DataHandler::getCaseReports(int idFrom, int idTo, int regionID, QString dateFrom, QString dateTo, int diseaseType, int quantityFrom, int quantityTo)
 QList<CaseReport> DataHandler::getCaseReports()
 {
