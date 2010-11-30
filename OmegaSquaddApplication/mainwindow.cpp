@@ -20,15 +20,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         initializeMap();
         QObject::connect(ui->e_s_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForESSelector(int)));
         QObject::connect(ui->actionAbout_CET,SIGNAL(triggered()),this,SLOT(showAboutCETDialog()));
+
 }
-
-
 
 
 void MainWindow::initializeMap()
 {
 
-    GoogleMap *gmap = new GoogleMap(ui->mapView, this);
+    gmap = new GoogleMap(ui->mapView, this);
     QObject::connect(gmap, SIGNAL(mapItemClicked(QString, QString)),
                          this, SLOT(setNameIDValue(QString, QString)));
     QObject::connect(gmap, SIGNAL(notifyMapTilesLoaded()),
@@ -45,10 +44,8 @@ void MainWindow::setNameIDValue(QString name, QString id)
     this->ui->namebox->setText(name);
     this->ui->idbox->setText(id);
 
-// TODO: to fetch the total number of cases
-//    QString totalnumber of = getNumberOfCases();
-//    this->ui->numberofbox->setText(totalnumberof);
-
+    // TODO:
+    // this->ui->numberofbox->setText(totalnumberof);
 
 }
 
@@ -77,6 +74,7 @@ QStringList MainWindow::fetchListOfSupplyTypes(){
     list.push_front("Knives");
 
     return list;
+
 }
 
 
@@ -92,6 +90,23 @@ void MainWindow::currentIndexChangedForESSelector(int index){
         this->ui->type_selector->addItems(fetchListOfSupplyTypes());
         this->ui->numberof_label->setText("Number of Supplies:");
     }
+
+    currentIndexChangedForTypeSelector();
+}
+
+void MainWindow::currentIndexChangedForTypeSelector(){
+    fetchDataForSelectedType();
+    calculateBadGoodWorse();
+    gmap->updateIcons(this->ui->type_selector->currentIndex());
+}
+
+void MainWindow::fetchDataForSelectedType(){
+    //TODO:
+    //fetch the number of cases for all regions for the disease displayed
+}
+
+void MainWindow::calculateBadGoodWorse(){
+    //TODO: calculate bad - worse - good states, add them into a hashmap attached to region ids
 }
 
 
@@ -155,3 +170,6 @@ void MainWindow::ManageShipmentsHandler()
     ManageTheShipmentsWindow *manageTheShipmentsWindow = new ManageTheShipmentsWindow;
     manageTheShipmentsWindow->showNormal();
 }
+
+
+
