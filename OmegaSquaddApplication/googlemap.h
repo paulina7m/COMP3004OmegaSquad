@@ -17,7 +17,13 @@ private:
     QWebPage *mapWebPage;
     QString message;
     QMainWindow *pwindow;
+    QHash<QString, QString> *unitLocations;
+    QHash<QString, QString> *unitNames;
+    QHash<QString, QString> *iconURLs;
+    void setupIconsHash();
 
+private:
+    void setupHashMapsForLocations();
 
 public Q_SLOTS:
     void processMapAlert(QString name, QString id);
@@ -25,7 +31,7 @@ public Q_SLOTS:
 
 public:
     explicit GoogleMap(QWidget *parent = 0, QMainWindow *pwindow = 0);
-    void setupMarkers();
+    void updateIcons(int index);
 
 signals:
     void mapItemClicked(QString name, QString id);
@@ -37,8 +43,6 @@ public slots:
 private slots:
     void setCenter(qreal latitude, qreal longitude);
     void addJavaScriptObject();
-
-
 
 };
 

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QUrl>
+#include <QHash>
 #include <QWebElement>
 #include "googlemap.h"
 #include "aboutCET.h"
@@ -21,6 +22,17 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private:
+    Ui::MainWindow *ui;
+    GoogleMap *gmap;
+    AboutCETDialog *aboutDialog;
+    QStringList fetchListOfDiseases();
+    QStringList fetchListOfSupplyTypes();
+    void fetchDataForSelectedType();
+    void calculateBadGoodWorse();
+    void currentIndexChangedForTypeSelector();
+
+
 private slots:
     void initializeMap();
     void currentIndexChangedForESSelector(int index);
@@ -32,18 +44,14 @@ private slots:
     void ViewSuppliesHandler();
     void AddShipmentHandler();
     void ManageShipmentsHandler();
-    //void UpdateCaseReportHandler();
-    //void UpdateInventoryHandler();
+
 
 public Q_SLOTS:
     void setNameIDValue(QString name, QString id);
     void hideLoadingLabel();
 
-private:
-    Ui::MainWindow *ui;
-    QStringList fetchListOfDiseases();
-    QStringList fetchListOfSupplyTypes();
-    AboutCETDialog *aboutDialog;
+
+
 };
 
 #endif // MAINWINDOW_H
