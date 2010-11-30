@@ -7,7 +7,6 @@ AddSuppliesWindow::AddSuppliesWindow(QWidget *parent) :
     ui(new Ui::AddSuppliesWindow)
 {
     ui->setupUi(this);
-    this->setGeometry(100,167,1000, 539);
     ui->comboBox->addItems(fetchListOfRegions());
     ui->comboBox_2->addItems(fetchListOfSupplies());
     dh = new DataHandler;
@@ -31,10 +30,10 @@ QStringList AddSuppliesWindow::fetchListOfRegions() {
     */
 
     //Workaround
-    aRegion = new Region(5931, 2, "Richmond", 0, 0);
-    bRegion = new Region(5932, 2, "Vancouver", 0, 0);
-    regionList.append(*aRegion);
-    regionList.append(*bRegion);
+    aRegion1 = new Region1(5931, 2, "Richmond", 0, 0);
+    bRegion1 = new Region1(5932, 2, "Vancouver", 0, 0);
+    regionList.append(*aRegion1);
+    regionList.append(*bRegion1);
     for (int i = 0; i < regionList.size(); i++) {
         list.push_front(regionList[i].getName());
     }

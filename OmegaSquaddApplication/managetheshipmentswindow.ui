@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>1010</width>
     <height>800</height>
    </rect>
   </property>
@@ -36,7 +36,7 @@
     <rect>
      <x>35</x>
      <y>170</y>
-     <width>471</width>
+     <width>951</width>
      <height>192</height>
     </rect>
    </property>
@@ -65,35 +65,35 @@
    </column>
    <column>
     <property name="text">
-     <string>Days to Ship</string>
+     <string>Date Created</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Sent</string>
+     <string>Date Sent</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Sent Date</string>
+     <string>Date Received</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Expected Arrival Date</string>
+     <string>Date Cancelled</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Received</string>
+     <string>Current Status</string>
     </property>
    </column>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>400</y>
+     <x>30</x>
+     <y>380</y>
      <width>161</width>
      <height>23</height>
     </rect>
@@ -102,7 +102,57 @@
     <string>Create New Shipment</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>380</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>ManageTheShipmentsWindow</receiver>
+   <slot>ManageTheShipmentsWindowCancelButtonHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>246</x>
+     <y>395</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ManageTheShipmentsWindow</receiver>
+   <slot>ManageTheShipmentsWindowSubmitButtonHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>392</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>95</x>
+     <y>416</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>ManageTheShipmentsWindowCancelButtonHandler()</slot>
+  <slot>ManageTheShipmentsWindowSubmitButtonHandler()</slot>
+ </slots>
 </ui>

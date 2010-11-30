@@ -31,7 +31,7 @@ public:
     QList<Inventory> getInventory();
     
     //Retrieve Regions
-    QList<Region> getRegions();
+    QList<Region1> getRegions();
     
     //Retrieve Provinces
     QList<Province> getProvinces();

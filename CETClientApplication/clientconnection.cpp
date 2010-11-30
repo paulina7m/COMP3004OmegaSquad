@@ -40,32 +40,46 @@ void ClientConnection::setAddress(QString addr){
     address = addr;
 }
 
-QString ClientConnection::sendRequest(QString &xmlReq)
+
+QString ClientConnection::sendRequest(QString xmlReq)
 {
 
-    qDebug() << xmlReq;
     this->xmlRequest = xmlReq;
 
     QHostAddress addr(address);
+
+    xmlReply = "";
+
     client.connectToHost(addr,6789);
 
-    if(client.waitForConnected(30000)){
+    if(client.waitForConnected(30000))
+    {
         client.write(xmlRequest.toAscii(),xmlRequest.length()+1);
-    }
-
-    char message[1024*2] = {0};
-
-    if(client.waitForReadyRead(30000)){
-
-
-        client.read(message,client.bytesAvailable());
-
-        client.close();
     }else{
-        xmlReply = "Server Timeout";
+        xmlReply = "<message>Server Connection Timeout</message>";
     }
 
-    xmlReply = (QString) message;
+    char message[30000] = {0};
+
+
+
+
+
+    //should loop through, appendign newly received parts from the tcp socket
+    //and stuff
+    while(!(xmlReply.contains("</message>")))
+    {
+        if(client.waitForReadyRead(3000)){
+
+            client.read(message,30000);
+
+            xmlReply += (QString)message;
+        }else{
+            xmlReply = "<message>Server Response Timeout</message>";
+        }
+    }
+
+    client.close();
 
     return xmlReply;
 
@@ -86,5 +100,3 @@ void ClientConnection::readMessage()
     client.close();
 */
 }
-
-

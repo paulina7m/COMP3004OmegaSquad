@@ -1,4 +1,4 @@
-#include "datahandler.h"
+#include "DataHandler.h"
 #include <QtXml/QDomDocument>
 #include "clientconnection.h"
 
@@ -335,9 +335,9 @@ QList<Inventory> DataHandler::getInventory() {
 //Retrieve Regions
 //no parameters passed in because it doesn't make sense
 //of course it can be changed
-QList<Region> DataHandler::getRegions()
+QList<Region1> DataHandler::getRegions()
 {
-    QList<Region> returnList;
+    QList<Region1> returnList;
 
     QString xmlRequest;
     xmlRequest = "<?xml version=\"1.0\"?><message><command>findEntities</command>";
@@ -396,7 +396,7 @@ QList<Region> DataHandler::getRegions()
                                     j = j.nextSibling();
                                 }
                             }
-                            Region aRegion(id, provinceId, name, centerX, centerY);
+                            Region1 aRegion(id, provinceId, name, centerX, centerY);
                             returnList.append(aRegion);
                             g = g.nextSibling();
                         }

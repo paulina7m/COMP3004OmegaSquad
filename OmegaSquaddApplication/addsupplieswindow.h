@@ -5,10 +5,7 @@
 #include <QMessageBox>
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/SupplyType.h"
-#include "../CETClientApplication/Region.h"
-#include "DataHandler.h"
-#include "SupplyType.h"
-#include "Region.h"
+#include "../CETClientApplication/Region1.h"
 
 namespace Ui {
     class AddSuppliesWindow;
@@ -28,12 +25,12 @@ private:
     QStringList fetchListOfRegions();
     DataHandler *dh;
     QList<SupplyType> supplyList;
-    QList<Region> regionList;
+    QList<Region1> regionList;
     QMessageBox msgBox;
     SupplyType *aSupply;
     SupplyType *bSupply;
-    Region *aRegion;
-    Region *bRegion;
+    Region1 *aRegion1;
+    Region1 *bRegion1;
 
 private slots:
     void addSuppliesSubmitButtonHandler();

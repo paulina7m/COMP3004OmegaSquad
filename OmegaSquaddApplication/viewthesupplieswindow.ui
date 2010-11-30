@@ -40,12 +40,9 @@
      <height>192</height>
     </rect>
    </property>
-   <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>150</number>
-   </attribute>
    <column>
     <property name="text">
-     <string>Region</string>
+     <string>City</string>
     </property>
    </column>
    <column>
@@ -58,12 +55,17 @@
      <string>Number of Supplies</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>Edit</string>
+    </property>
+   </column>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>380</y>
+     <x>90</x>
+     <y>360</y>
      <width>221</width>
      <height>23</height>
     </rect>
@@ -72,27 +74,57 @@
     <string>Add New Supplies Data</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>360</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
   <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>ViewTheSuppliesWindow</receiver>
+   <slot>ViewTheSuppliesWindowCancelButtonHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>366</x>
+     <y>376</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>470</x>
+     <y>392</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>ViewTheSuppliesWindow</receiver>
-   <slot>AddNewSupplyHandler()</slot>
+   <slot>ViewTheSuppliesWindowSubmitButtonHandler()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>290</x>
-     <y>391</y>
+     <x>198</x>
+     <y>378</y>
     </hint>
     <hint type="destinationlabel">
-     <x>299</x>
-     <y>399</y>
+     <x>189</x>
+     <y>414</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>AddNewSupplyHandler()</slot>
+  <slot>ViewTheSuppliesWindowSubmitButtonHandler()</slot>
+  <slot>ViewTheSuppliesWindowCancelButtonHandler()</slot>
  </slots>
 </ui>

@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/DiseaseType.h"
-#include "../CETClientApplication/Region.h"
+#include "../CETClientApplication/Region1.h"
 
 namespace Ui {
     class AddDiseasesWindow;
@@ -25,12 +25,12 @@ private:
     QStringList fetchListOfRegions();
     DataHandler *dh;
     QList<DiseaseType> diseaseList;
-    QList<Region> regionList;
+    QList<Region1> Region1List;
     QMessageBox msgBox;
     DiseaseType *aDisease;
     DiseaseType *bDisease;
-    Region *aRegion;
-    Region *bRegion;
+    Region1 *aRegion1;
+    Region1 *bRegion1;
 
 
 private slots:

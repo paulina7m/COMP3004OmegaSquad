@@ -2,11 +2,9 @@
 #define VIEWTHESUPPLIESWINDOW_H
 
 #include <QDialog>
-#include "DataHandler.h"
-#include "SupplyType.h"
-#include "Region.h"
-#include "Inventory.h"
-#include "addsupplieswindow.h"
+#include "../CETClientApplication/DataHandler.h"
+#include "../CETClientApplication/SupplyType.h"
+#include "../CETClientApplication/Region1.h"
 
 namespace Ui {
     class ViewTheSuppliesWindow;
@@ -22,20 +20,11 @@ public:
 
 private:
     Ui::ViewTheSuppliesWindow *ui;
-    void PopulateTable();
-    QStringList FetchListOfSupplies();
-    QStringList FetchListOfRegions();
-    QStringList regionNamesList;
-    QStringList supplyNamesList;
-    QList<int> quantityList;
-    QList<int> FetchQuantity();
-    QList<SupplyType> supplyList;
-    QList<Region> regionList;
-    QList<Inventory> inventoryList;
     DataHandler *dh;
-
 private slots:
-    void AddNewSupplyHandler();
+    void editInventory(int);
+    void ViewTheSuppliesWindowSubmitButtonHandler();
+    void ViewTheSuppliesWindowCancelButtonHandler();
 };
 
 #endif // VIEWTHESUPPLIESWINDOW_H

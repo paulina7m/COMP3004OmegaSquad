@@ -24,13 +24,15 @@ SOURCES += main.cpp\
     ../CETClientApplication/SupplyType.cpp \
     ../CETClientApplication/ShipmentDetail.cpp \
     ../CETClientApplication/Shipment.cpp \
-    ../CETClientApplication/Region.cpp \
     ../CETClientApplication/Province.cpp \
     ../CETClientApplication/Inventory.cpp \
     ../CETClientApplication/DiseaseType.cpp \
     ../CETClientApplication/DataHandler.cpp \
     ../CETClientApplication/clientconnection.cpp \
-    ../CETClientApplication/CaseReport.cpp
+    ../CETClientApplication/CaseReport.cpp \
+    updatecasereport.cpp \
+    updateinventory.cpp \
+    ../CETClientApplication/Region1.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -55,11 +57,13 @@ HEADERS  += mainwindow.h \
     ../CETClientApplication/DiseaseType.h \
     ../CETClientApplication/Inventory.h \
     ../CETClientApplication/Province.h \
-    ../CETClientApplication/Region.h \
     ../CETClientApplication/Shipment.h \
     ../CETClientApplication/ShipmentDetail.h \
     ../CETClientApplication/SupplyType.h \
-    ../CETClientApplication/User.h
+    ../CETClientApplication/User.h \
+    updatecasereport.h \
+    updateinventory.h \
+    ../CETClientApplication/Region1.h
 
 
 FORMS    += mainwindow.ui \
@@ -69,7 +73,9 @@ FORMS    += mainwindow.ui \
     createshipmentswindow.ui \
     managetheshipmentswindow.ui \
     viewthediseaseswindow.ui \
-    viewthesupplieswindow.ui
+    viewthesupplieswindow.ui \
+    updatecasereport.ui \
+    updateinventory.ui
 
 RESOURCES += \
     mapDefinitionFile.qrc

@@ -2,6 +2,9 @@
 #define VIEWTHEDISEASESWINDOW_H
 
 #include <QDialog>
+#include "../CETClientApplication/DataHandler.h"
+#include "../CETClientApplication/DiseaseType.h"
+#include "../CETClientApplication/Region1.h"
 
 namespace Ui {
     class ViewTheDiseasesWindow;
@@ -17,6 +20,11 @@ public:
 
 private:
     Ui::ViewTheDiseasesWindow *ui;
+    DataHandler *dh;
+private slots:
+    void editCase(int);
+    void viewTheDiseasesWindowCancelButtonHandler();
+    void viewTheDiseasesWindowNewButtonHandler();
 };
 
 #endif // VIEWTHEDISEASESWINDOW_H

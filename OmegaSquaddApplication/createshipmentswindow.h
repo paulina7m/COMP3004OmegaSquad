@@ -2,6 +2,10 @@
 #define CREATESHIPMENTSWINDOW_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include "../CETClientApplication/DataHandler.h"
+#include "../CETClientApplication/SupplyType.h"
+#include "../CETClientApplication/Region1.h"
 
 namespace Ui {
     class CreateShipmentsWindow;
@@ -17,6 +21,19 @@ public:
 
 private:
     Ui::CreateShipmentsWindow *ui;
+    QStringList fetchListOfRegions();
+    QStringList fetchListOfSupplies();
+    DataHandler *dh;
+    QMessageBox msgBox;
+    QList<SupplyType> supplyList;
+    QList<Region1> regionList;
+    SupplyType *aSupply;
+    SupplyType *bSupply;
+    Region1 *aRegion1;
+    Region1 *bRegion1;
+private slots:
+    void CreateShipmentsWindowSubmitButtonHandler();
+    void CreateShipmentsWindowCancelButtonHandler();
 };
 
 #endif // CREATESHIPMENTSWINDOW_H

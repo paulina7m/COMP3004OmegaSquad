@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>728</width>
     <height>800</height>
    </rect>
   </property>
@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Diseases Data</string>
+    <string>Epidemics Data</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="tableWidget">
@@ -36,7 +36,7 @@
     <rect>
      <x>80</x>
      <y>100</y>
-     <width>451</width>
+     <width>501</width>
      <height>192</height>
     </rect>
    </property>
@@ -47,7 +47,7 @@
    </column>
    <column>
     <property name="text">
-     <string>City</string>
+     <string>Region</string>
     </property>
    </column>
    <column>
@@ -71,7 +71,7 @@
     <rect>
      <x>160</x>
      <y>330</y>
-     <width>271</width>
+     <width>181</width>
      <height>23</height>
     </rect>
    </property>
@@ -79,7 +79,57 @@
     <string>Add New Disease Data</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>330</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>ViewTheDiseasesWindow</receiver>
+   <slot>viewTheDiseasesWindowCancelButtonHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>385</x>
+     <y>338</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>451</x>
+     <y>372</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ViewTheDiseasesWindow</receiver>
+   <slot>viewTheDiseasesWindowNewButtonHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>242</x>
+     <y>346</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>238</x>
+     <y>389</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>viewTheDiseasesWindowCancelButtonHandler()</slot>
+  <slot>viewTheDiseasesWindowNewButtonHandler()</slot>
+ </slots>
 </ui>

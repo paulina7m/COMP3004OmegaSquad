@@ -1,72 +1,114 @@
 #include "viewthesupplieswindow.h"
 #include "ui_viewthesupplieswindow.h"
+#include <QStandardItem>
+#include "updateinventory.h"
+#include "addsupplieswindow.h"
 
 ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ViewTheSuppliesWindow)
 {
     ui->setupUi(this);
-    this->setGeometry(100,167,1000, 539);
-    dh = new DataHandler;
-    regionNamesList = FetchListOfRegions();
-    supplyNamesList = FetchListOfSupplies();
-    quantityList = FetchQuantity();
-    PopulateTable();
+
+    /*
+    //This calls the database, doesn't work yet
+    dh = new DataHandler();
+    //Get a list of case reports
+    QList<Inventory> inventoryList = dh->getInventory();
+    QList<Region> regionList = dh->getRegions();
+    QList<SupplyType> supplyList = dh->getSupplyTypes();
+    QString regionName;
+    QString supplyType;
+
+    //Map the edit buttons to the case id number
+    QSignalMapper *mapper = new QSignalMapper();
+
+    //CHECK THIS
+    //Set the number rows and columns of the table
+    ui->tableWidget->setRowCount(inventoryList.size());
+    ui->tableWidget->setColumnCount(4);
+    QString quantityStr;
+
+    for (int i = 0; i < inventoryList.size(); i++) {
+        int loc = inventoryList[i].getId();
+        for (int j = 0; j < regionList.size(); j++) {
+            if (inventoryList[i].getRegionId() == regionList[j].getId()) {
+                regionName = regionList[j].getName();
+            }
+        }
+        for (int k = 0; k < supplyList.size(); k++) {
+            if (inventoryList[i].getSupplyType() == supplyList[k].getId()) {
+                supplyType = supplyList[k].getName();
+            }
+        }
+        //Edit buttons for each case
+        QPushButton *editButton = new QPushButton("Edit");
+        connect(editButton, SIGNAL(clicked()), mapper, SLOT(map()));
+        mapper->setMapping(editButton, loc);
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(regionName));
+        ui->tableWidget->setItem(i, 1, new QTableWidgetItem(supplyType));
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(quantityStr.setNum(inventoryList[i].getQuantity())));
+        //Edit button
+        ui->tableWidget->setCellWidget(i, 4, editButton);
+    }
+    ui->tableWidget->setSortingEnabled(true);
+
+    //If button clicked, int is the case report id to edit
+    connect(mapper, SIGNAL(mapped(int)), this, SLOT(editInventory(int)));
+    */
+
+
+
+    QSignalMapper *mapper = new QSignalMapper();
+    //Set the number rows and columns of the table
+    ui->tableWidget->setRowCount(4);
+    QString quantity;
+    int j = 0;
+    ui->tableWidget->setColumnCount(5);
+    for (int i = 0; i < 4; i++) {
+        int loc = i;
+        QPushButton *editButton = new QPushButton("Edit");
+        connect(editButton, SIGNAL(clicked()), mapper, SLOT(map()));
+        mapper->setMapping(editButton, loc);
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem("item 1"));
+        ui->tableWidget->setItem(i, 1, new QTableWidgetItem("item 2"));
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem("item 3"));
+        ui->tableWidget->setItem(i, 3, new QTableWidgetItem(quantity.setNum(j++)));
+        ui->tableWidget->setCellWidget(i, 4, editButton);
+
+    }
+    ui->tableWidget->setSortingEnabled(true);
+
+    connect(mapper, SIGNAL(mapped(int)), this, SLOT(editInventory(int)));
+
+}
+
+void ViewTheSuppliesWindow::editInventory(int invId) {
+
+    //Open up the edit case window
+    qDebug() << invId;
+
+
+    updateinventory *updateInventory = new updateinventory;
+    updateInventory->show();
+    updateInventory->isModal();
+    updateInventory->updateInventory(invId);
+
+
+}
+
+void ViewTheSuppliesWindow::ViewTheSuppliesWindowSubmitButtonHandler() {
+    AddSuppliesWindow *addSuppliesWindow = new AddSuppliesWindow;
+    addSuppliesWindow->show();
+    addSuppliesWindow->isModal();
+    ViewTheSuppliesWindow::close();
+}
+
+void ViewTheSuppliesWindow::ViewTheSuppliesWindowCancelButtonHandler() {
+    ViewTheSuppliesWindow::close();
 }
 
 ViewTheSuppliesWindow::~ViewTheSuppliesWindow()
 {
     delete ui;
-}
-
-void ViewTheSuppliesWindow::AddNewSupplyHandler()
-{
-    AddSuppliesWindow *addSuppliesWindow = new AddSuppliesWindow;
-    addSuppliesWindow->showNormal();
-    this->close();
-}
-
-void ViewTheSuppliesWindow::PopulateTable()
-{
-    for(int i = 0; i < regionList.size(); i++)
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(regionNamesList[i]));
-
-    for(int i = 0; i < supplyList.size(); i++)
-        ui->tableWidget->setItem(i, 1, new QTableWidgetItem(supplyNamesList[i]));
-
-    for(int i = 0; i < inventoryList.size(); i++)
-        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(quantityList[i]));
-}
-
-QStringList ViewTheSuppliesWindow::FetchListOfRegions()
-{
-    QStringList list;
-
-    regionList = dh->getRegions();
-    for(int i = 0; i < regionList.size(); i++)
-        list.push_front(regionList[i].getName());
-
-    return list;
-}
-
-QStringList ViewTheSuppliesWindow::FetchListOfSupplies()
-{
-    QStringList list;
-
-    supplyList = dh->getSupplyTypes();
-    for(int i = 0; i < regionList.size(); i++)
-        list.push_front(supplyList[i].getName());
-
-    return list;
-}
-
-QList<int> ViewTheSuppliesWindow::FetchQuantity()
-{
-    QList<int> list;
-
-    inventoryList = dh->getInventory();
-    for(int i = 0; i < inventoryList.size(); i++)
-        list.push_front(inventoryList[i].getQuantity());
-
-    return list;
 }
