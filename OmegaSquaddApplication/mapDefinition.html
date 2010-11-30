@@ -38,6 +38,127 @@
 	var geoXmlnunavut3;
 	var geoXmlnunavut4;
 	var geoXmlnunavut5;
+	var latlngmarker;
+	//Territories
+        	var marker6201;
+        	var marker6101;
+        	var marker6001;
+        //British Columbia
+        	var marker5951;
+        	var marker5952;
+        	var marker5933;
+        	var marker5943;
+        	var marker5942;
+        	var marker5941;
+        	var marker5922;
+        	var marker5921;
+        	var marker5914;
+        	var marker5913;
+        	var marker5912;
+        	var marker5911;
+
+        	var marker5923;
+        	var marker5931;
+        	var marker5932;
+        	var marker5953;
+        //Alberta
+			var marker4821;
+        	var marker4822;
+        	var marker4823;
+        	var marker4824;
+        	var marker4825;
+        	var marker4826;
+        	var marker4827;
+        	var marker4828;
+        	var marker4829;
+        //Sasketchewan
+        	var marker4701;
+        	var marker4702;
+        	var marker4703;
+        	var marker4704;
+        	var marker4705;
+        	var marker4706;
+        	var marker4707;
+        	var marker4708;
+        	var marker4709;
+        	var marker4710;
+        	var marker4711;
+        	var marker4712;
+        	var marker4713;
+        //Manitoba
+        	var marker4610;
+        	var marker4615;
+        	var marker4620;
+        	var marker4625;
+        	var marker4630;
+        	var marker4640;
+        	var marker4645;
+        	var marker4660;
+        	var marker4670;
+        	var marker4680;
+        	var marker4690;
+        //Ontario
+        	var marker3501;
+        	var marker3502;
+        	var marker3503;
+        	var marker3504;
+        	var marker3505;
+        	var marker3506;
+        	var marker3507;
+        	var marker3508;
+        	var marker3509;
+        	var marker3510;
+        	var marker3511;
+        	var marker3512;
+        	var marker3513;
+        	var marker3514;
+        //Quebec
+        	var marker2401;
+        	var marker2402;
+        	var marker2403;
+        	var marker2404;
+        	var marker2405;
+        	var marker2406;
+        	var marker2407;
+        	var marker2408;
+        	var marker2409;
+        	var marker2410;
+        	var marker2411;
+        	var marker2412;
+        	var marker2413;
+        	var marker2414;
+        	var marker2415;
+        	var marker2416;
+        	var marker2417;
+        	var marker2418;
+        //New Brunswick
+        	var marker1301;
+        	var marker1302;
+        	var marker1303;
+        	var marker1304;
+        	var marker1305;
+        	var marker1306;
+        	var marker1307;
+        //Nova Scotia
+        	var marker1211;
+        	var marker1212;
+        	var marker1213;
+        	var marker1214;
+        	var marker1215;
+        	var marker1216;
+        	var marker1217;
+        	var marker1218;
+        	var marker1219;
+        //Prince Edward Island
+        	var marker1101;
+        	var marker1102;
+        	var marker1103;
+        //Newfoundland and Labrador
+        	var marker1011;
+        	var marker1012;
+        	var marker1013;
+        	var marker1014;
+
 	
   function initialize() {
 	naviOptions = {
@@ -63,13 +184,11 @@
 		 geoXmlalberta = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/alberta12.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmlsaskatchewan = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/saskatchewan.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmlmanitoba = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/manitoba.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
-		 geoXmlontario1 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/ontario1.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
-		 geoXmlontario2 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/ontario2.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
-		 geoXmlontario3 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/ontario3.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
+		 geoXmlontarionew = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/ontarionew.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmlquebec = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/quebec.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmllabrador = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/labrador.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmlprinceedward = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/princeedward.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
-		 geoXmlnovascotiazones = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/novascotiazones.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
+		 geoXmlnovascotianew = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/novascotianew.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmlnewbrunswick = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/newbrunswick.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmlterritories1 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/territories1.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmlterritories2 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/territories2.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
@@ -79,7 +198,6 @@
 		 geoXmlnunavut4 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/nunavut4.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		 geoXmlnunavut5 = new google.maps.KmlLayer('http://www.paulinamasson.com/attachments/kml/nunavut5.kml', {suppressInfoWindows: true, preserveViewport: true, map:map});
 		
-		    //name, id
 		
 		map.setCenter(myLatlng);
 			
@@ -108,20 +226,8 @@
 				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
 				  GoogleMapObjectInQ.processMapAlert(name, id);
 			});
-			google.maps.event.addListener(geoXmlontario1, 'click', function(event) {
+			google.maps.event.addListener(geoXmlontarionew, 'click', function(event) {
 			  	var text = event.featureData.description;
-				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
-				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
-				  GoogleMapObjectInQ.processMapAlert(name, id);
-			});
-			google.maps.event.addListener(geoXmlontario2, 'click', function(event) {
-			  	var text = event.featureData.description;
-				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
-				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
-				  GoogleMapObjectInQ.processMapAlert(name, id);
-			});
-			google.maps.event.addListener(geoXmlontario3, 'click', function(event) {
-			 	var text = event.featureData.description;
 				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
 				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
 				  GoogleMapObjectInQ.processMapAlert(name, id);
@@ -144,7 +250,7 @@
 				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
 				  GoogleMapObjectInQ.processMapAlert(name, id);
 			});
-			google.maps.event.addListener(geoXmlnovascotiazones, 'click', function(event) {
+			google.maps.event.addListener(geoXmlnovascotianew, 'click', function(event) {
 			  	var text = event.featureData.description;
 				  var name = text.substring(text.indexOf('Name: ')+6, text.lastIndexOf('<br>'));
 				  var id = text.substring(text.indexOf('ID: ')+4, text.indexOf('Name:'));
@@ -200,36 +306,802 @@
 			});
 			
 						
-										// google.maps.event.addListener(map, "rightclick", function(event) { 
-										// 																			  	
-										// 																			
-										// 																			    var lat = event.latLng;
-										// 																			    GoogleMapObjectInQ.processMapAlert(lat, '6201');
-										// 																			});
 			
 			google.maps.event.addListener(geoXmlnunavut5, 'metadata_changed', 
 			function(){ 
 			        setTimeout('GoogleMapObjectInQ.mapTilesLoaded();', 14000)
-					setTimeout('setupMarkers();', 15000)
+					setTimeout('setupMarkers();', 25000)
 			});
 			
-
+		
 		
 		                     
 		
 		
   }
 
- function setupMarkers(){
-			//alert(geoXmlmanitoba.getDefaultViewport().getCenter());
-			var lat = geoXmlmanitoba.getDefaultViewport().getCenter();
-			var marker = new google.maps.Marker({
-			        position: lat, 
-			        map: map
-			});
- }
+function setupMarkers(){
 
+	
+        //Territories
+        	marker6201 = new google.maps.Marker({
+	        position: new google.maps.LatLng(66.23145747862573,-101.689453125), 
+	        map: map
+	});
+        	marker6101 = new google.maps.Marker({
+	        position: new google.maps.LatLng(65.07213008560697,-124.1015625), 
+	        map: map
+	});
+        	marker6001 = new google.maps.Marker({
+	        position: new google.maps.LatLng(63.724183392123315,-135.5712890625), 
+	        map: map
+	});
+        //British Columbia
+        	marker5951 = new google.maps.Marker({
+	        position: new google.maps.LatLng(57.70414723434193,-129.9462890625), 
+	        map: map
+	});
+        	marker5952 = new google.maps.Marker({
+	        position: new google.maps.LatLng(54.546579538405005,-124.013671875), 
+	        map: map
+	});
+        	marker5933 = new google.maps.Marker({
+	        position: new google.maps.LatLng(52.5897007687178,-126.2548828125), 
+	        map: map
+	});
+        	marker5943 = new google.maps.Marker({
+	        position: new google.maps.LatLng(51.20688339486559,-125.4638671875), 
+	        map: map
+	});
+        	marker5942 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.23912083246698,-124.98046875), 
+	        map: map
+	});
+        	marker5941 = new google.maps.Marker({
+	        position: new google.maps.LatLng(48.574789910928864,-124.1455078125), 
+	        map: map
+	});
+        	marker5922 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.439556958940855,-122.6513671875), 
+	        map: map
+	});
+        	marker5921 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.35375571830993,-121.6845703125), 
+	        map: map
+	});
+        	marker5914 = new google.maps.Marker({
+	        position: new google.maps.LatLng(51.31688050404585,-121.728515625), 
+	        map: map
+	});
+        	marker5913 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.5822260446217,-119.9267578125), 
+	        map: map
+	});
+        	marker5912 = new google.maps.Marker({
+	        position: new google.maps.LatLng(50.00773901463687,-117.5537109375), 
+	        map: map
+	});
+        	marker5911 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.837982453084834,-116.015625), 
+	        map: map
+	});
 
+        	marker5923 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.13859653703879,-122.904052734375), 
+	        map: map
+	});
+        	marker5931 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.17452151806784,-123.101806640625), 
+	        map: map
+	});
+        	marker5932 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.26063518364422,-123.101806640625), 
+	        map: map
+	});
+        	marker5953 = new google.maps.Marker({
+	        position: new google.maps.LatLng(56.559482483762245,-121.22314453125), 
+	        map: map
+	});
+        //Alberta
+			marker4821 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.5822260446217, -113.466796875), 
+	        map: map
+	});
+        	marker4822 = new google.maps.Marker({
+	        position: new google.maps.LatLng(50.56928286558243,-111.005859375), 
+	        map: map
+	});
+        	marker4823 = new google.maps.Marker({
+	        position: new google.maps.LatLng(50.792047064406866,-114.43359375), 
+	        map: map
+	});
+        	marker4824 = new google.maps.Marker({
+	        position: new google.maps.LatLng(52.29504228453735,-113.5546875), 
+	        map: map
+	});
+        	marker4825 = new google.maps.Marker({
+	        position: new google.maps.LatLng(53.30462107510271,-111.8408203125), 
+	        map: map
+	});
+        	marker4826 = new google.maps.Marker({
+	        position: new google.maps.LatLng(53.54030739150019,-113.6865234375), 
+	        map: map
+	});
+        	marker4827 = new google.maps.Marker({
+	        position: new google.maps.LatLng(54.876606654108684,-113.642578125), 
+	        map: map
+	});
+        	marker4828 = new google.maps.Marker({
+	        position: new google.maps.LatLng(56.26776108757582,-117.24609375), 
+	        map: map
+	});
+        	marker4829 = new google.maps.Marker({
+	        position: new google.maps.LatLng(58.63121664342478,-113.642578125), 
+	        map: map
+	});
+        //Sasketchewan
+        	marker4701 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.468124067331644,-103.9306640625), 
+	        map: map
+	});
+        	marker4702 = new google.maps.Marker({
+	        position: new google.maps.LatLng(50.17689812200107,-105.9521484375), 
+	        map: map
+	});
+        	marker4703 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.89463439573421,-108.45703125), 
+	        map: map
+	});
+        	marker4704 = new google.maps.Marker({
+	        position: new google.maps.LatLng(50.792047064406866,-104.5458984375), 
+	        map: map
+	});
+        	marker4705 = new google.maps.Marker({
+	        position: new google.maps.LatLng(51.72702815704774,-102.65625), 
+	        map: map
+	});
+        	marker4706 = new google.maps.Marker({
+	        position: new google.maps.LatLng(52.1874047455997,-105.8203125), 
+	        map: map
+	});
+        	marker4707 = new google.maps.Marker({
+	        position: new google.maps.LatLng(51.80861475198521,-108.80859375), 
+	        map: map
+	});
+        	marker4708 = new google.maps.Marker({
+	        position: new google.maps.LatLng(53.330872983017066,-103.4912109375), 
+	        map: map
+	});
+        	marker4709 = new google.maps.Marker({
+	        position: new google.maps.LatLng(53.56641415275043,-106.5673828125), 
+	        map: map
+	});
+        	marker4710 = new google.maps.Marker({
+	        position: new google.maps.LatLng(53.64463782485651,-109.0283203125), 
+	        map: map
+	});
+        	marker4711 = new google.maps.Marker({
+	        position: new google.maps.LatLng(56.728621973140726,-104.2822265625), 
+	        map: map
+	});
+        	marker4712 = new google.maps.Marker({
+	        position: new google.maps.LatLng(56.80087831233043,-108.369140625), 
+	        map: map
+	});
+        	marker4713 = new google.maps.Marker({
+	        position: new google.maps.LatLng(59.512029386502704,-106.34765625), 
+	        map: map
+	});
+        //Manitoba
+        	marker4610 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.866316729538674,-97.1630859375), 
+	        map: map
+	});
+        	marker4615 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.809631563563094,-100.01953125), 
+	        map: map
+	});
+        	marker4620 = new google.maps.Marker({
+	        position: new google.maps.LatLng(51.72702815704774,-96.064453125), 
+	        map: map
+	});
+        	marker4625 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.210420445650286,-96.5478515625), 
+	        map: map
+	});
+        	marker4630 = new google.maps.Marker({
+	        position: new google.maps.LatLng(52.53627304145948,-97.9541015625), 
+	        map: map
+	});
+        	marker4640 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.49667452747044,-97.998046875), 
+	        map: map
+	});
+        	marker4645 = new google.maps.Marker({
+	        position: new google.maps.LatLng(50.45750402042058,-100.5908203125), 
+	        map: map
+	});
+        	marker4660 = new google.maps.Marker({
+	        position: new google.maps.LatLng(52.26815737376817,-100.4150390625), 
+	        map: map
+	});
+        	marker4670 = new google.maps.Marker({
+	        position: new google.maps.LatLng(54.265224078605655,-100.6787109375), 
+	        map: map
+	});
+        	marker4680 = new google.maps.Marker({
+	        position: new google.maps.LatLng(56.75272287205736,-96.2841796875), 
+	        map: map
+	});
+        	marker4690 = new google.maps.Marker({
+	        position: new google.maps.LatLng(58.75110666755426,-94.119873046875), 
+	        map: map
+	});
+        //Ontario
+        	marker3501 = new google.maps.Marker({
+	        position: new google.maps.LatLng(42.5530802889558,-82.2216796875), 
+	        map: map
+	});
+        	marker3502 = new google.maps.Marker({
+	        position: new google.maps.LatLng(43.35713822211053,-81.3427734375), 
+	        map: map
+	});
+        	marker3503 = new google.maps.Marker({
+	        position: new google.maps.LatLng(43.67581809328341,-80.4638671875), 
+	        map: map
+	});
+        	marker3504 = new google.maps.Marker({
+	        position: new google.maps.LatLng(43.004647127794435,-79.98046875), 
+	        map: map
+	});
+        	marker3505 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.024421519659334,-80.2001953125), 
+	        map: map
+	});
+        	marker3506 = new google.maps.Marker({
+	        position: new google.maps.LatLng(43.58039085560784,-79.892578125), 
+	        map: map
+	});
+        	marker3507 = new google.maps.Marker({
+	        position: new google.maps.LatLng(43.644025847699496,-79.365234375), 
+	        map: map
+	});
+        	marker3508 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.024421519659334,-79.541015625), 
+	        map: map
+	});
+        	marker3509 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.59046718130883,-78.7939453125), 
+	        map: map
+	});
+        	marker3510 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.77793589631623,-76.9482421875), 
+	        map: map
+	});
+        	marker3511 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.213003555993964,-75.322265625), 
+	        map: map
+	});
+        	marker3512 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.809121700077355,-79.62890625), 
+	        map: map
+	});
+        	marker3513 = new google.maps.Marker({
+	        position: new google.maps.LatLng(50.98609893339354,-82.3974609375), 
+	        map: map
+	});
+        	marker3514 = new google.maps.Marker({
+	        position: new google.maps.LatLng(51.944264879028765,-89.7802734375), 
+	        map: map
+	});
+        //Quebec
+        	marker2401 = new google.maps.Marker({
+	        position: new google.maps.LatLng(48.10743118848038,-68.7744140625), 
+	        map: map
+	});
+        	marker2402 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.66762782262194,-72.31201171875), 
+	        map: map
+	});
+        	marker2403 = new google.maps.Marker({
+	        position: new google.maps.LatLng(47.30903424774781,-71.34521484375), 
+	        map: map
+	});
+        	marker2404 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.164614496897094,-72.333984375), 
+	        map: map
+	});
+        	marker2405 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.30580259943578,-71.6748046875), 
+	        map: map
+	});
+        	marker2406 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.483243508682186,-73.67431640625), 
+	        map: map
+	});
+        	marker2407 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.558860303117164,-76.8603515625), 
+	        map: map
+	});
+        	marker2408 = new google.maps.Marker({
+	        position: new google.maps.LatLng(47.90161354142075,-77.8271484375), 
+	        map: map
+	});
+        	marker2409 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.49667452747044,-63.10546875), 
+	        map: map
+	});
+        	marker2410 = new google.maps.Marker({
+	        position: new google.maps.LatLng(52.29504228453735,-75.146484375), 
+	        map: map
+	});
+        	marker2411 = new google.maps.Marker({
+	        position: new google.maps.LatLng(48.74894534343293,-65.0830078125), 
+	        map: map
+	});
+        	marker2412 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.52863469527167,-70.7080078125), 
+	        map: map
+	});
+        	marker2413 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.637087095718734,-73.729248046875), 
+	        map: map
+	});
+        	marker2414 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.52863469527167,-73.916015625), 
+	        map: map
+	});
+        	marker2415 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.800059446787316,-75.0146484375), 
+	        map: map
+	});
+        	marker2416 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.55252525134013,-72.7734375), 
+	        map: map
+	});
+        	marker2417 = new google.maps.Marker({
+	        position: new google.maps.LatLng(57.468589192089325,-71.630859375), 
+	        map: map
+	});
+        	marker2418 = new google.maps.Marker({
+	        position: new google.maps.LatLng(51.37178037591737,-78.7060546875), 
+	        map: map
+	});
+        //New Brunswick
+        	marker1301 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.46813299215554,-65.0390625), 
+	        map: map
+	});
+        	marker1302 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.706179285330855,-65.7421875), 
+	        map: map
+	});
+        	marker1303 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.255846818480315,-67.0166015625), 
+	        map: map
+	});
+        	marker1304 = new google.maps.Marker({
+	        position: new google.maps.LatLng(47.60616304386874,-67.8076171875), 
+	        map: map
+	});
+        	marker1305 = new google.maps.Marker({
+	        position: new google.maps.LatLng(47.81315451752768,-66.4892578125), 
+	        map: map
+	});
+        	marker1306 = new google.maps.Marker({
+	        position: new google.maps.LatLng(47.57652571374621,-65.6103515625), 
+	        map: map
+	});
+        	marker1307 = new google.maps.Marker({
+	        position: new google.maps.LatLng(47.10004469402519,-66.0498046875), 
+	        map: map
+	});
+        //Nova Scotia
+        	marker1211 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.402391829093915,-64.775390625), 
+	        map: map
+	});
+        	marker1212 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.08758502824516,-65.7861328125), 
+	        map: map
+	});
+        	marker1213 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.87144275016589,-65.126953125), 
+	        map: map
+	});
+        	marker1214 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.336701909968106,-63.45703125), 
+	        map: map
+	});
+        	marker1215 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.73685954736049,-64.0283203125), 
+	        map: map
+	});
+        	marker1216 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.55252525134013,-62.490234375), 
+	        map: map
+	});
+        	marker1217 = new google.maps.Marker({
+	        position: new google.maps.LatLng(45.49094569262732,-61.787109375), 
+	        map: map
+	});
+        	marker1218 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.042735653846506,-60.3369140625), 
+	        map: map
+	});
+        	marker1219 = new google.maps.Marker({
+	        position: new google.maps.LatLng(44.87144275016589,-63.28125), 
+	        map: map
+	});
+        //Prince Edward Island
+        	marker1101 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.37725420510028,-62.5341796875), 
+	        map: map
+	});
+        	marker1102 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.34692761055676,-63.193359375), 
+	        map: map
+	});
+        	marker1103 = new google.maps.Marker({
+	        position: new google.maps.LatLng(46.46813299215554,-63.9404296875), 
+	        map: map
+	});
+        //Newfoundland and Labrador
+        	marker1011 = new google.maps.Marker({
+	        position: new google.maps.LatLng(47.96050238891509,-54.2724609375), 
+	        map: map
+	});
+        	marker1012 = new google.maps.Marker({
+	        position: new google.maps.LatLng(48.80686346108517,-55.7666015625), 
+	        map: map
+	});
+        	marker1013 = new google.maps.Marker({
+	        position: new google.maps.LatLng(49.23912083246698,-57.65625), 
+	        map: map
+	});
+        	marker1014 = new google.maps.Marker({
+	        position: new google.maps.LatLng(54.00776876193478,-61.34765625), 
+	        map: map
+	});
+	
+	
+        //Territories
+        		google.maps.event.addListener(marker6201, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '6201');
+	});
+        		google.maps.event.addListener(marker6101, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '6101');
+	});
+        		google.maps.event.addListener(marker6001, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '6001');
+	});
+        //British Columbia
+        		google.maps.event.addListener(marker5951, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5951');
+	});
+        		google.maps.event.addListener(marker5952, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5952');
+	});
+        		google.maps.event.addListener(marker5933, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5933');
+	});
+        		google.maps.event.addListener(marker5943, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5943');
+	});
+        		google.maps.event.addListener(marker5942, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5942');
+	});
+        		google.maps.event.addListener(marker5941, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5941');
+	});
+        		google.maps.event.addListener(marker5922, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5922');
+	});
+        		google.maps.event.addListener(marker5921, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5921');
+	});
+        		google.maps.event.addListener(marker5914, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5914');
+	});
+        		google.maps.event.addListener(marker5913, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5913');
+	});
+        		google.maps.event.addListener(marker5912, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5912');
+	});
+        		google.maps.event.addListener(marker5911, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5911');
+	});
+
+        		google.maps.event.addListener(marker5923, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5923');
+	});
+        		google.maps.event.addListener(marker5931, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5931');
+	});
+        		google.maps.event.addListener(marker5932, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5932');
+	});
+        		google.maps.event.addListener(marker5953, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '5953');
+	});
+        //Alberta
+				google.maps.event.addListener(marker4821, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4821');
+	});
+        		google.maps.event.addListener(marker4822, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4822');
+	});
+        		google.maps.event.addListener(marker4823, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4823');
+	});
+        		google.maps.event.addListener(marker4824, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4824');
+	});
+        		google.maps.event.addListener(marker4825, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4825');
+	});
+        		google.maps.event.addListener(marker4826, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4826');
+	});
+        		google.maps.event.addListener(marker4827, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4827');
+	});
+        		google.maps.event.addListener(marker4828, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4828');
+	});
+        		google.maps.event.addListener(marker4829, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4829');
+	});
+        //Sasketchewan
+        		google.maps.event.addListener(marker4701, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4701');
+	});
+        		google.maps.event.addListener(marker4702, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4702');
+	});
+        		google.maps.event.addListener(marker4703, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4703');
+	});
+        		google.maps.event.addListener(marker4704, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4704');
+	});
+        		google.maps.event.addListener(marker4705, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4705');
+	});
+        		google.maps.event.addListener(marker4706, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4706');
+	});
+        		google.maps.event.addListener(marker4707, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4707');
+	});
+        		google.maps.event.addListener(marker4708, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4708');
+	});
+        		google.maps.event.addListener(marker4709, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4709');
+	});
+        		google.maps.event.addListener(marker4710, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4710');
+	});
+        		google.maps.event.addListener(marker4711, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4711');
+	});
+        		google.maps.event.addListener(marker4712, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4712');
+	});
+        		google.maps.event.addListener(marker4713, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4713');
+	});
+        //Manitoba
+        		google.maps.event.addListener(marker4610, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4610');
+	});
+        		google.maps.event.addListener(marker4615, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4615');
+	});
+        		google.maps.event.addListener(marker4620, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4620');
+	});
+        		google.maps.event.addListener(marker4625, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4625');
+	});
+        		google.maps.event.addListener(marker4630, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4630');
+	});
+        		google.maps.event.addListener(marker4640, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4640');
+	});
+        		google.maps.event.addListener(marker4645, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4645');
+	});
+        		google.maps.event.addListener(marker4660, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4660');
+	});
+        		google.maps.event.addListener(marker4670, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4670');
+	});
+        		google.maps.event.addListener(marker4680, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4680');
+	});
+        		google.maps.event.addListener(marker4690, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '4690');
+	});
+        //Ontario
+        		google.maps.event.addListener(marker3501, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3501');
+	});
+        		google.maps.event.addListener(marker3502, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3502');
+	});
+        		google.maps.event.addListener(marker3503, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3503');
+	});
+        		google.maps.event.addListener(marker3504, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3504');
+	});
+        		google.maps.event.addListener(marker3505, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3505');
+	});
+        		google.maps.event.addListener(marker3506, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3506');
+	});
+        		google.maps.event.addListener(marker3507, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3507');
+	});
+        		google.maps.event.addListener(marker3508, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3508');
+	});
+        		google.maps.event.addListener(marker3509, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3509');
+	});
+        		google.maps.event.addListener(marker3510, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3510');
+	});
+        		google.maps.event.addListener(marker3511, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3511');
+	});
+        		google.maps.event.addListener(marker3512, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3512');
+	});
+        		google.maps.event.addListener(marker3513, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3513');
+	});
+        		google.maps.event.addListener(marker3514, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '3514');
+	});
+        //Quebec
+        		google.maps.event.addListener(marker2401, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2401');
+	});
+        		google.maps.event.addListener(marker2402, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2402');
+	});
+        		google.maps.event.addListener(marker2403, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2403');
+	});
+        		google.maps.event.addListener(marker2404, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2404');
+	});
+        		google.maps.event.addListener(marker2405, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2405');
+	});
+        		google.maps.event.addListener(marker2406, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2406');
+	});
+        		google.maps.event.addListener(marker2407, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2407');
+	});
+        		google.maps.event.addListener(marker2408, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2408');
+	});
+        		google.maps.event.addListener(marker2409, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2409');
+	});
+        		google.maps.event.addListener(marker2410, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2410');
+	});
+        		google.maps.event.addListener(marker2411, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2411');
+	});
+        		google.maps.event.addListener(marker2412, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2412');
+	});
+        		google.maps.event.addListener(marker2413, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2413');
+	});
+        		google.maps.event.addListener(marker2414, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2414');
+	});
+        		google.maps.event.addListener(marker2415, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2415');
+	});
+        		google.maps.event.addListener(marker2416, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2416');
+	});
+        		google.maps.event.addListener(marker2417, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2417');
+	});
+        		google.maps.event.addListener(marker2418, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '2418');
+	});
+        //New Brunswick
+        		google.maps.event.addListener(marker1301, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1301');
+	});
+        		google.maps.event.addListener(marker1302, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1302');
+	});
+        		google.maps.event.addListener(marker1303, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1303');
+	});
+        		google.maps.event.addListener(marker1304, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1304');
+	});
+        		google.maps.event.addListener(marker1305, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1305');
+	});
+        		google.maps.event.addListener(marker1306, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1306');
+	});
+        		google.maps.event.addListener(marker1307, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1307');
+	});
+        //Nova Scotia
+        		google.maps.event.addListener(marker1211, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1211');
+	});
+        		google.maps.event.addListener(marker1212, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1212');
+	});
+        		google.maps.event.addListener(marker1213, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1213');
+	});
+        		google.maps.event.addListener(marker1214, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1214');
+	});
+        		google.maps.event.addListener(marker1215, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1215');
+	});
+        		google.maps.event.addListener(marker1216, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1216');
+	});
+        		google.maps.event.addListener(marker1217, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1217');
+	});
+        		google.maps.event.addListener(marker1218, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1218');
+	});
+        		google.maps.event.addListener(marker1219, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1219');
+	});
+        //Prince Edward Island
+        		google.maps.event.addListener(marker1101, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1101');
+	});
+        		google.maps.event.addListener(marker1102, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1102');
+	});
+        		google.maps.event.addListener(marker1103, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1103');
+	});
+        //Newfoundland and Labrador
+        		google.maps.event.addListener(marker1011, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1011');
+	});
+        		google.maps.event.addListener(marker1012, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1012');
+	});
+        		google.maps.event.addListener(marker1013, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1013');
+	});
+        		google.maps.event.addListener(marker1014, 'click', function() {
+	    GoogleMapObjectInQ.processMapAlert('', '1014');
+	});
+	
+	
+	
+}
 
 </script>
 </head>
