@@ -351,7 +351,7 @@ QList<Region1> DataHandler::getRegions()
     //SPENCE
     //receive xml result from component
     QString xmlReply = connection->sendRequest(xmlRequest);
-    qDebug() << xmlReply;
+    //qDebug() << xmlReply;
 
     //dissect xml data and populate it into returnList
     int id;
@@ -361,7 +361,7 @@ QList<Region1> DataHandler::getRegions()
     int centerY;
     if (xmlReply != "") {
 
-            qDebug() << "xmlreply not empty";
+            //qDebug() << "xmlreply not empty";
 
             //Parse the xml string
             //The name of the xml document

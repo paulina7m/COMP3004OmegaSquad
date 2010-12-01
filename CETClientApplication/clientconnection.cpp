@@ -74,6 +74,8 @@ QString ClientConnection::sendRequest(QString xmlReq)
             client.read(message,30000);
 
             xmlReply += (QString)message;
+            usleep(3000);
+
         }else{
             xmlReply = "<message>Server Response Timeout</message>";
         }
