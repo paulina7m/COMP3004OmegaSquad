@@ -10,30 +10,18 @@ AddDiseasesWindow::AddDiseasesWindow(QWidget *parent) :
     ui->dateEdit->setDate(QDate::currentDate());
     ui->comboBox->addItems(fetchListOfRegions());
     ui->comboBox_2->addItems(fetchListOfDiseases());
-    dh = new DataHandler();
 }
 
 //Get a list of disease from the server
 QStringList AddDiseasesWindow::fetchListOfDiseases() {
     QStringList list;
 
-    /*
-    //Real call but doesn't work!
+    DataHandler *dh = new DataHandler();
     diseaseList = dh->getDiseaseTypes();
     for (int i = 0; i < diseaseList.size(); i++) {
         list.push_front(diseaseList[i].getName());
     }
-    */
-
-
-    //Temp workaround
-    aDisease = new DiseaseType(6202, "Small Pox", 0, 1);
-    bDisease = new DiseaseType(6203, "H1N1", 1, 1);
-    diseaseList.append(*aDisease);
-    diseaseList.append(*bDisease);
-    for (int i = 0; i < diseaseList.size(); i++) {
-        list.push_front(diseaseList[i].getName());
-    }
+    delete dh;
 
     return list;
 }
@@ -42,22 +30,12 @@ QStringList AddDiseasesWindow::fetchListOfDiseases() {
 QStringList AddDiseasesWindow::fetchListOfRegions() {
     QStringList list;
 
-    /*
-    //Real call but doesn't work!
-    Region1List = dh->getRegion1s();
+    DataHandler *dh = new DataHandler();
+    Region1List = dh->getRegions();
     for (int i = 0; i < Region1List.size(); i++) {
         list.push_front(Region1List[i].getName());
     }
-    */
-
-    //Workaround
-    aRegion1 = new Region1(5931, 2, "Richmond", 0, 0);
-    bRegion1 = new Region1(5932, 2, "Vancouver", 0, 0);
-    Region1List.append(*aRegion1);
-    Region1List.append(*bRegion1);
-    for (int i = 0; i < Region1List.size(); i++) {
-        list.push_front(Region1List[i].getName());
-    }
+    delete dh;
 
     return list;
 }

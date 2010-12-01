@@ -23,7 +23,6 @@ private:
     Ui::AddDiseasesWindow *ui;
     QStringList fetchListOfDiseases();
     QStringList fetchListOfRegions();
-    DataHandler *dh;
     QList<DiseaseType> diseaseList;
     QList<Region1> Region1List;
     QMessageBox msgBox;
