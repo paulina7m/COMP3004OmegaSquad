@@ -8,6 +8,8 @@ AddDiseasesWindow::AddDiseasesWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->dateEdit->setDate(QDate::currentDate());
+    ui->dateEdit->setMaximumDate(QDate::currentDate());
+    ui->calendarWidget->setMaximumDate(QDate::currentDate());
     ui->comboBox->addItems(fetchListOfRegions());
     ui->comboBox_2->addItems(fetchListOfDiseases());
 }
@@ -54,6 +56,7 @@ void AddDiseasesWindow::addCaseSubmitButtonHandler() {
     int diseaseType;
     int quantity;
 
+
     //Get the Region1 ID
     for (int i = 0; i < Region1List.size(); i++) {
         if (ui->comboBox->currentText() == Region1List[i].getName()) {
@@ -78,8 +81,9 @@ void AddDiseasesWindow::addCaseSubmitButtonHandler() {
 
     //Save CaseReports
     //Required inputs: Region1 Id of the case, the date ("YYYY-MM-DD" format), the disease type and the quantity
-    //DOES NOT WORK
-    //dh->saveCaseReport(Region1ID, date, diseaseType, quantity);
+    DataHandler *dh = new DataHandler();
+    dh->saveCaseReport(Region1Id, date, diseaseType, quantity);
+    delete dh;
 
     //Use a confirmation popup dialog
     msgBox.setText("Case report has been saved.");
