@@ -12,21 +12,20 @@ CreateShipmentsWindow::CreateShipmentsWindow(QWidget *parent) :
     ui->comboBox->addItems(fetchListOfRegions());
     ui->comboBox_2->addItems(fetchListOfRegions());
     ui->comboBox_3->addItems(fetchListOfSupplies());
-    dh = new DataHandler;
 }
 
 //Get a list of regions from the server
 QStringList CreateShipmentsWindow::fetchListOfRegions() {
     QStringList list;
 
-    /*
-    //Real call but doesn't work!
+    DataHandler *dh = new DataHandler;
     regionList = dh->getRegions();
     for (int i = 0; i < regionList.size(); i++) {
         list.push_front(regionList[i].getName());
     }
-    */
+    delete dh;
 
+    /*
     //Workaround
     aRegion1 = new Region1(5931, 2, "Richmond", 0, 0);
     bRegion1 = new Region1(5932, 2, "Vancouver", 0, 0);
@@ -35,6 +34,7 @@ QStringList CreateShipmentsWindow::fetchListOfRegions() {
     for (int i = 0; i < regionList.size(); i++) {
         list.push_front(regionList[i].getName());
     }
+    */
 
     return list;
 }
@@ -43,14 +43,14 @@ QStringList CreateShipmentsWindow::fetchListOfRegions() {
 QStringList CreateShipmentsWindow::fetchListOfSupplies() {
     QStringList list;
 
-    /*
-    //Real call but doesn't work!
+    DataHandler *dh = new DataHandler;
     supplyList = dh->getSupplyTypes();
     for (int i = 0; i < supplyList.size(); i++) {
         list.push_front(supplyList[i].getName());
     }
-    */
+    delete dh;
 
+    /*
     //Workaround
     aSupply = new SupplyType(6213, "Dialysis Machine", 2, 1);
     bSupply = new SupplyType(6220, "Panadol", 9, 1);
@@ -59,6 +59,7 @@ QStringList CreateShipmentsWindow::fetchListOfSupplies() {
     for (int i = 0; i < supplyList.size(); i++) {
         list.push_front(supplyList[i].getName());
     }
+    */
 
     return list;
 }
@@ -71,6 +72,7 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
         msgBox.exec();
     }
     else {
+
     int srcRegionId;
     int destRegionId;
     int supplyType;
@@ -92,7 +94,7 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
 
     //Get the supplyType ID
     for (int i = 0; i < supplyList.size(); i++) {
-        if (ui->comboBox_2->currentText() == supplyList[i].getName()) {
+        if (ui->comboBox_3->currentText() == supplyList[i].getName()) {
             supplyType = supplyList[i].getId();
         }
     }
@@ -109,7 +111,9 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
     //Required inputs: source region id number , the destination region id number, the date of creation ("YYYY-MM-DD") and Quantity requested
     //Optional inputs: notes (this can be empty string)
     //(int srcRegion, int destRegion, QString createdDate, int supplyType, int quantityRequested, QString notes)
-    //dh->saveShipment(srcRegionId, destRegionId, date, supplyType, quantity, "");
+    DataHandler *dh = new DataHandler;
+    dh->saveShipment(srcRegionId, destRegionId, date, supplyType, quantity, "");
+    delete dh;
 
 
     //Use a confirmation popup dialog

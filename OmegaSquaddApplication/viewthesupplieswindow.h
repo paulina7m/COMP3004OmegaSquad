@@ -20,7 +20,6 @@ public:
 
 private:
     Ui::ViewTheSuppliesWindow *ui;
-    DataHandler *dh;
 private slots:
     void editInventory(int);
     void ViewTheSuppliesWindowSubmitButtonHandler();

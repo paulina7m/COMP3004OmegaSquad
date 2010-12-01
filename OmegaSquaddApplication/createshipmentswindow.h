@@ -23,7 +23,6 @@ private:
     Ui::CreateShipmentsWindow *ui;
     QStringList fetchListOfRegions();
     QStringList fetchListOfSupplies();
-    DataHandler *dh;
     QMessageBox msgBox;
     QList<SupplyType> supplyList;
     QList<Region1> regionList;

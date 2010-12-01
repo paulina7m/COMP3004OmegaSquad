@@ -10,12 +10,11 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    /*
     //This calls the database, doesn't work yet
-    dh = new DataHandler();
+    DataHandler *dh = new DataHandler();
     //Get a list of case reports
     QList<Inventory> inventoryList = dh->getInventory();
-    QList<Region> regionList = dh->getRegions();
+    QList<Region1> regionList = dh->getRegions();
     QList<SupplyType> supplyList = dh->getSupplyTypes();
     QString regionName;
     QString supplyType;
@@ -49,16 +48,15 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(supplyType));
         ui->tableWidget->setItem(i, 2, new QTableWidgetItem(quantityStr.setNum(inventoryList[i].getQuantity())));
         //Edit button
-        ui->tableWidget->setCellWidget(i, 4, editButton);
+        ui->tableWidget->setCellWidget(i, 3, editButton);
     }
     ui->tableWidget->setSortingEnabled(true);
 
     //If button clicked, int is the case report id to edit
     connect(mapper, SIGNAL(mapped(int)), this, SLOT(editInventory(int)));
-    */
 
 
-
+    /*
     QSignalMapper *mapper = new QSignalMapper();
     //Set the number rows and columns of the table
     ui->tableWidget->setRowCount(4);
@@ -80,21 +78,21 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
     ui->tableWidget->setSortingEnabled(true);
 
     connect(mapper, SIGNAL(mapped(int)), this, SLOT(editInventory(int)));
+    */
 
 }
 
 void ViewTheSuppliesWindow::editInventory(int invId) {
 
     //Open up the edit case window
-    qDebug() << invId;
-
-
+    //qDebug() << invId;
     updateinventory *updateInventory = new updateinventory;
     updateInventory->show();
     updateInventory->isModal();
     updateInventory->updateInventory(invId);
 
-
+    //Close this window
+    ViewTheSuppliesWindow::close();
 }
 
 void ViewTheSuppliesWindow::ViewTheSuppliesWindowSubmitButtonHandler() {

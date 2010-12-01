@@ -6,6 +6,7 @@
 #include "../CETClientApplication/SupplyType.h"
 #include "../CETClientApplication/Region1.h"
 #include "../CETClientApplication/Shipment.h"
+#include "../CETClientApplication/Inventory.h"
 #include "../CETClientApplication/ShipmentDetail.h"
 
 
@@ -22,7 +23,8 @@ public:
     ~ManageTheShipmentsWindow();
 private:
     Ui::ManageTheShipmentsWindow *ui;
-    DataHandler *dh;
+    QStringList shipStateList;
+    int status;
 private slots:
     void changeShipmentStatus(QString);
     void ManageTheShipmentsWindowSubmitButtonHandler();

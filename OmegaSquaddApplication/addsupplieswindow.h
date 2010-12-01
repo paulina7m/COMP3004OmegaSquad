@@ -23,7 +23,6 @@ private:
     Ui::AddSuppliesWindow *ui;
     QStringList fetchListOfSupplies();
     QStringList fetchListOfRegions();
-    DataHandler *dh;
     QList<SupplyType> supplyList;
     QList<Region1> regionList;
     QMessageBox msgBox;
@@ -35,9 +34,6 @@ private:
 private slots:
     void addSuppliesSubmitButtonHandler();
     void addSuppliesCancelButtonHandler();
-
-private slots:
-    void SubmitButtonHandler();
 
 };
 

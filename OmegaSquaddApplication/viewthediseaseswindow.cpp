@@ -10,12 +10,11 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    /*
     //This calls the database, doesn't work yet
-    dh = new DataHandler();
+    DataHandler *dh = new DataHandler();
     //Get a list of case reports
     QList<CaseReport> caseList = dh->getCaseReports();
-    QList<Region> regionList = dh->getRegions();
+    QList<Region1> regionList = dh->getRegions();
     QList<DiseaseType> diseaseList = dh->getDiseaseTypes();
     QString regionName;
     QString diseaseType;
@@ -56,9 +55,8 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
 
     //If button clicked, int is the case report id to edit
     connect(mapper, SIGNAL(mapped(int)), this, SLOT(editCase(int)));
-    */
 
-
+    /*
     QSignalMapper *mapper = new QSignalMapper();
     //Set the number rows and columns of the table
     ui->tableWidget->setRowCount(4);
@@ -80,6 +78,7 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
     ui->tableWidget->setSortingEnabled(true);
 
     connect(mapper, SIGNAL(mapped(int)), this, SLOT(editCase(int)));
+    */
 
 }
 
@@ -87,11 +86,13 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
 void ViewTheDiseasesWindow::editCase(int caseId) {
     //Open up the edit case window
     //qDebug() << caseId;
-
     UpdateCaseReport *updateCaseReport = new UpdateCaseReport;
     updateCaseReport->show();
     updateCaseReport->isModal();
     updateCaseReport->updateCases(caseId);
+
+    //Close this window
+    ViewTheDiseasesWindow::close();
 }
 
 void ViewTheDiseasesWindow::viewTheDiseasesWindowCancelButtonHandler() {

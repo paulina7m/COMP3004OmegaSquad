@@ -1,5 +1,6 @@
 #include "updatecasereport.h"
 #include "ui_updatecasereport.h"
+#include "viewthediseaseswindow.h"
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/DiseaseType.h"
 #include "../CETClientApplication/Region1.h"
@@ -14,7 +15,7 @@ UpdateCaseReport::UpdateCaseReport(QWidget *parent) :
 
 void UpdateCaseReport::updateCases(int id) {
     caseId = id;
-    /*
+
     QString regionName;
     QString diseaseType;
     QString date;
@@ -22,7 +23,7 @@ void UpdateCaseReport::updateCases(int id) {
 
     dh = new DataHandler();
     QList<CaseReport> caseList = dh->getCaseReports();
-    QList<Region> regionList = dh->getRegions();
+    QList<Region1> regionList = dh->getRegions();
     QList<DiseaseType> diseaseList = dh->getDiseaseTypes();
 
     for (int i = 0; i < caseList.size(); i++) {
@@ -48,26 +49,31 @@ void UpdateCaseReport::updateCases(int id) {
     ui->label_8->setText(date);
     ui->spinBox->setValue(quantity);
 
-    //update the values
-    //dh->updateInventory(id, ui->spinBox->value());
-    */
 
-    ui->spinBox->setValue(id);
+    //ui->spinBox->setValue(id);
 }
 
 void UpdateCaseReport::updateCaseReportSubmitButtonHandler() {
-    //dh->updateCaseReport(caseId, ui->spinBox->value());
+    dh->updateCaseReport(caseId, ui->spinBox->value());
     //qDebug() << caseId;
 
     //Use a confirmation popup dialog
     msgBox.setText("Case report has been updated.");
     msgBox.exec();
 
+    ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
+    viewTheDiseasesWindow->show();
+    viewTheDiseasesWindow->isModal();
+
     UpdateCaseReport::close();
 }
 
 
 void UpdateCaseReport::updateCaseReportCancelButtonHandler() {
+    ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
+    viewTheDiseasesWindow->show();
+    viewTheDiseasesWindow->isModal();
+
     UpdateCaseReport::close();
 }
 

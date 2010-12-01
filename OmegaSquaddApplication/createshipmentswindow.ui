@@ -148,6 +148,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="maximum">
+    <number>99999</number>
+   </property>
   </widget>
  </widget>
  <resources/>

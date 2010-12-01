@@ -20,7 +20,6 @@ public:
 
 private:
     Ui::ViewTheDiseasesWindow *ui;
-    DataHandler *dh;
 private slots:
     void editCase(int);
     void viewTheDiseasesWindowCancelButtonHandler();

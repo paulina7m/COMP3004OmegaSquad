@@ -6,10 +6,9 @@ AddDiseasesWindow::AddDiseasesWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddDiseasesWindow)
 {
+    QDate currentDate = QDate::currentDate();
     ui->setupUi(this);
-    ui->dateEdit->setDate(QDate::currentDate());
-    ui->dateEdit->setMaximumDate(QDate::currentDate());
-    ui->calendarWidget->setMaximumDate(QDate::currentDate());
+    ui->label_6->setText(currentDate.toString("ddd MMMM d yyyy"));
     ui->comboBox->addItems(fetchListOfRegions());
     ui->comboBox_2->addItems(fetchListOfDiseases());
 }
@@ -76,7 +75,8 @@ void AddDiseasesWindow::addCaseSubmitButtonHandler() {
     //qDebug() << quantity;
 
     //Get the date and format to proper string format (YYYY-MM-DD)
-    date = ui->dateEdit->text();
+    QDate currentDate = QDate::currentDate();
+    date = currentDate.toString("yyyy-MM-dd");
     //qDebug() << date;
 
     //Save CaseReports

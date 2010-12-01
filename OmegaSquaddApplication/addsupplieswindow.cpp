@@ -6,10 +6,11 @@ AddSuppliesWindow::AddSuppliesWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddSuppliesWindow)
 {
+    QDate currentDate = QDate::currentDate();
     ui->setupUi(this);
+    ui->label_6->setText(currentDate.toString("ddd MMMM d yyyy"));
     ui->comboBox->addItems(fetchListOfRegions());
     ui->comboBox_2->addItems(fetchListOfSupplies());
-    dh = new DataHandler;
 }
 
 AddSuppliesWindow::~AddSuppliesWindow()
@@ -21,22 +22,12 @@ AddSuppliesWindow::~AddSuppliesWindow()
 QStringList AddSuppliesWindow::fetchListOfRegions() {
     QStringList list;
 
-    /*
-    //Real call but doesn't work!
+    DataHandler *dh = new DataHandler();
     regionList = dh->getRegions();
     for (int i = 0; i < regionList.size(); i++) {
         list.push_front(regionList[i].getName());
     }
-    */
-
-    //Workaround
-    aRegion1 = new Region1(5931, 2, "Richmond", 0, 0);
-    bRegion1 = new Region1(5932, 2, "Vancouver", 0, 0);
-    regionList.append(*aRegion1);
-    regionList.append(*bRegion1);
-    for (int i = 0; i < regionList.size(); i++) {
-        list.push_front(regionList[i].getName());
-    }
+    delete dh;
 
     return list;
 }
@@ -45,22 +36,12 @@ QStringList AddSuppliesWindow::fetchListOfRegions() {
 QStringList AddSuppliesWindow::fetchListOfSupplies() {
     QStringList list;
 
-    /*
-    //Real call but doesn't work!
+    DataHandler *dh = new DataHandler();
     supplyList = dh->getSupplyTypes();
     for (int i = 0; i < supplyList.size(); i++) {
         list.push_front(supplyList[i].getName());
     }
-    */
-
-    //Workaround
-    aSupply = new SupplyType(6213, "Dialysis Machine", 2, 1);
-    bSupply = new SupplyType(6220, "Panadol", 9, 1);
-    supplyList.append(*aSupply);
-    supplyList.append(*bSupply);
-    for (int i = 0; i < supplyList.size(); i++) {
-        list.push_front(supplyList[i].getName());
-    }
+    delete dh;
 
     return list;
 }
@@ -94,10 +75,20 @@ void AddSuppliesWindow::addSuppliesSubmitButtonHandler() {
     quantity = ui->spinBox->value();
     //qDebug() << quantity;
 
-    //Save Inventory
-    //Required inputs: Region Id for the supply, the supply type and the quantity
-    //DOES NOT WORK
-    //dh->saveInventory(regionId, supplyType, quantity);
+    DataHandler *dh = new DataHandler();
+    QList<Inventory> inventoryList = dh->getInventory();
+    for (int i = 0; i < inventoryList.size(); i++) {
+        if (inventoryList[i].getRegionId() == regionId && inventoryList[i].getSupplyType() == supplyType) {
+            int updateQuantity = inventoryList[i].getQuantity() + quantity;
+            //Update Inventory with the new quantity if has same regionid and supplytype
+            dh->updateInventory(inventoryList[i].getId(), updateQuantity);
+        }
+        else {
+            //Insert new Inventory
+            dh->saveInventory(regionId, supplyType, quantity);
+        }
+    }
+    delete dh;
 
 
     qDebug() << regionId << supplyType << quantity;
@@ -111,37 +102,4 @@ void AddSuppliesWindow::addSuppliesSubmitButtonHandler() {
 
 void AddSuppliesWindow::addSuppliesCancelButtonHandler() {
     AddSuppliesWindow::close();
-}
-
-void AddSuppliesWindow::SubmitButtonHandler()
-{
-    if(ui->spinBox->value() == 0)
-    {
-        msgBox.setText("Quantity must be greater than 0.");
-        msgBox.exec();
-    }
-    else
-    {
-        int regionID;
-        QString date;
-        int supplyType;
-        int quantity;
-
-        for(int i = 0; i < regionList.size(); i++)
-            if(ui->comboBox->currentText() == regionList[i].getName())
-                regionID = regionList[i].getId();
-
-        for(int i = 0; i < supplyList.size(); i++)
-            if(ui->comboBox_2->currentText() == supplyList[i].getName())
-                supplyType = supplyList[i].getId();
-
-        quantity = ui->spinBox->value();
-
-        date = ui->dateEdit->text();
-
-        msgBox.setText("Supply report has been saved.");
-        msgBox.exec();
-
-        this->close();
-    }
 }
