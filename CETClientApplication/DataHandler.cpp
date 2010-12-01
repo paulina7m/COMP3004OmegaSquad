@@ -351,7 +351,7 @@ QList<Region1> DataHandler::getRegions()
     //SPENCE
     //receive xml result from component
     QString xmlReply = connection->sendRequest(xmlRequest);
-
+    qDebug() << xmlReply;
 
     //dissect xml data and populate it into returnList
     int id;
@@ -360,19 +360,32 @@ QList<Region1> DataHandler::getRegions()
     int centerX;
     int centerY;
     if (xmlReply != "") {
+
+            qDebug() << "xmlreply not empty";
+
             //Parse the xml string
             //The name of the xml document
             QDomDocument doc("xmldocument");
             //if it's a valid XML and properly nested
+
             if (doc.setContent(xmlReply)) {
+                //doc.setContent(xmlReply);
+                //qDebug() << "valid xml";
+
                 //Get the root element
                 QDomElement root = doc.documentElement();
                 QDomNode n = root.firstChild();
                 QDomElement m = n.toElement();
                 if(m.tagName() == "command" && m.text() == "findEntities") {
+
+                    //qDebug() << "findEntities";
+
                     QDomNode e = n.nextSibling();
                     QDomElement f = e.toElement();
                     if(f.tagName() == "status" && f.text() == "OK") {
+
+                        //qDebug() << "okay";
+
                     QDomNode g = e.nextSibling();
                     while(!g.isNull()) {
                         QDomElement i = g.toElement();
@@ -404,6 +417,15 @@ QList<Region1> DataHandler::getRegions()
                     }
                 }
             }
+
+            /*
+            qDebug() << "returning list";
+            for (int i = 0; i < returnList.size(); i++) {
+                qDebug() << returnList[i].getName();
+            }
+            */
+
+
             return returnList;
         }
         else {
