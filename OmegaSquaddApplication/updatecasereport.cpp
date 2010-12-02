@@ -22,6 +22,7 @@ void UpdateCaseReport::updateCases(int id) {
     int quantity;
 
     dh = new DataHandler();
+    if (dh->isConnected()) {
     QList<CaseReport> caseList = dh->getCaseReports();
     QList<Region1> regionList = dh->getRegions();
     QList<DiseaseType> diseaseList = dh->getDiseaseTypes();
@@ -51,6 +52,7 @@ void UpdateCaseReport::updateCases(int id) {
 
 
     //ui->spinBox->setValue(id);
+}
 }
 
 void UpdateCaseReport::updateCaseReportSubmitButtonHandler() {

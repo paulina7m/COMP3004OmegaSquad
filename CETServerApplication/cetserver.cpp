@@ -234,5 +234,4 @@ void CETServer::startRead()
             //cout<<"Client not writable"<<endl;
         }
     }
-    client->close();
 }

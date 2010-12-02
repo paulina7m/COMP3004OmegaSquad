@@ -9,8 +9,16 @@ AddSuppliesWindow::AddSuppliesWindow(QWidget *parent) :
     QDate currentDate = QDate::currentDate();
     ui->setupUi(this);
     ui->label_6->setText(currentDate.toString("ddd MMMM d yyyy"));
-    ui->comboBox->addItems(fetchListOfRegions());
-    ui->comboBox_2->addItems(fetchListOfSupplies());
+
+    DataHandler *dh = new DataHandler();
+    if (dh->isConnected()) {
+        ui->comboBox->addItems(fetchListOfRegions());
+        ui->comboBox_2->addItems(fetchListOfSupplies());
+    }
+    else {
+        ui->pushButton->hide();
+    }
+    delete dh;
 }
 
 AddSuppliesWindow::~AddSuppliesWindow()

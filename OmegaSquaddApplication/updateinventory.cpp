@@ -17,6 +17,7 @@ void updateinventory::updateInventory(int id) {
     int quantity;
 
     dh = new DataHandler();
+    if (dh->isConnected()) {
     QList<Inventory> inventoryList = dh->getInventory();
     QList<Region1> regionList = dh->getRegions();
     QList<SupplyType> supplyList = dh->getSupplyTypes();
@@ -41,6 +42,7 @@ void updateinventory::updateInventory(int id) {
     ui->label_2->setText(supplyType);
     ui->label_7->setText(regionName);
     ui->spinBox->setValue(quantity);
+}
 }
 
 void updateinventory::UpdateInventorySubmitButtonHandler() {

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1054</width>
-    <height>504</height>
+    <width>1066</width>
+    <height>499</height>
    </rect>
   </property>
   <property name="font">
@@ -41,9 +41,12 @@
     <rect>
      <x>30</x>
      <y>80</y>
-     <width>1001</width>
+     <width>1011</width>
      <height>351</height>
     </rect>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
    <attribute name="horizontalHeaderDefaultSectionSize">
     <number>100</number>

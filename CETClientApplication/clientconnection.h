@@ -12,10 +12,11 @@ public:
   //Client(QString, QObject* parent = 0);
   ~ClientConnection();
 
-    void start(QString address, quint16 port);
+  void start(QString address, quint16 port);
   QString sendRequest(QString);
   void setAddress(QString);
   QString getAddress();
+  bool connectionOpen();
 
 public slots:
   void startTransfer();
@@ -24,6 +25,7 @@ private:
 
   QString address;
   QTcpSocket client;
+  QTcpSocket test;
   bool freshMessage;
   QString xmlReply;
   QString xmlRequest;

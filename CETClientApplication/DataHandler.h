@@ -21,6 +21,8 @@ public:
     DataHandler();
     ~DataHandler();
     
+    bool isConnected();
+
     //Retrieve Case Reports
     QList<CaseReport> getCaseReports();
     

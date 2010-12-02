@@ -259,10 +259,10 @@ p, li { white-space: pre-wrap; }
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>View</string>
+     <string>View Data</string>
     </property>
-    <addaction name="actionSupplies_Data"/>
     <addaction name="actionTabular_Diseases_Data"/>
+    <addaction name="actionSupplies_Data"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -272,7 +272,7 @@ p, li { white-space: pre-wrap; }
    </widget>
    <widget class="QMenu" name="menuEnter_New_Data">
     <property name="title">
-     <string>New</string>
+     <string>Add Data</string>
     </property>
     <addaction name="actionAdd_Disease_Data"/>
     <addaction name="actionAdd_Supplies_Data"/>
@@ -321,12 +321,12 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionAdd_Disease_Data">
    <property name="text">
-    <string>Disease Data</string>
+    <string>Add Case Report</string>
    </property>
   </action>
   <action name="actionAdd_Supplies_Data">
    <property name="text">
-    <string>Supplies Data</string>
+    <string>Add Inventory</string>
    </property>
   </action>
   <action name="actionAdd_New_Shipment">
@@ -341,7 +341,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionSupplies_Data">
    <property name="text">
-    <string>Tabular Supplies Data</string>
+    <string>View Inventory</string>
    </property>
   </action>
   <action name="actionShipments_2">
@@ -361,7 +361,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionTabular_Diseases_Data">
    <property name="text">
-    <string>Tabular Diseases Data</string>
+    <string>View Case Reports</string>
    </property>
   </action>
  </widget>

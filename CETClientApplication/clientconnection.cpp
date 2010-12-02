@@ -18,11 +18,24 @@ ClientConnection::~ClientConnection()
   client.close();
 }
 
+bool ClientConnection::connectionOpen() {
+    QHostAddress addr(address);
+    test.connectToHost(addr,6789);
+    bool connected = false;
+    if(test.waitForConnected(300))
+    {
+        connected = true;
+    }else{
+        connected = false;
+    }
+    test.close();
+    return connected;
+}
+
 void ClientConnection::start(QString address, quint16 port)
 {
   QHostAddress addr(address);
   client.connectToHost(addr,port);
-
 }
 
 void ClientConnection::startTransfer()

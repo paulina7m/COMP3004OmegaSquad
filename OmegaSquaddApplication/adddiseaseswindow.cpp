@@ -9,8 +9,17 @@ AddDiseasesWindow::AddDiseasesWindow(QWidget *parent) :
     QDate currentDate = QDate::currentDate();
     ui->setupUi(this);
     ui->label_6->setText(currentDate.toString("ddd MMMM d yyyy"));
-    ui->comboBox->addItems(fetchListOfRegions());
-    ui->comboBox_2->addItems(fetchListOfDiseases());
+
+    //Check if there's a connection
+    DataHandler *dh = new DataHandler();
+    if (dh->isConnected()) {
+        ui->comboBox->addItems(fetchListOfRegions());
+        ui->comboBox_2->addItems(fetchListOfDiseases());
+    }
+    else {
+        ui->pushButton->hide();
+    }
+    delete dh;
 }
 
 //Get a list of disease from the server

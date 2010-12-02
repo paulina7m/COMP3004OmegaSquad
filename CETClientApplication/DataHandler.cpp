@@ -9,6 +9,10 @@ DataHandler::DataHandler() {
 }
 DataHandler::~DataHandler() {}
 
+bool DataHandler::isConnected() {
+    return connection->connectionOpen();
+}
+
 //Retrieve Case Reports
 //This is the old function call, just in case, ignore this for now
 //QList<CaseReport> DataHandler::getCaseReports(int idFrom, int idTo, int regionID, QString dateFrom, QString dateTo, int diseaseType, int quantityFrom, int quantityTo)

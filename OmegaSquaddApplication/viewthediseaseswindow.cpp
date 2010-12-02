@@ -12,6 +12,7 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
 
     //This calls the database, doesn't work yet
     DataHandler *dh = new DataHandler();
+    if (dh->isConnected()) {
     //Get a list of case reports
     QList<CaseReport> caseList = dh->getCaseReports();
     QList<Region1> regionList = dh->getRegions();
@@ -79,7 +80,8 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
 
     connect(mapper, SIGNAL(mapped(int)), this, SLOT(editCase(int)));
     */
-
+}
+delete dh;
 }
 
 

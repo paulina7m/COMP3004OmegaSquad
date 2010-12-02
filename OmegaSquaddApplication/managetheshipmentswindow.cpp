@@ -14,12 +14,13 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
 
     //This calls the database
     DataHandler *dh = new DataHandler();
+    if (dh->isConnected()) {
     //Get a list of case reports
     QList<Shipment> shipmentList = dh->getShipments();
     QList<ShipmentDetail> shipmentDetailList = dh->getShipmentDetails();
     QList<SupplyType> supplyList = dh->getSupplyTypes();
     QList<Region1> Region1List = dh->getRegions();
-    delete dh;
+
 
     //Map the edit buttons to the case id number
     QSignalMapper *signalMapper = new QSignalMapper(this);
@@ -169,6 +170,8 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
     ui->tableWidget->setSortingEnabled(true);
 
     connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(changeShipmentStatus(QString)));
+}
+    delete dh;
 }
 
 

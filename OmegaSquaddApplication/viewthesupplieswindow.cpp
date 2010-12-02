@@ -12,6 +12,7 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
 
     //This calls the database, doesn't work yet
     DataHandler *dh = new DataHandler();
+    if (dh->isConnected()) {
     //Get a list of case reports
     QList<Inventory> inventoryList = dh->getInventory();
     QList<Region1> regionList = dh->getRegions();
@@ -79,7 +80,7 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
 
     connect(mapper, SIGNAL(mapped(int)), this, SLOT(editInventory(int)));
     */
-
+}
 }
 
 void ViewTheSuppliesWindow::editInventory(int invId) {

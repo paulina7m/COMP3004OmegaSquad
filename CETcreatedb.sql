@@ -329,8 +329,8 @@ create table Inventory(
 
 --inserting data into the table Inventory
 insert into Inventory values (16, 6001, 6211, 15, 40);
-insert into Inventory values (17, 6002, 6212, 9, 10);
-insert into Inventory values (18, 6003, 6213, null, 49);
+insert into Inventory values (17, 5931, 6212, 9, 10);
+insert into Inventory values (18, 5932, 6213, null, 49);
 
 
 --SupplyType
