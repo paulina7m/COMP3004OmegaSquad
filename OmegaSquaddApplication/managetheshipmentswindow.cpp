@@ -295,6 +295,7 @@ void ManageTheShipmentsWindow::ManageTheShipmentsWindowSubmitButtonHandler() {
     CreateShipmentsWindow *createShipmentsWindow = new CreateShipmentsWindow;
     createShipmentsWindow->show();
     createShipmentsWindow->isModal();
+    ManageTheShipmentsWindow::close();
 }
 
 void ManageTheShipmentsWindow::ManageTheShipmentsWindowCancelButtonHandler() {

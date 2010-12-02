@@ -139,36 +139,42 @@ void MainWindow::AddDiseaseHandler()
 {
     AddDiseasesWindow *addDiseasesWindow = new AddDiseasesWindow;
     addDiseasesWindow->showNormal();
+    addDiseasesWindow->isModal();
 }
 
 void MainWindow::AddSupplyHandler()
 {
     AddSuppliesWindow *addSuppliesWindow = new AddSuppliesWindow;
     addSuppliesWindow->showNormal();
+    addSuppliesWindow->isModal();
 }
 
 void MainWindow::ViewDiseasesHandler()
 {
     ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
     viewTheDiseasesWindow->showNormal();
+    viewTheDiseasesWindow->isModal();
 }
 
 void MainWindow::ViewSuppliesHandler()
 {
     ViewTheSuppliesWindow *viewTheSuppliesWindow = new ViewTheSuppliesWindow;
     viewTheSuppliesWindow->showNormal();
+    viewTheSuppliesWindow->isModal();
 }
 
 void MainWindow::AddShipmentHandler()
 {
     CreateShipmentsWindow *createShipmentsWindow = new CreateShipmentsWindow;
     createShipmentsWindow->showNormal();
+    createShipmentsWindow->isModal();
 }
 
 void MainWindow::ManageShipmentsHandler()
 {
     ManageTheShipmentsWindow *manageTheShipmentsWindow = new ManageTheShipmentsWindow;
     manageTheShipmentsWindow->showNormal();
+    manageTheShipmentsWindow->isModal();
 }
 
 
