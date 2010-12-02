@@ -9,7 +9,8 @@
 #include "viewthesupplieswindow.h"
 #include "createshipmentswindow.h"
 #include "managetheshipmentswindow.h"
-
+#include "updatecasereport.h"
+#include "updateinventory.h"
 
 
 
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->type_selector->addItems(fetchListOfDiseases());
         fetchDataForSelectedType();
         initializeMap();
+        selectedCaseOrSupplyID = 0;
         QObject::connect(ui->e_s_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForESSelector(int)));
 
 }
@@ -51,6 +53,7 @@ void MainWindow::setNameIDValue(QString name, QString id)
 
     this->ui->namebox->setText(name);
     this->ui->idbox->setText(id);
+    selectedCaseOrSupplyID = id.toInt();
  if(ui->e_s_selector->currentIndex() == 0){
     int numberOfCases = 0;
 
@@ -237,6 +240,20 @@ void MainWindow::AboutCETHandler()
     aboutDialog = new AboutCETDialog;
     aboutDialog->showNormal();
     aboutDialog->isModal();
+}
+
+void MainWindow::EditDataHandler(){
+    if(this->ui->e_s_selector->currentIndex() == 0){
+        ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
+        viewTheDiseasesWindow->showNormal();
+        viewTheDiseasesWindow->isModal();
+        QObject::connect(viewTheDiseasesWindow,SIGNAL(diseasesViewedEdited()),this,SLOT(updateData()));
+    } else {
+        ViewTheSuppliesWindow *viewTheSuppliesWindow = new ViewTheSuppliesWindow;
+        viewTheSuppliesWindow->showNormal();
+        viewTheSuppliesWindow->isModal();
+        QObject::connect(viewTheSuppliesWindow,SIGNAL(suppliesViewedEdited()),this,SLOT(updateData()));
+    }
 }
 
 

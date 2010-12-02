@@ -194,8 +194,8 @@
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>300</y>
+       <x>30</x>
+       <y>270</y>
        <width>114</width>
        <height>32</height>
       </rect>
@@ -503,6 +503,22 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>EditDataHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>91</x>
+     <y>499</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>147</x>
+     <y>552</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>AddDiseaseHandler()</slot>
@@ -512,5 +528,6 @@ p, li { white-space: pre-wrap; }
   <slot>AddShipmentHandler()</slot>
   <slot>ManageShipmentsHandler()</slot>
   <slot>AboutCETHandler()</slot>
+  <slot>EditDataHandler()</slot>
  </slots>
 </ui>

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu Dec 2 16:04:44 2010
+** Created: Thu Dec 2 17:46:04 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -199,6 +199,7 @@ public:
         QObject::connect(actionAdd_New_Shipment, SIGNAL(activated()), MainWindow, SLOT(AddShipmentHandler()));
         QObject::connect(actionManage_Shipments, SIGNAL(activated()), MainWindow, SLOT(ManageShipmentsHandler()));
         QObject::connect(actionAbout_CET, SIGNAL(activated()), MainWindow, SLOT(AboutCETHandler()));
+        QObject::connect(pushButton, SIGNAL(clicked()), MainWindow, SLOT(EditDataHandler()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi

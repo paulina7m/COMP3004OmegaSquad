@@ -108,7 +108,7 @@ void ViewTheSuppliesWindow::ViewTheSuppliesWindowSubmitButtonHandler() {
     AddSuppliesWindow *addSuppliesWindow = new AddSuppliesWindow;
     addSuppliesWindow->show();
     addSuppliesWindow->isModal();
-    QObject::connect(addSuppliesWindow,SIGNAL(suppliesAdded()),this,SLOT(emitDiseasesEditedSignal()));
+    QObject::connect(addSuppliesWindow,SIGNAL(suppliesAdded()),this,SLOT(emitSuppliesEditedSignal()));
     ViewTheSuppliesWindow::close();
 }
 

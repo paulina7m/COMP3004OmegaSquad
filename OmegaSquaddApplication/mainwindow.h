@@ -32,6 +32,7 @@ private:
     QList<Inventory> inventory;
     QStringList fetchListOfDiseases();
     QStringList fetchListOfSupplyTypes();
+    int selectedCaseOrSupplyID;
     void fetchDataForSelectedType();
     void calculateBadGoodWorse();
     void currentIndexChangedForTypeSelector();
@@ -49,6 +50,7 @@ private slots:
     void AddShipmentHandler();
     void ManageShipmentsHandler();
     void AboutCETHandler();
+    void EditDataHandler();
 
 
 
