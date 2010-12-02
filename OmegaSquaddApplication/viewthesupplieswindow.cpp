@@ -27,7 +27,6 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
     //Set the number rows and columns of the table
     ui->tableWidget->setRowCount(inventoryList.size());
     ui->tableWidget->setColumnCount(4);
-    QString quantityStr;
 
     for (int i = 0; i < inventoryList.size(); i++) {
         int loc = inventoryList[i].getId();
@@ -49,8 +48,9 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
         region->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(i, 1, type = new QTableWidgetItem(supplyType));
         type->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 2, quantity = new QTableWidgetItem(quantityStr.setNum(inventoryList[i].getQuantity())));
+        ui->tableWidget->setItem(i, 2, quantity = new QTableWidgetItem());
         quantity->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        quantity->setData(Qt::DisplayRole, inventoryList[i].getQuantity());
         //Edit button
         ui->tableWidget->setCellWidget(i, 3, editButton);
     }

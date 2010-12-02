@@ -27,7 +27,6 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
     //Set the number rows and columns of the table
     ui->tableWidget->setRowCount(caseList.size());
     ui->tableWidget->setColumnCount(5);
-    QString quantityStr;
 
     for (int i = 0; i < caseList.size(); i++) {
         int loc = caseList[i].getId();
@@ -51,8 +50,9 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
         region->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(i, 2, type = new QTableWidgetItem(diseaseType));
         type->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 3, quantity = new QTableWidgetItem(quantityStr.setNum(caseList[i].getQuantity())));
+        ui->tableWidget->setItem(i, 3, quantity = new QTableWidgetItem());
         quantity->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        quantity->setData(Qt::DisplayRole, caseList[i].getQuantity());
         //Edit button
         ui->tableWidget->setCellWidget(i, 4, editButton);
     }

@@ -39,10 +39,8 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
     QString dateReceived;
     QString dateCancelled;
     int shipmentId;
-    QString shipmentIdStr;
     int shipmentDetailId;
     QString statusStr;
-    QString quantityStr;
     int quantity;
 
     //qDebug() << "before looping";
@@ -109,16 +107,18 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
 
 
         //qDebug() << i << srcRegionName;
-        ui->tableWidget->setItem(i, 0, idText = new QTableWidgetItem(shipmentIdStr.setNum(shipmentId)));
+        ui->tableWidget->setItem(i, 0, idText = new QTableWidgetItem());
         idText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        idText->setData(Qt::DisplayRole, shipmentId);
         ui->tableWidget->setItem(i, 1, sourceText = new QTableWidgetItem(srcRegionName));
         sourceText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(i, 2, destText = new QTableWidgetItem(destRegionName));
         destText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(i, 3, typeText = new QTableWidgetItem(supplyType));
         typeText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 4, quantityText = new QTableWidgetItem(quantityStr.setNum(quantity)));
+        ui->tableWidget->setItem(i, 4, quantityText = new QTableWidgetItem());
         quantityText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        quantityText->setData(Qt::DisplayRole, quantity);
         ui->tableWidget->setItem(i, 5, createdText = new QTableWidgetItem(dateCreated));
         createdText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(i, 6, shippedText = new QTableWidgetItem(dateShipped));
