@@ -2,6 +2,7 @@
 #define MANAGETHESHIPMENTSWINDOW_H
 
 #include <QDialog>
+#include <QMessageBox>
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/SupplyType.h"
 #include "../CETClientApplication/Region1.h"
@@ -24,6 +25,7 @@ public:
 private:
     Ui::ManageTheShipmentsWindow *ui;
     QStringList shipStateList;
+    QMessageBox msgBox;
     int status;
 private slots:
     void changeShipmentStatus(QString);

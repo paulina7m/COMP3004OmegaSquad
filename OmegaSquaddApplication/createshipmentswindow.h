@@ -18,7 +18,8 @@ class CreateShipmentsWindow : public QDialog
 public:
     explicit CreateShipmentsWindow(QWidget *parent = 0);
     ~CreateShipmentsWindow();
-
+public slots:
+    void fromManager(int);
 private:
     Ui::CreateShipmentsWindow *ui;
     QStringList fetchListOfRegions();
@@ -30,6 +31,7 @@ private:
     SupplyType *bSupply;
     Region1 *aRegion1;
     Region1 *bRegion1;
+    bool cameFrom;
 private slots:
     void CreateShipmentsWindowSubmitButtonHandler();
     void CreateShipmentsWindowCancelButtonHandler();

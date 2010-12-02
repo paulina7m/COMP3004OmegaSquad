@@ -177,8 +177,9 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
 
 void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
     //Map the edit buttons to the case id number
+    QString messageNotify = "";
     QStringList someIds = idState.split("-");
-    QString idStr;
+    QString idStr = "";
     someIds.size();
     int id = someIds[0].toInt();
     int detailId = someIds[1].toInt();
@@ -219,6 +220,13 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
         //Optional inputs: notes (this can be empty string)
         dh->updateShipment(id, detailId, 0, "", "", QDate::currentDate().toString("yyyy-MM-dd"), "");
         delete dh;
+
+        //Notification box
+        messageNotify = "Shipment #";
+        messageNotify.append(idStr.setNum(id));
+        messageNotify.append(" has been cancelled.");
+        msgBox.setText(messageNotify);
+        msgBox.exec();
     }
     //Received
     else if (shipmentState == "Received") {
@@ -261,6 +269,13 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
             dh->saveInventory(regionId, supplyTypeId, shipmentQuantity);
         }
         delete dh;
+
+        //Notification box
+        messageNotify = "Shipment #";
+        messageNotify.append(idStr.setNum(id));
+        messageNotify.append(" has been received and added to the inventory.");
+        msgBox.setText(messageNotify);
+        msgBox.exec();
     }
     //Shipped
     else if (shipmentState == "Shipped") {
@@ -290,6 +305,13 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
         //row, id, shippingstate for Shipment
         signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5").arg(id).arg(detailId).arg(shipmentQuantity).arg(regionId).arg(supplyTypeId));
         connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(changeShipmentStatus(QString)));
+
+        //Notification box
+        messageNotify = "Shipment #";
+        messageNotify.append(idStr.setNum(id));
+        messageNotify.append(" has been shipped.");
+        msgBox.setText(messageNotify);
+        msgBox.exec();
     }
 
 }
@@ -298,6 +320,7 @@ void ManageTheShipmentsWindow::ManageTheShipmentsWindowSubmitButtonHandler() {
     CreateShipmentsWindow *createShipmentsWindow = new CreateShipmentsWindow;
     createShipmentsWindow->show();
     createShipmentsWindow->isModal();
+    createShipmentsWindow->fromManager(1);
     ManageTheShipmentsWindow::close();
 }
 

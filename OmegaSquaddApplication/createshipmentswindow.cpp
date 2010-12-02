@@ -1,5 +1,6 @@
 #include "createshipmentswindow.h"
 #include "ui_createshipmentswindow.h"
+#include "managetheshipmentswindow.h"
 
 CreateShipmentsWindow::CreateShipmentsWindow(QWidget *parent) :
     QDialog(parent),
@@ -71,6 +72,15 @@ QStringList CreateShipmentsWindow::fetchListOfSupplies() {
     return list;
 }
 
+void CreateShipmentsWindow::fromManager(int flag) {
+    if (flag == 1) {
+        cameFrom = true;
+    }
+    else {
+        cameFrom = false;
+    }
+}
+
 void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
     //Save the srcRegion, destRegion, shipmentState, createdDate, supplytype, quantityRequested
     if (ui->spinBox->value() == 0)
@@ -126,12 +136,27 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
     //Use a confirmation popup dialog
     msgBox.setText("Supply data has been saved.");
     msgBox.exec();
+
+    if (cameFrom) {
+        //open the management window again
+        ManageTheShipmentsWindow *managementWindow = new ManageTheShipmentsWindow;
+        managementWindow->show();
+        managementWindow->isModal();
+    }
+
     //close the window
     CreateShipmentsWindow::close();
     }
 }
 
 void CreateShipmentsWindow::CreateShipmentsWindowCancelButtonHandler() {
+    if (cameFrom) {
+        //open the management window again
+        ManageTheShipmentsWindow *managementWindow = new ManageTheShipmentsWindow;
+        managementWindow->show();
+        managementWindow->isModal();
+    }
+
     CreateShipmentsWindow::close();
 }
 
