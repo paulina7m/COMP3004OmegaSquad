@@ -47,6 +47,8 @@ QStringList AddSuppliesWindow::fetchListOfSupplies() {
 }
 
 void AddSuppliesWindow::addSuppliesSubmitButtonHandler() {
+    bool updateInventory = false;
+
     if (ui->spinBox->value() == 0)
     {
         msgBox.setText("Quantity must be greater than 0.");
@@ -82,16 +84,18 @@ void AddSuppliesWindow::addSuppliesSubmitButtonHandler() {
             int updateQuantity = inventoryList[i].getQuantity() + quantity;
             //Update Inventory with the new quantity if has same regionid and supplytype
             dh->updateInventory(inventoryList[i].getId(), updateQuantity);
+            updateInventory = true;
+            break;
         }
-        else {
-            //Insert new Inventory
-            dh->saveInventory(regionId, supplyType, quantity);
-        }
+    }
+
+
+    if (updateInventory == false) {
+        dh->saveInventory(regionId, supplyType, quantity);
     }
     delete dh;
 
-
-    qDebug() << regionId << supplyType << quantity;
+    //qDebug() << regionId << supplyType << quantity;
     //Use a confirmation popup dialog
     msgBox.setText("Supply data has been saved.");
     msgBox.exec();

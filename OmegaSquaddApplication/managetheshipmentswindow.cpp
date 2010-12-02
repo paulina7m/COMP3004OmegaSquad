@@ -233,19 +233,22 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
 
         //Add to inventory
         //First check to see if there are any identical regions AND supplytypes
+        bool updateInventory = false;
         QList<Inventory> inventoryList = dh->getInventory();
         for (int i = 0; i < inventoryList.size(); i++) {
             if (inventoryList[i].getRegionId() == regionId && inventoryList[i].getSupplyType() == supplyTypeId) {
                 int updateQuantity = inventoryList[i].getQuantity() + shipmentQuantity;
                 //Update Inventory with the new quantity
                 dh->updateInventory(inventoryList[i].getId(), updateQuantity);
-            }
-            else {
-                //Insert new Inventory
-                dh->saveInventory(regionId, supplyTypeId, shipmentQuantity);
+                updateInventory = true;
+                break;
             }
         }
 
+
+        if (updateInventory == false) {
+            dh->saveInventory(regionId, supplyTypeId, shipmentQuantity);
+        }
         delete dh;
     }
     //Shipped
