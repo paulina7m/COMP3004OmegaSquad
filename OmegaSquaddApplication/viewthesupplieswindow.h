@@ -2,6 +2,7 @@
 #define VIEWTHESUPPLIESWINDOW_H
 
 #include <QDialog>
+#include <QTableWidgetItem>
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/SupplyType.h"
 #include "../CETClientApplication/Region1.h"
@@ -20,6 +21,9 @@ public:
 
 private:
     Ui::ViewTheSuppliesWindow *ui;
+    QTableWidgetItem *region;
+    QTableWidgetItem *type;
+    QTableWidgetItem *quantity;
 private slots:
     void editInventory(int);
     void ViewTheSuppliesWindowSubmitButtonHandler();

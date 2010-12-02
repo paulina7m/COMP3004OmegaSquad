@@ -108,29 +108,35 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
         }
 
 
-
-
-
-
-
         //qDebug() << i << srcRegionName;
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(shipmentIdStr.setNum(shipmentId)));
-        ui->tableWidget->setItem(i, 1, new QTableWidgetItem(srcRegionName));
-        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(destRegionName));
-        ui->tableWidget->setItem(i, 3, new QTableWidgetItem(supplyType));
-        ui->tableWidget->setItem(i, 4, new QTableWidgetItem(quantityStr.setNum(quantity)));
-        ui->tableWidget->setItem(i, 5, new QTableWidgetItem(dateCreated));
-        ui->tableWidget->setItem(i, 6, new QTableWidgetItem(dateShipped));
-        ui->tableWidget->setItem(i, 7, new QTableWidgetItem(dateReceived));
-        ui->tableWidget->setItem(i, 8, new QTableWidgetItem(dateCancelled));
+        ui->tableWidget->setItem(i, 0, idText = new QTableWidgetItem(shipmentIdStr.setNum(shipmentId)));
+        idText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 1, sourceText = new QTableWidgetItem(srcRegionName));
+        sourceText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 2, destText = new QTableWidgetItem(destRegionName));
+        destText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 3, typeText = new QTableWidgetItem(supplyType));
+        typeText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 4, quantityText = new QTableWidgetItem(quantityStr.setNum(quantity)));
+        quantityText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 5, createdText = new QTableWidgetItem(dateCreated));
+        createdText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 6, shippedText = new QTableWidgetItem(dateShipped));
+        shippedText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 7, receivedText = new QTableWidgetItem(dateReceived));
+        receivedText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 8, cancelledText = new QTableWidgetItem(dateCancelled));
+        cancelledText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
         //If received
         if (status == 2) {
-            ui->tableWidget->setItem(i, 9, new QTableWidgetItem("Received"));
+            ui->tableWidget->setItem(i, 9, statusText = new QTableWidgetItem("Received"));
+            statusText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         }
         //If cancelled
         else if (status == 3) {
-            ui->tableWidget->setItem(i, 9, new QTableWidgetItem("Cancelled"));
+            ui->tableWidget->setItem(i, 9, statusText = new QTableWidgetItem("Cancelled"));
+            statusText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         }
         //If Shipped, cannot be cancelled or created, remove from list
         else if (status == 1) {
@@ -168,6 +174,7 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
         }
     }
     ui->tableWidget->setSortingEnabled(true);
+    ui->tableWidget->resizeRowsToContents();
 
     connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(changeShipmentStatus(QString)));
 }

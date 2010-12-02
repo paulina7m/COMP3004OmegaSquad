@@ -45,14 +45,19 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
         QPushButton *editButton = new QPushButton("Edit");
         connect(editButton, SIGNAL(clicked()), mapper, SLOT(map()));
         mapper->setMapping(editButton, loc);
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(caseList[i].getDateOfReport()));
-        ui->tableWidget->setItem(i, 1, new QTableWidgetItem(regionName));
-        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(diseaseType));
-        ui->tableWidget->setItem(i, 3, new QTableWidgetItem(quantityStr.setNum(caseList[i].getQuantity())));
+        ui->tableWidget->setItem(i, 0, date = new QTableWidgetItem(caseList[i].getDateOfReport()));
+        date->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 1, region = new QTableWidgetItem(regionName));
+        region->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 2, type = new QTableWidgetItem(diseaseType));
+        type->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->tableWidget->setItem(i, 3, quantity = new QTableWidgetItem(quantityStr.setNum(caseList[i].getQuantity())));
+        quantity->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         //Edit button
         ui->tableWidget->setCellWidget(i, 4, editButton);
     }
     ui->tableWidget->setSortingEnabled(true);
+    ui->tableWidget->resizeRowsToContents();
 
     //If button clicked, int is the case report id to edit
     connect(mapper, SIGNAL(mapped(int)), this, SLOT(editCase(int)));

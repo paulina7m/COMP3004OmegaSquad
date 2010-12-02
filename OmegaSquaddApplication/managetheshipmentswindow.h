@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include <QTableWidgetItem>
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/SupplyType.h"
 #include "../CETClientApplication/Region1.h"
@@ -27,6 +28,16 @@ private:
     QStringList shipStateList;
     QMessageBox msgBox;
     int status;
+    QTableWidgetItem *idText;
+    QTableWidgetItem *sourceText;
+    QTableWidgetItem *destText;
+    QTableWidgetItem *typeText;
+    QTableWidgetItem *quantityText;
+    QTableWidgetItem *createdText;
+    QTableWidgetItem *shippedText;
+    QTableWidgetItem *receivedText;
+    QTableWidgetItem *cancelledText;
+    QTableWidgetItem *statusText;
 private slots:
     void changeShipmentStatus(QString);
     void ManageTheShipmentsWindowSubmitButtonHandler();

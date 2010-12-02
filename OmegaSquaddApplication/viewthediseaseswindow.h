@@ -2,6 +2,7 @@
 #define VIEWTHEDISEASESWINDOW_H
 
 #include <QDialog>
+#include <QTableWidgetItem>
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/DiseaseType.h"
 #include "../CETClientApplication/Region1.h"
@@ -20,6 +21,10 @@ public:
 
 private:
     Ui::ViewTheDiseasesWindow *ui;
+    QTableWidgetItem *date;
+    QTableWidgetItem *region;
+    QTableWidgetItem *type;
+    QTableWidgetItem *quantity;
 private slots:
     void editCase(int);
     void viewTheDiseasesWindowCancelButtonHandler();
