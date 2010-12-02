@@ -35,6 +35,9 @@ private slots:
     void addSuppliesSubmitButtonHandler();
     void addSuppliesCancelButtonHandler();
 
+signals:
+    void suppliesAdded();
+
 };
 
 #endif // ADDSUPPLIESWINDOW_H

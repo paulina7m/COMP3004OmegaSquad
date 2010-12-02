@@ -97,7 +97,7 @@ void ViewTheDiseasesWindow::editCase(int caseId) {
     updateCaseReport->show();
     updateCaseReport->isModal();
     updateCaseReport->updateCases(caseId);
-
+    QObject::connect(updateCaseReport,SIGNAL(caseUpdated()),this,SLOT(emitDiseasesEditedSignal()));
     //Close this window
     ViewTheDiseasesWindow::close();
 }
@@ -110,7 +110,13 @@ void ViewTheDiseasesWindow::viewTheDiseasesWindowNewButtonHandler() {
     AddDiseasesWindow *addDiseasesWindow = new AddDiseasesWindow;
     addDiseasesWindow->show();
     addDiseasesWindow->isModal();
+    QObject::connect(addDiseasesWindow,SIGNAL(diseaseAdded()),this,SLOT(emitDiseasesEditedSignal()));
     ViewTheDiseasesWindow::close();
+
+}
+
+void ViewTheDiseasesWindow::emitDiseasesEditedSignal(){
+    emit diseasesViewedEdited();
 }
 
 ViewTheDiseasesWindow::~ViewTheDiseasesWindow()

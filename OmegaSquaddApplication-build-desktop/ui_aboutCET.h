@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aboutCET.ui'
 **
-** Created: Mon Nov 29 01:28:23 2010
-**      by: Qt User Interface Compiler version 4.7.0
+** Created: Thu Dec 2 16:07:55 2010
+**      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -41,6 +41,7 @@ public:
         textEdit->setGeometry(QRect(40, 30, 311, 211));
 
         retranslateUi(AboutCETDialog);
+        QObject::connect(okButton, SIGNAL(clicked()), AboutCETDialog, SLOT(closeHandler()));
 
         QMetaObject::connectSlotsByName(AboutCETDialog);
     } // setupUi

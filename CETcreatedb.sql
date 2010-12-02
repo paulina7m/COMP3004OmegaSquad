@@ -53,7 +53,9 @@ create table CaseReport(
 --inserting data into the table CaseReport
 insert into CaseReport values (14, 5931, "2010-11-09", 6202, 0, 15);
 insert into CaseReport values (15, 5932, "2010-10-09", 6202, 0, 20);
+insert into CaseReport values (15, 5932, "2010-10-12", 6202, 0, 45);
 insert into CaseReport values (16, 5932, "2010-10-30", 6203, 0, 16);
+insert into CaseReport values (15, 5932, "2010-11-18", 6202, 0, 8);
 
 
 

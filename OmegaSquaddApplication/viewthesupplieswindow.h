@@ -28,6 +28,11 @@ private slots:
     void editInventory(int);
     void ViewTheSuppliesWindowSubmitButtonHandler();
     void ViewTheSuppliesWindowCancelButtonHandler();
+    void emitSuppliesEditedSignal();
+
+
+signals:
+    void suppliesViewedEdited();
 };
 
 #endif // VIEWTHESUPPLIESWINDOW_H

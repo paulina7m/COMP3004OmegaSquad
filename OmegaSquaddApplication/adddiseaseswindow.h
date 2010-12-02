@@ -35,6 +35,9 @@ private:
 private slots:
     void addCaseSubmitButtonHandler();
     void addCaseCancelButtonHandler();
+
+signals:
+    void diseaseAdded();
 };
 
 #endif // ADDDISEASESWINDOW_H

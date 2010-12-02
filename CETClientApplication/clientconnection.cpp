@@ -10,7 +10,7 @@ ClientConnection::ClientConnection(QObject* parent): QObject(parent)
   //chunked = true;
   connect(&client, SIGNAL(connected()), this, SLOT(startTransfer()));
   connect(&client,SIGNAL(readyRead()),this,SLOT(readMessage()));
-  address = "192.168.0.145";
+  address = "127.0.0.1";
 }
 
 ClientConnection::~ClientConnection()

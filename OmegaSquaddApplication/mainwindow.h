@@ -26,6 +26,10 @@ private:
     Ui::MainWindow *ui;
     GoogleMap *gmap;
     AboutCETDialog *aboutDialog;
+    QList<SupplyType> supplyList;
+    QList<DiseaseType> diseaseList;
+    QList<CaseReport> caseReports;
+    QList<Inventory> inventory;
     QStringList fetchListOfDiseases();
     QStringList fetchListOfSupplyTypes();
     void fetchDataForSelectedType();
@@ -36,20 +40,22 @@ private:
 private slots:
     void initializeMap();
     void currentIndexChangedForESSelector(int index);
-    void showAboutCETDialog();
-    void closeAboutCETDialog(); // close function already exists - Gavin
+//    void showAboutCETDialog();
+//    void closeAboutCETDialog(); // close function already exists - Gavin
     void AddDiseaseHandler();
     void AddSupplyHandler();
     void ViewDiseasesHandler();
     void ViewSuppliesHandler();
     void AddShipmentHandler();
     void ManageShipmentsHandler();
+    void AboutCETHandler();
+
 
 
 public Q_SLOTS:
     void setNameIDValue(QString name, QString id);
     void hideLoadingLabel();
-
+    void updateData();
 
 
 };

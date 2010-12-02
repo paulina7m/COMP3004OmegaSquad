@@ -107,6 +107,7 @@ void AddSuppliesWindow::addSuppliesSubmitButtonHandler() {
     //Use a confirmation popup dialog
     msgBox.setText("Supply data has been saved.");
     msgBox.exec();
+    emit suppliesAdded();
     //close the window
     AddSuppliesWindow::close();
     }

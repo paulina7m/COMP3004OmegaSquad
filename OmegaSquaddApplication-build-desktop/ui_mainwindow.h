@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Nov 30 03:45:02 2010
+** Created: Thu Dec 2 16:04:44 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -182,8 +182,8 @@ public:
         menuBar->addAction(menuShipments->menuAction());
         menuBar->addAction(menuHelp->menuAction());
         menuFile->addAction(actionClose);
-        menuView->addAction(actionSupplies_Data);
         menuView->addAction(actionTabular_Diseases_Data);
+        menuView->addAction(actionSupplies_Data);
         menuHelp->addAction(actionAbout_CET);
         menuEnter_New_Data->addAction(actionAdd_Disease_Data);
         menuEnter_New_Data->addAction(actionAdd_Supplies_Data);
@@ -198,6 +198,7 @@ public:
         QObject::connect(actionSupplies_Data, SIGNAL(activated()), MainWindow, SLOT(ViewSuppliesHandler()));
         QObject::connect(actionAdd_New_Shipment, SIGNAL(activated()), MainWindow, SLOT(AddShipmentHandler()));
         QObject::connect(actionManage_Shipments, SIGNAL(activated()), MainWindow, SLOT(ManageShipmentsHandler()));
+        QObject::connect(actionAbout_CET, SIGNAL(activated()), MainWindow, SLOT(AboutCETHandler()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -209,15 +210,15 @@ public:
         actionDelete->setText(QApplication::translate("MainWindow", "Delete", 0, QApplication::UnicodeUTF8));
         actionOpen->setText(QApplication::translate("MainWindow", "Close", 0, QApplication::UnicodeUTF8));
         actionShipments->setText(QApplication::translate("MainWindow", "Tabular Disease Data", 0, QApplication::UnicodeUTF8));
-        actionAdd_Disease_Data->setText(QApplication::translate("MainWindow", "Disease Data", 0, QApplication::UnicodeUTF8));
-        actionAdd_Supplies_Data->setText(QApplication::translate("MainWindow", "Supplies Data", 0, QApplication::UnicodeUTF8));
+        actionAdd_Disease_Data->setText(QApplication::translate("MainWindow", "Add Case Report", 0, QApplication::UnicodeUTF8));
+        actionAdd_Supplies_Data->setText(QApplication::translate("MainWindow", "Add Inventory", 0, QApplication::UnicodeUTF8));
         actionAdd_New_Shipment->setText(QApplication::translate("MainWindow", "Add New Shipment", 0, QApplication::UnicodeUTF8));
         actionManage_Shipments->setText(QApplication::translate("MainWindow", "Manage Shipments", 0, QApplication::UnicodeUTF8));
-        actionSupplies_Data->setText(QApplication::translate("MainWindow", "Tabular Supplies Data", 0, QApplication::UnicodeUTF8));
+        actionSupplies_Data->setText(QApplication::translate("MainWindow", "View Inventory", 0, QApplication::UnicodeUTF8));
         actionShipments_2->setText(QApplication::translate("MainWindow", "Shipments Manager", 0, QApplication::UnicodeUTF8));
         actionMap->setText(QApplication::translate("MainWindow", "Map", 0, QApplication::UnicodeUTF8));
         actionClose->setText(QApplication::translate("MainWindow", "Close", 0, QApplication::UnicodeUTF8));
-        actionTabular_Diseases_Data->setText(QApplication::translate("MainWindow", "Tabular Diseases Data", 0, QApplication::UnicodeUTF8));
+        actionTabular_Diseases_Data->setText(QApplication::translate("MainWindow", "View Case Reports", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "Show data for:", 0, QApplication::UnicodeUTF8));
         e_s_selector->clear();
         e_s_selector->insertItems(0, QStringList()
@@ -243,9 +244,9 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Loading Health Unit Zones...</p></body></html>", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("MainWindow", "To move around the map and zoom, please use the navigation tool. Mouse drag & zoom is not supported.", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
-        menuView->setTitle(QApplication::translate("MainWindow", "View", 0, QApplication::UnicodeUTF8));
+        menuView->setTitle(QApplication::translate("MainWindow", "View Data", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0, QApplication::UnicodeUTF8));
-        menuEnter_New_Data->setTitle(QApplication::translate("MainWindow", "New", 0, QApplication::UnicodeUTF8));
+        menuEnter_New_Data->setTitle(QApplication::translate("MainWindow", "Add Data", 0, QApplication::UnicodeUTF8));
         menuShipments->setTitle(QApplication::translate("MainWindow", "Shipping", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

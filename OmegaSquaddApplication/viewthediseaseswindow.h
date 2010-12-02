@@ -29,6 +29,11 @@ private slots:
     void editCase(int);
     void viewTheDiseasesWindowCancelButtonHandler();
     void viewTheDiseasesWindowNewButtonHandler();
+    void emitDiseasesEditedSignal();
+
+
+signals:
+    void diseasesViewedEdited();
 };
 
 #endif // VIEWTHEDISEASESWINDOW_H

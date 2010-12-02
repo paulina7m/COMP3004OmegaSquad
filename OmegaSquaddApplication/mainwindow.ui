@@ -487,6 +487,22 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAbout_CET</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AboutCETHandler()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>498</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>AddDiseaseHandler()</slot>
@@ -495,5 +511,6 @@ p, li { white-space: pre-wrap; }
   <slot>ViewSuppliesHandler()</slot>
   <slot>AddShipmentHandler()</slot>
   <slot>ManageShipmentsHandler()</slot>
+  <slot>AboutCETHandler()</slot>
  </slots>
 </ui>
