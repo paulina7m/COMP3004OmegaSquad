@@ -122,7 +122,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Cancel</string>
+    <string>OK</string>
    </property>
   </widget>
  </widget>
@@ -136,7 +136,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>246</x>
-     <y>395</y>
+     <y>465</y>
     </hint>
     <hint type="destinationlabel">
      <x>249</x>
@@ -152,7 +152,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>95</x>
-     <y>392</y>
+     <y>462</y>
     </hint>
     <hint type="destinationlabel">
      <x>95</x>

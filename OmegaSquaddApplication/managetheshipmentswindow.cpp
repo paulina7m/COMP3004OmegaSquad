@@ -176,6 +176,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
     //Map the edit buttons to the case id number
     QStringList someIds = idState.split("-");
     QString idStr;
+    someIds.size();
     int id = someIds[0].toInt();
     int detailId = someIds[1].toInt();
     int shipmentQuantity = someIds[2].toInt();
@@ -231,6 +232,13 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
         //Optional inputs: notes (this can be empty string)
         dh->updateShipment(id, detailId, 0, "", QDate::currentDate().toString("yyyy-MM-dd"), "", "");
 
+        /*
+        QList<Shipment> ship = dh->getShipments();
+        for(int i = 0; i < ship.size(); i++) {
+            qDebug() << ship[i].getReceivedDate();
+        }
+        */
+
         //Add to inventory
         //First check to see if there are any identical regions AND supplytypes
         bool updateInventory = false;
@@ -277,7 +285,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
 
         connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
         //row, id, shippingstate for Shipment
-        signalMapper->setMapping(Box, QString("%1-%2-%3").arg(id).arg(detailId).arg(shipmentQuantity));
+        signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5").arg(id).arg(detailId).arg(shipmentQuantity).arg(regionId).arg(supplyTypeId));
         connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(changeShipmentStatus(QString)));
     }
 

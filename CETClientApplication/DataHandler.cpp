@@ -1116,7 +1116,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
     }
     else if (receivedDate != "") {
         xmlUpdateRequest.append("<attribute key=\"receivedDate\" value=\"");
-        xmlUpdateRequest.append(shippedDate);
+        xmlUpdateRequest.append(receivedDate);
         xmlUpdateRequest.append("\" />");
         xmlUpdateRequest.append("<attribute key=\"shipmentState\" value=\"");
         xmlUpdateRequest.append("Received");
@@ -1124,7 +1124,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
     }
     else if (cancelledDate != "") {
         xmlUpdateRequest.append("<attribute key=\"cancelledDate\" value=\"");
-        xmlUpdateRequest.append(shippedDate);
+        xmlUpdateRequest.append(cancelledDate);
         xmlUpdateRequest.append("\" />");
         xmlUpdateRequest.append("<attribute key=\"shipmentState\" value=\"");
         xmlUpdateRequest.append("Cancelled");
@@ -1149,6 +1149,7 @@ QString DataHandler::updateShipment(int shipmentId, int shipmentDetailId, int qu
     else {
         xmlUpdateRequest.append("</message>");
     }
+
 
     //SPENCE
     //send xml query to  communication component
