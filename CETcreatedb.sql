@@ -52,11 +52,8 @@ create table CaseReport(
 
 --inserting data into the table CaseReport
 insert into CaseReport values (14, 5931, "2010-11-09", 6202, 0, 15);
-insert into CaseReport values (15, 5932, "2010-10-09", 6202, 0, 20);
 insert into CaseReport values (15, 5932, "2010-10-12", 6202, 0, 45);
 insert into CaseReport values (16, 5932, "2010-10-30", 6203, 0, 16);
-insert into CaseReport values (15, 5932, "2010-11-18", 6202, 0, 8);
-
 
 
 --DiseaseType
@@ -330,9 +327,9 @@ create table Inventory(
 	);
 
 --inserting data into the table Inventory
-insert into Inventory values (16, 6001, 6211, 15, 40);
-insert into Inventory values (17, 5931, 6212, 9, 10);
-insert into Inventory values (18, 5932, 6213, null, 49);
+insert into Inventory values (17, 6001, 6211, 15, 40);
+insert into Inventory values (18, 5931, 6212, 9, 10);
+insert into Inventory values (19, 5932, 6213, null, 49);
 
 
 --SupplyType
