@@ -37,6 +37,7 @@ CreateShipmentsWindow::CreateShipmentsWindow(QWidget *parent) :
                                 supplyAmount.append(supplyQuantity.setNum(inventoryList[i].getQuantity()));
                                 supplyAmount.append(" quantities of " );
                                 ui->srcRegionSupplies->setText(supplyAmount);
+                                ui->spinBox->setEnabled(true);
                                 ui->spinBox->setMaximum(inventoryList[i].getQuantity());
                                 quantityFound = true;
                                 break;
@@ -254,7 +255,7 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
 
 
     //Use a confirmation popup dialog
-    msgBox.setText("Supply data has been saved.");
+    msgBox.setText("Shipment has been created.");
     msgBox.exec();
 
     if (cameFrom) {

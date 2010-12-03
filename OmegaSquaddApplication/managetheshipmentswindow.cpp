@@ -58,7 +58,12 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
                         supplyId = supplyList[k].getId();
                     }
                 }
-                quantity = shipmentDetailList[l].getQuantityRequested();
+                if (shipmentDetailList[l].getQuantityShipped() > 0) {
+                    quantity = shipmentDetailList[l].getQuantityShipped();
+                }
+                else {
+                    quantity = shipmentDetailList[l].getQuantityRequested();
+                }
             }
         }
 
@@ -312,10 +317,12 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
         QList<Inventory> srcInventoryList = dh->getInventory();
         for (int i = 0; i < srcInventoryList.size(); i++) {
             if (srcInventoryList[i].getRegionId() == srcRegionId && srcInventoryList[i].getSupplyType() == supplyTypeId) {
-                //if the shipmentQuantity is greater than the srcRegions quantity,
+                 //if the shipmentQuantity is greater than the srcRegions quantity,
                 //change the shipmentQuantity in the destination regions to a lesser amount
                 //and the srcRegions to zero
                 //Otherwise, just substract
+                //qDebug() << "src inventory: " << srcInventoryList[i].getQuantity();
+                //qDebug() << "shipment Quantity :" << shipmentQuantity;
                 if (srcInventoryList[i].getQuantity() == 0) {
                     //Cancel the shipment
                     dh->updateShipment(id, detailId, shipmentQuantity, "", "", QDate::currentDate().toString("yyyy-MM-dd"), "");
@@ -323,13 +330,23 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
                     break;
                 }
                 else if (srcInventoryList[i].getQuantity() < shipmentQuantity) {
-                    shipmentQuantity = srcInventoryList[i].getQuantity();
+                    int updateQuantity = srcInventoryList[i].getQuantity();
+                    shipmentQuantity = updateQuantity;
+                    QString quantStr;
+                    //Substract the updated quantity from the source regions inventory
+                    dh->updateInventory(srcInventoryList[i].getId(), 0);
+                    ui->tableWidget->setItem(row, 4, new QTableWidgetItem(quantStr.setNum(shipmentQuantity)));
+                    updateSrcInventory = true;
+                    break;
                 }
-                int updateQuantity = srcInventoryList[i].getQuantity() - shipmentQuantity;
-                //Substract the updated quantity from the source regions inventory
-                dh->updateInventory(srcInventoryList[i].getId(), updateQuantity);
-                updateSrcInventory = true;
-                break;
+                else {
+                    int updateQuantity = srcInventoryList[i].getQuantity() - shipmentQuantity;
+                    shipmentQuantity = updateQuantity;
+                    //Substract the updated quantity from the source regions inventory
+                    dh->updateInventory(srcInventoryList[i].getId(), updateQuantity);
+                    updateSrcInventory = true;
+                    break;
+                }
             }
         }
 
@@ -360,6 +377,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
             //NOTE: Any dates you're not updating must be passed in as empty strings.
             //If you pass in a shippedDate string, make sure you pass in a quantityShipped number (greater than 0), otherwise, the quantityShipped number should be 0
             //Optional inputs: notes (this can be empty string)
+            //qDebug() << shipmentQuantity;
             dh->updateShipment(id, detailId, shipmentQuantity, QDate::currentDate().toString("yyyy-MM-dd"), "", "", "");
             delete dh;
 

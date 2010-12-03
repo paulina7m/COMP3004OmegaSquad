@@ -20,9 +20,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->type_selector->clear();
         this->ui->type_selector->addItems(fetchListOfDiseases());
         fetchDataForSelectedType();
-        initializeMap();
+        //initializeMap();
         selectedCaseOrSupplyID = 0;
-        QObject::connect(ui->e_s_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForESSelector(int)));
+         QObject::connect(ui->e_s_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForESSelector(int)));
 
 }
 
