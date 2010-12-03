@@ -30,6 +30,7 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
     ui->tableWidget->setRowCount(shipmentList.size());
     ui->tableWidget->setColumnCount(10);
     QString srcRegionName;
+    int srcRegionId;
     QString destRegionName;
     int destRegionId;
     QString supplyType;
@@ -64,6 +65,7 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
         for (int j = 0; j < Region1List.size(); j++) {
             if (shipmentList[i].getSrcRegion() == Region1List[j].getId()) {
                    srcRegionName = Region1List[j].getName();
+                   srcRegionId = Region1List[j].getId();
             }
             if (shipmentList[i].getDestRegion() == Region1List[j].getId()) {
                    destRegionName = Region1List[j].getName();
@@ -153,7 +155,7 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
 
             connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
             //row, id, shippingstate for Shipment
-            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5").arg(shipmentId).arg(shipmentDetailId).arg(quantity).arg(destRegionId).arg(supplyId));
+            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(shipmentId).arg(shipmentDetailId).arg(quantity).arg(srcRegionId).arg(destRegionId).arg(supplyId));
         }
         //otherwise have a dropdown list of options
         else {
@@ -170,7 +172,7 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
 
             connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
             //row, id, shippingstate for Shipment
-            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5").arg(shipmentId).arg(shipmentDetailId).arg(quantity).arg(destRegionId).arg(supplyId));
+            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(shipmentId).arg(shipmentDetailId).arg(quantity).arg(srcRegionId).arg(destRegionId).arg(supplyId));
         }
     }
     ui->tableWidget->setSortingEnabled(true);
@@ -191,10 +193,12 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
     int id = someIds[0].toInt();
     int detailId = someIds[1].toInt();
     int shipmentQuantity = someIds[2].toInt();
-    int regionId = someIds[3].toInt();
-    int supplyTypeId = someIds[4].toInt();
+    int srcRegionId = someIds[3].toInt();
+    int destRegionId = someIds[4].toInt();
+    int supplyTypeId = someIds[5].toInt();
     QSignalMapper *signalMapper = new QSignalMapper(this);
     QString shipmentState;
+    bool cancelled = false;
 
     QList<QTableWidgetItem*> widgetItems = ui->tableWidget->findItems(idStr.setNum(id), Qt::MatchExactly);
     int row = ui->tableWidget->row(widgetItems[0]);
@@ -257,24 +261,26 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
         }
         */
 
-        //Add to inventory
+        //Add to destination region inventory
         //First check to see if there are any identical regions AND supplytypes
-        bool updateInventory = false;
+        bool updateDestInventory = false;
         QList<Inventory> inventoryList = dh->getInventory();
         for (int i = 0; i < inventoryList.size(); i++) {
-            if (inventoryList[i].getRegionId() == regionId && inventoryList[i].getSupplyType() == supplyTypeId) {
+            if (inventoryList[i].getRegionId() == destRegionId && inventoryList[i].getSupplyType() == supplyTypeId) {
                 int updateQuantity = inventoryList[i].getQuantity() + shipmentQuantity;
                 //Update Inventory with the new quantity
                 dh->updateInventory(inventoryList[i].getId(), updateQuantity);
-                updateInventory = true;
+                updateDestInventory = true;
                 break;
             }
         }
 
-
-        if (updateInventory == false) {
-            dh->saveInventory(regionId, supplyTypeId, shipmentQuantity);
+        if (updateDestInventory == false) {
+            dh->saveInventory(destRegionId, supplyTypeId, shipmentQuantity);
         }
+
+
+
         delete dh;
 
         //Notification box
@@ -299,26 +305,76 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
         Box->setCurrentIndex(0);
 
         DataHandler *dh = new DataHandler();
-        //Update the Shipment in the database
-        //Update Shipments
-        //Required inputs: shipment id number , shipmentdetail id number and any one of ShippedDate, ReceivedDate or CancelledDate.
-        //NOTE: Any dates you're not updating must be passed in as empty strings.
-        //If you pass in a shippedDate string, make sure you pass in a quantityShipped number (greater than 0), otherwise, the quantityShipped number should be 0
-        //Optional inputs: notes (this can be empty string)
-        dh->updateShipment(id, detailId, shipmentQuantity, QDate::currentDate().toString("yyyy-MM-dd"), "", "", "");
-        delete dh;
 
-        connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
-        //row, id, shippingstate for Shipment
-        signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5").arg(id).arg(detailId).arg(shipmentQuantity).arg(regionId).arg(supplyTypeId));
-        connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(changeShipmentStatus(QString)));
+        //CHECK THIS!!!!!
+        //Substract from source region inventory
+        bool updateSrcInventory = false;
+        QList<Inventory> srcInventoryList = dh->getInventory();
+        for (int i = 0; i < srcInventoryList.size(); i++) {
+            if (srcInventoryList[i].getRegionId() == srcRegionId && srcInventoryList[i].getSupplyType() == supplyTypeId) {
+                //if the shipmentQuantity is greater than the srcRegions quantity,
+                //change the shipmentQuantity in the destination regions to a lesser amount
+                //and the srcRegions to zero
+                //Otherwise, just substract
+                if (srcInventoryList[i].getQuantity() == 0) {
+                    //Cancel the shipment
+                    dh->updateShipment(id, detailId, shipmentQuantity, "", "", QDate::currentDate().toString("yyyy-MM-dd"), "");
+                    cancelled = true;
+                    break;
+                }
+                else if (srcInventoryList[i].getQuantity() < shipmentQuantity) {
+                    shipmentQuantity = srcInventoryList[i].getQuantity();
+                }
+                int updateQuantity = srcInventoryList[i].getQuantity() - shipmentQuantity;
+                //Substract the updated quantity from the source regions inventory
+                dh->updateInventory(srcInventoryList[i].getId(), updateQuantity);
+                updateSrcInventory = true;
+                break;
+            }
+        }
 
-        //Notification box
-        messageNotify = "Shipment #";
-        messageNotify.append(idStr.setNum(id));
-        messageNotify.append(" has been shipped.");
-        msgBox.setText(messageNotify);
-        msgBox.exec();
+        if (cancelled) {
+            ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+            ui->tableWidget->removeCellWidget(row, 9);
+            ui->tableWidget->setItem(row, 9, new QTableWidgetItem("Cancelled"));
+
+            connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
+
+            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(id).arg(detailId).arg(shipmentQuantity).arg(srcRegionId).arg(destRegionId).arg(supplyTypeId));
+            connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(changeShipmentStatus(QString)));
+
+            messageNotify = "Shipment #";
+            messageNotify.append(idStr.setNum(id));
+            messageNotify.append(" has been cancelled. Source region out of stock.");
+            msgBox.setText(messageNotify);
+            msgBox.exec();
+        }
+        else {
+            if (updateSrcInventory == false) {
+                //qDebug() << "error, this source inventory should exist";
+            }
+
+            //Update the Shipment in the database
+            //Update Shipments
+            //Required inputs: shipment id number , shipmentdetail id number and any one of ShippedDate, ReceivedDate or CancelledDate.
+            //NOTE: Any dates you're not updating must be passed in as empty strings.
+            //If you pass in a shippedDate string, make sure you pass in a quantityShipped number (greater than 0), otherwise, the quantityShipped number should be 0
+            //Optional inputs: notes (this can be empty string)
+            dh->updateShipment(id, detailId, shipmentQuantity, QDate::currentDate().toString("yyyy-MM-dd"), "", "", "");
+            delete dh;
+
+            connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
+            //row, id, shippingstate for Shipment
+            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(id).arg(detailId).arg(shipmentQuantity).arg(srcRegionId).arg(destRegionId).arg(supplyTypeId));
+            connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(changeShipmentStatus(QString)));
+
+            //Notification box
+            messageNotify = "Shipment #";
+            messageNotify.append(idStr.setNum(id));
+            messageNotify.append(" has been shipped.");
+            msgBox.setText(messageNotify);
+            msgBox.exec();
+        }
     }
 
 }

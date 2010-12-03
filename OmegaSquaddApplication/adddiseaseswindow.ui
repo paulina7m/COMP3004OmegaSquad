@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>605</width>
+    <width>376</width>
     <height>478</height>
    </rect>
   </property>
@@ -31,7 +31,7 @@
     <string>Epidemics Data Entry Form</string>
    </property>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -123,7 +123,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>41</x>
@@ -160,10 +160,10 @@
    <hints>
     <hint type="sourcelabel">
      <x>111</x>
-     <y>420</y>
+     <y>268</y>
     </hint>
     <hint type="destinationlabel">
-     <x>376</x>
+     <x>423</x>
      <y>437</y>
     </hint>
    </hints>
@@ -175,8 +175,8 @@
    <slot>addCaseCancelButtonHandler()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>210</x>
-     <y>420</y>
+     <x>188</x>
+     <y>273</y>
     </hint>
     <hint type="destinationlabel">
      <x>260</x>

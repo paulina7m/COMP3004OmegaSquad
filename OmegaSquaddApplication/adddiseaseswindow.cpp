@@ -97,7 +97,6 @@ void AddDiseasesWindow::addCaseSubmitButtonHandler() {
     //Use a confirmation popup dialog
     msgBox.setText("Case report has been saved.");
     msgBox.exec();
-    emit diseaseAdded();
     //close the window
     AddDiseasesWindow::close();
     }

@@ -66,9 +66,8 @@ void UpdateCaseReport::updateCaseReportSubmitButtonHandler() {
     ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
     viewTheDiseasesWindow->show();
     viewTheDiseasesWindow->isModal();
-    emit caseUpdated();
-    UpdateCaseReport::close();
 
+    UpdateCaseReport::close();
 }
 
 

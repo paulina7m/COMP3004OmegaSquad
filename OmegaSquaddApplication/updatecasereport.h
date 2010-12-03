@@ -26,10 +26,6 @@ private:
 private slots:
     void updateCaseReportSubmitButtonHandler();
     void updateCaseReportCancelButtonHandler();
-
- signals:
-    void caseUpdated();
-
 };
 
 #endif // UPDATECASEREPORT_H

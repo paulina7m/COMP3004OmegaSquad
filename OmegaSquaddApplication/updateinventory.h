@@ -25,9 +25,6 @@ private:
 private slots:
     void UpdateInventorySubmitButtonHandler();
     void UpdateInventoryCancelButtonHandler();
-signals:
-   void suppliesUpdated();
-
 
 };
 

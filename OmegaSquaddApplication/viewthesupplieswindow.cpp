@@ -95,20 +95,15 @@ void ViewTheSuppliesWindow::editInventory(int invId) {
     updateInventory->show();
     updateInventory->isModal();
     updateInventory->updateInventory(invId);
-    QObject::connect(updateInventory,SIGNAL(suppliesUpdated()),this,SLOT(emitSuppliesEditedSignal()));
+
     //Close this window
     ViewTheSuppliesWindow::close();
-}
-
-void ViewTheSuppliesWindow::emitSuppliesEditedSignal(){
-    emit suppliesViewedEdited();
 }
 
 void ViewTheSuppliesWindow::ViewTheSuppliesWindowSubmitButtonHandler() {
     AddSuppliesWindow *addSuppliesWindow = new AddSuppliesWindow;
     addSuppliesWindow->show();
     addSuppliesWindow->isModal();
-    QObject::connect(addSuppliesWindow,SIGNAL(suppliesAdded()),this,SLOT(emitSuppliesEditedSignal()));
     ViewTheSuppliesWindow::close();
 }
 

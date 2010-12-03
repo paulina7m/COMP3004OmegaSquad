@@ -15,12 +15,14 @@ public:
     explicit AboutCETDialog(QWidget *parent = 0);
     ~AboutCETDialog();
 
+signals:
+    void dialogToBeClosed();
 
 private:
     Ui::AboutCETDialog *ui;
 
 private slots:
-    void closeHandler();
+    void closeDialog();
 
 
 };

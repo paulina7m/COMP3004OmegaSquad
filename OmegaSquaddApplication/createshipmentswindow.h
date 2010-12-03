@@ -6,6 +6,7 @@
 #include "../CETClientApplication/DataHandler.h"
 #include "../CETClientApplication/SupplyType.h"
 #include "../CETClientApplication/Region1.h"
+#include "../CETClientApplication/Inventory.h"
 
 namespace Ui {
     class CreateShipmentsWindow;
@@ -27,12 +28,15 @@ private:
     QMessageBox msgBox;
     QList<SupplyType> supplyList;
     QList<Region1> regionList;
+    QList<Inventory> inventoryList;
     SupplyType *aSupply;
     SupplyType *bSupply;
     Region1 *aRegion1;
     Region1 *bRegion1;
     bool cameFrom;
 private slots:
+    void changeText(QString);
+    void notifyUser();
     void CreateShipmentsWindowSubmitButtonHandler();
     void CreateShipmentsWindowCancelButtonHandler();
 };
