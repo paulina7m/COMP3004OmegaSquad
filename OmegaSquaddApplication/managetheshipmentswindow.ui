@@ -73,7 +73,7 @@
    </column>
    <column>
     <property name="text">
-     <string>Quantity Requsted</string>
+     <string>Quantity Requested</string>
     </property>
    </column>
    <column>
