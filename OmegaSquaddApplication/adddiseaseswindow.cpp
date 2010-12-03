@@ -3,8 +3,8 @@
 #include <QDebug>
 
 AddDiseasesWindow::AddDiseasesWindow(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AddDiseasesWindow)
+        QDialog(parent),
+        ui(new Ui::AddDiseasesWindow)
 {
     QDate currentDate = QDate::currentDate();
     ui->setupUi(this);
@@ -58,48 +58,48 @@ void AddDiseasesWindow::addCaseSubmitButtonHandler() {
         msgBox.exec();
     }
     else {
-    int Region1Id;
-    //QDateTime formatDate;
-    QString date;
-    int diseaseType;
-    int quantity;
+        int Region1Id;
+        //QDateTime formatDate;
+        QString date;
+        int diseaseType;
+        int quantity;
 
 
-    //Get the Region1 ID
-    for (int i = 0; i < Region1List.size(); i++) {
-        if (ui->comboBox->currentText() == Region1List[i].getName()) {
-            Region1Id = Region1List[i].getId();
+        //Get the Region1 ID
+        for (int i = 0; i < Region1List.size(); i++) {
+            if (ui->comboBox->currentText() == Region1List[i].getName()) {
+                Region1Id = Region1List[i].getId();
+            }
         }
-    }
 
-    //Get the diseaseType ID
-    for (int i = 0; i < diseaseList.size(); i++) {
-        if (ui->comboBox_2->currentText() == diseaseList[i].getName()) {
-            diseaseType = diseaseList[i].getId();
+        //Get the diseaseType ID
+        for (int i = 0; i < diseaseList.size(); i++) {
+            if (ui->comboBox_2->currentText() == diseaseList[i].getName()) {
+                diseaseType = diseaseList[i].getId();
+            }
         }
-    }
 
-    //Get the quantity entered
-    quantity = ui->spinBox->value();
-    //qDebug() << quantity;
+        //Get the quantity entered
+        quantity = ui->spinBox->value();
+        //qDebug() << quantity;
 
-    //Get the date and format to proper string format (YYYY-MM-DD)
-    QDate currentDate = QDate::currentDate();
-    date = currentDate.toString("yyyy-MM-dd");
-    //qDebug() << date;
+        //Get the date and format to proper string format (YYYY-MM-DD)
+        QDate currentDate = QDate::currentDate();
+        date = currentDate.toString("yyyy-MM-dd");
+        //qDebug() << date;
 
-    //Save CaseReports
-    //Required inputs: Region1 Id of the case, the date ("YYYY-MM-DD" format), the disease type and the quantity
-    DataHandler *dh = new DataHandler();
-    dh->saveCaseReport(Region1Id, date, diseaseType, quantity);
-    delete dh;
+        //Save CaseReports
+        //Required inputs: Region1 Id of the case, the date ("YYYY-MM-DD" format), the disease type and the quantity
+        DataHandler *dh = new DataHandler();
+        dh->saveCaseReport(Region1Id, date, diseaseType, quantity);
+        delete dh;
 
-    //Use a confirmation popup dialog
-    msgBox.setText("Case report has been saved.");
-    msgBox.exec();
-    emit diseaseAdded();
-    //close the window
-    AddDiseasesWindow::close();
+        //Use a confirmation popup dialog
+        msgBox.setText("Case report has been saved.");
+        msgBox.exec();
+        emit diseaseAdded();
+        //close the window
+        AddDiseasesWindow::close();
     }
 }
 

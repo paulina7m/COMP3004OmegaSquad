@@ -3,8 +3,8 @@
 #include <QDebug>
 
 AddSuppliesWindow::AddSuppliesWindow(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AddSuppliesWindow)
+        QDialog(parent),
+        ui(new Ui::AddSuppliesWindow)
 {
     QDate currentDate = QDate::currentDate();
     ui->setupUi(this);
@@ -63,54 +63,54 @@ void AddSuppliesWindow::addSuppliesSubmitButtonHandler() {
         msgBox.exec();
     }
     else {
-    int regionId;
-    int supplyType;
-    int quantity;
+        int regionId;
+        int supplyType;
+        int quantity;
 
-    //Get the region ID
-    for (int i = 0; i < regionList.size(); i++) {
-        if (ui->comboBox->currentText() == regionList[i].getName()) {
-            regionId = regionList[i].getId();
+        //Get the region ID
+        for (int i = 0; i < regionList.size(); i++) {
+            if (ui->comboBox->currentText() == regionList[i].getName()) {
+                regionId = regionList[i].getId();
+            }
         }
-    }
 
-    //Get the supplyType ID
-    for (int i = 0; i < supplyList.size(); i++) {
-        if (ui->comboBox_2->currentText() == supplyList[i].getName()) {
-            supplyType = supplyList[i].getId();
+        //Get the supplyType ID
+        for (int i = 0; i < supplyList.size(); i++) {
+            if (ui->comboBox_2->currentText() == supplyList[i].getName()) {
+                supplyType = supplyList[i].getId();
+            }
         }
-    }
 
-    //Get the quantity entered
-    quantity = ui->spinBox->value();
-    //qDebug() << quantity;
+        //Get the quantity entered
+        quantity = ui->spinBox->value();
+        //qDebug() << quantity;
 
-    DataHandler *dh = new DataHandler();
-    QList<Inventory> inventoryList = dh->getInventory();
-    for (int i = 0; i < inventoryList.size(); i++) {
-        if (inventoryList[i].getRegionId() == regionId && inventoryList[i].getSupplyType() == supplyType) {
-            int updateQuantity = inventoryList[i].getQuantity() + quantity;
-            //Update Inventory with the new quantity if has same regionid and supplytype
-            dh->updateInventory(inventoryList[i].getId(), updateQuantity);
-            updateInventory = true;
-            break;
+        DataHandler *dh = new DataHandler();
+        QList<Inventory> inventoryList = dh->getInventory();
+        for (int i = 0; i < inventoryList.size(); i++) {
+            if (inventoryList[i].getRegionId() == regionId && inventoryList[i].getSupplyType() == supplyType) {
+                int updateQuantity = inventoryList[i].getQuantity() + quantity;
+                //Update Inventory with the new quantity if has same regionid and supplytype
+                dh->updateInventory(inventoryList[i].getId(), updateQuantity);
+                updateInventory = true;
+                break;
+            }
         }
-    }
 
 
-    if (updateInventory == false) {
-        dh->saveInventory(regionId, supplyType, quantity);
-    }
-    delete dh;
+        if (updateInventory == false) {
+            dh->saveInventory(regionId, supplyType, quantity);
+        }
+        delete dh;
 
-    //qDebug() << regionId << supplyType << quantity;
-    //Use a confirmation popup dialog
-    msgBox.setText("Supply data has been saved.");
-    msgBox.exec();
-    emit suppliesAdded();
+        //qDebug() << regionId << supplyType << quantity;
+        //Use a confirmation popup dialog
+        msgBox.setText("Supply data has been saved.");
+        msgBox.exec();
+        emit suppliesAdded();
 
-    //close the window
-    AddSuppliesWindow::close();
+        //close the window
+        AddSuppliesWindow::close();
     }
 }
 

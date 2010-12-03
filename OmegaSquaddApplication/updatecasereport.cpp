@@ -7,8 +7,8 @@
 
 
 UpdateCaseReport::UpdateCaseReport(QWidget *parent) :
- QDialog(parent),
-    ui(new Ui::UpdateCaseReport)
+        QDialog(parent),
+        ui(new Ui::UpdateCaseReport)
 {
     ui->setupUi(this);
 }
@@ -23,36 +23,36 @@ void UpdateCaseReport::updateCases(int id) {
 
     dh = new DataHandler();
     if (dh->isConnected()) {
-    QList<CaseReport> caseList = dh->getCaseReports();
-    QList<Region1> regionList = dh->getRegions();
-    QList<DiseaseType> diseaseList = dh->getDiseaseTypes();
+        QList<CaseReport> caseList = dh->getCaseReports();
+        QList<Region1> regionList = dh->getRegions();
+        QList<DiseaseType> diseaseList = dh->getDiseaseTypes();
 
-    for (int i = 0; i < caseList.size(); i++) {
-        if (caseList[i].getId() == id) {
-            for (int j = 0; j < regionList.size(); j++) {
-                if (caseList[i].getRegionId() == regionList[j].getId()) {
-                    regionName = regionList[j].getName();
+        for (int i = 0; i < caseList.size(); i++) {
+            if (caseList[i].getId() == id) {
+                for (int j = 0; j < regionList.size(); j++) {
+                    if (caseList[i].getRegionId() == regionList[j].getId()) {
+                        regionName = regionList[j].getName();
+                    }
                 }
-            }
-            for (int k = 0; k < diseaseList.size(); k++) {
-                if (caseList[i].getDiseaseType() == diseaseList[k].getId()) {
-                    diseaseType = diseaseList[k].getName();
+                for (int k = 0; k < diseaseList.size(); k++) {
+                    if (caseList[i].getDiseaseType() == diseaseList[k].getId()) {
+                        diseaseType = diseaseList[k].getName();
+                    }
                 }
-            }
-            date = caseList[i].getDateOfReport();
-            quantity = caseList[i].getQuantity();
+                date = caseList[i].getDateOfReport();
+                quantity = caseList[i].getQuantity();
 
+            }
         }
+
+        ui->label_2->setText(diseaseType);
+        ui->label_7->setText(regionName);
+        ui->label_8->setText(date);
+        ui->spinBox->setValue(quantity);
+
+
+        //ui->spinBox->setValue(id);
     }
-
-    ui->label_2->setText(diseaseType);
-    ui->label_7->setText(regionName);
-    ui->label_8->setText(date);
-    ui->spinBox->setValue(quantity);
-
-
-    //ui->spinBox->setValue(id);
-}
 }
 
 void UpdateCaseReport::updateCaseReportSubmitButtonHandler() {

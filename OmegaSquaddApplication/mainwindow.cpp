@@ -248,7 +248,7 @@ void MainWindow::hideLoadingLabel(){
     this->ui->loadinglabel->hide();
     int counter = 0;
     while(counter<1000000000){
-       //wait, icons need to laod a bit later
+        //wait, icons need to laod a bit later
         counter++;
     }
     qDebug() << "done";

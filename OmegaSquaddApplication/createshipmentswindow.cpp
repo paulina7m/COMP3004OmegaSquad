@@ -4,8 +4,8 @@
 #include "Inventory.h"
 
 CreateShipmentsWindow::CreateShipmentsWindow(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::CreateShipmentsWindow)
+        QDialog(parent),
+        ui(new Ui::CreateShipmentsWindow)
 {
     ui->setupUi(this);
     cameFrom = false;
@@ -181,49 +181,49 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
     }
     else {
 
-    int srcRegionId;
-    int destRegionId;
-    int supplyType;
-    QString date;
-    int quantity;
+        int srcRegionId;
+        int destRegionId;
+        int supplyType;
+        QString date;
+        int quantity;
 
 
-    //Get the region ID
-    for (int i = 0; i < regionList.size(); i++) {
-        if (ui->comboBox->currentText() == regionList[i].getName()) {
-            srcRegionId = regionList[i].getId();
+        //Get the region ID
+        for (int i = 0; i < regionList.size(); i++) {
+            if (ui->comboBox->currentText() == regionList[i].getName()) {
+                srcRegionId = regionList[i].getId();
+            }
         }
-    }
 
-    for (int i = 0; i < regionList.size(); i++) {
-        if (ui->comboBox_2->currentText() == regionList[i].getName()) {
-            destRegionId = regionList[i].getId();
+        for (int i = 0; i < regionList.size(); i++) {
+            if (ui->comboBox_2->currentText() == regionList[i].getName()) {
+                destRegionId = regionList[i].getId();
+            }
         }
-    }
 
-    //Get the supplyType ID
-    for (int i = 0; i < supplyList.size(); i++) {
-        if (ui->comboBox_3->currentText() == supplyList[i].getName()) {
-            supplyType = supplyList[i].getId();
+        //Get the supplyType ID
+        for (int i = 0; i < supplyList.size(); i++) {
+            if (ui->comboBox_3->currentText() == supplyList[i].getName()) {
+                supplyType = supplyList[i].getId();
+            }
         }
-    }
 
-    //Get the quantity entered
-    quantity = ui->spinBox->value();
-    date = QDate::currentDate().toString("yyyy-MM-dd");
+        //Get the quantity entered
+        quantity = ui->spinBox->value();
+        date = QDate::currentDate().toString("yyyy-MM-dd");
 
-    //qDebug() << quantity;
+        //qDebug() << quantity;
 
-    //Save Shipment
-    //Required inputs: Region Id for the supply, the supply type and the quantity
-    //DOES NOT WORK
-    //Required inputs: source region id number , the destination region id number, the date of creation ("YYYY-MM-DD") and Quantity requested
-    //Optional inputs: notes (this can be empty string)
-    //(int srcRegion, int destRegion, QString createdDate, int supplyType, int quantityRequested, QString notes)
-    DataHandler *dh = new DataHandler;
-    dh->saveShipment(srcRegionId, destRegionId, date, supplyType, quantity, "");
+        //Save Shipment
+        //Required inputs: Region Id for the supply, the supply type and the quantity
+        //DOES NOT WORK
+        //Required inputs: source region id number , the destination region id number, the date of creation ("YYYY-MM-DD") and Quantity requested
+        //Optional inputs: notes (this can be empty string)
+        //(int srcRegion, int destRegion, QString createdDate, int supplyType, int quantityRequested, QString notes)
+        DataHandler *dh = new DataHandler;
+        dh->saveShipment(srcRegionId, destRegionId, date, supplyType, quantity, "");
 
-    /*
+        /*
     int srcQuantity;
     int destQuantity;
     bool destUpdated = false;
@@ -251,23 +251,23 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
     }
     */
 
-    delete dh;
+        delete dh;
 
 
 
-    //Use a confirmation popup dialog
-    msgBox.setText("Shipment has been created.");
-    msgBox.exec();
+        //Use a confirmation popup dialog
+        msgBox.setText("Shipment has been created.");
+        msgBox.exec();
 
-    if (cameFrom) {
-        //open the management window again
-        ManageTheShipmentsWindow *managementWindow = new ManageTheShipmentsWindow;
-        managementWindow->show();
-        managementWindow->isModal();
-    }
+        if (cameFrom) {
+            //open the management window again
+            ManageTheShipmentsWindow *managementWindow = new ManageTheShipmentsWindow;
+            managementWindow->show();
+            managementWindow->isModal();
+        }
 
-    //close the window
-    CreateShipmentsWindow::close();
+        //close the window
+        CreateShipmentsWindow::close();
     }
 }
 

@@ -3,8 +3,8 @@
 #include "viewthesupplieswindow.h"
 
 updateinventory::updateinventory(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::updateinventory)
+        QDialog(parent),
+        ui(new Ui::updateinventory)
 {
     ui->setupUi(this);
 }
@@ -18,31 +18,31 @@ void updateinventory::updateInventory(int id) {
 
     dh = new DataHandler();
     if (dh->isConnected()) {
-    QList<Inventory> inventoryList = dh->getInventory();
-    QList<Region1> regionList = dh->getRegions();
-    QList<SupplyType> supplyList = dh->getSupplyTypes();
+        QList<Inventory> inventoryList = dh->getInventory();
+        QList<Region1> regionList = dh->getRegions();
+        QList<SupplyType> supplyList = dh->getSupplyTypes();
 
-    for (int i = 0; i < inventoryList.size(); i++) {
-        if (inventoryList[i].getId() == id) {
-            for (int j = 0; j < regionList.size(); j++) {
-                if (inventoryList[i].getRegionId() == regionList[j].getId()) {
-                    regionName = regionList[j].getName();
+        for (int i = 0; i < inventoryList.size(); i++) {
+            if (inventoryList[i].getId() == id) {
+                for (int j = 0; j < regionList.size(); j++) {
+                    if (inventoryList[i].getRegionId() == regionList[j].getId()) {
+                        regionName = regionList[j].getName();
+                    }
                 }
-            }
-            for (int k = 0; k < supplyList.size(); k++) {
-                if (inventoryList[i].getSupplyType() == supplyList[k].getId()) {
-                    supplyType = supplyList[k].getName();
+                for (int k = 0; k < supplyList.size(); k++) {
+                    if (inventoryList[i].getSupplyType() == supplyList[k].getId()) {
+                        supplyType = supplyList[k].getName();
+                    }
                 }
-            }
-            quantity = inventoryList[i].getQuantity();
+                quantity = inventoryList[i].getQuantity();
 
+            }
         }
-    }
 
-    ui->label_2->setText(supplyType);
-    ui->label_7->setText(regionName);
-    ui->spinBox->setValue(quantity);
-}
+        ui->label_2->setText(supplyType);
+        ui->label_7->setText(regionName);
+        ui->spinBox->setValue(quantity);
+    }
 }
 
 void updateinventory::UpdateInventorySubmitButtonHandler() {

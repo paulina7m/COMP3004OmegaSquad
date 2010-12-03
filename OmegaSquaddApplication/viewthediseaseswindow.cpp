@@ -5,69 +5,69 @@
 #include "adddiseaseswindow.h"
 
 ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ViewTheDiseasesWindow)
+        QDialog(parent),
+        ui(new Ui::ViewTheDiseasesWindow)
 {
     ui->setupUi(this);
 
     //This calls the database, doesn't work yet
     DataHandler *dh = new DataHandler();
     if (dh->isConnected()) {
-    //Get a list of case reports
-    QList<CaseReport> caseList = dh->getCaseReports();
-    QList<Region1> regionList = dh->getRegions();
-    QList<DiseaseType> diseaseList = dh->getDiseaseTypes();
-    QString regionName;
-    QString diseaseType;
+        //Get a list of case reports
+        QList<CaseReport> caseList = dh->getCaseReports();
+        QList<Region1> regionList = dh->getRegions();
+        QList<DiseaseType> diseaseList = dh->getDiseaseTypes();
+        QString regionName;
+        QString diseaseType;
 
-    //Map the edit buttons to the case id number
-    QSignalMapper *mapper = new QSignalMapper();
+        //Map the edit buttons to the case id number
+        QSignalMapper *mapper = new QSignalMapper();
 
-    //CHECK THIS
-    //Set the number rows and columns of the table
-    ui->tableWidget->setRowCount(caseList.size());
-    ui->tableWidget->setColumnCount(5);
+        //CHECK THIS
+        //Set the number rows and columns of the table
+        ui->tableWidget->setRowCount(caseList.size());
+        ui->tableWidget->setColumnCount(5);
 
-    for (int i = 0; i < caseList.size(); i++) {
-        int loc = caseList[i].getId();
-        for (int j = 0; j < regionList.size(); j++) {
-            if (caseList[i].getRegionId() == regionList[j].getId()) {
-                regionName = regionList[j].getName();
+        for (int i = 0; i < caseList.size(); i++) {
+            int loc = caseList[i].getId();
+            for (int j = 0; j < regionList.size(); j++) {
+                if (caseList[i].getRegionId() == regionList[j].getId()) {
+                    regionName = regionList[j].getName();
+                }
             }
-        }
-        for (int k = 0; k < diseaseList.size(); k++) {
-            if (caseList[i].getDiseaseType() == diseaseList[k].getId()) {
-                diseaseType = diseaseList[k].getName();
+            for (int k = 0; k < diseaseList.size(); k++) {
+                if (caseList[i].getDiseaseType() == diseaseList[k].getId()) {
+                    diseaseType = diseaseList[k].getName();
+                }
             }
+            //Edit buttons for each case
+            QPushButton *editButton = new QPushButton("Edit");
+            editButton->setStyleSheet("QPushButton {border-color: black; padding: 0px; width: 3em; height: 3em; }");
+
+            //Slot for when an edit button is pressed
+            connect(editButton, SIGNAL(clicked()), mapper, SLOT(map()));
+            mapper->setMapping(editButton, loc);
+
+            //Fill the table
+            ui->tableWidget->setItem(i, 0, date = new QTableWidgetItem(caseList[i].getDateOfReport()));
+            date->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+            ui->tableWidget->setItem(i, 1, region = new QTableWidgetItem(regionName));
+            region->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+            ui->tableWidget->setItem(i, 2, type = new QTableWidgetItem(diseaseType));
+            type->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+            ui->tableWidget->setItem(i, 3, quantity = new QTableWidgetItem());
+            quantity->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+            quantity->setData(Qt::DisplayRole, caseList[i].getQuantity());
+            //Edit button
+            ui->tableWidget->setCellWidget(i, 4, editButton);
         }
-        //Edit buttons for each case
-        QPushButton *editButton = new QPushButton("Edit");
-        editButton->setStyleSheet("QPushButton {border-color: black; padding: 0px; width: 3em; height: 3em; }");
+        ui->tableWidget->setSortingEnabled(true);
+        ui->tableWidget->resizeRowsToContents();
 
-        //Slot for when an edit button is pressed
-        connect(editButton, SIGNAL(clicked()), mapper, SLOT(map()));
-        mapper->setMapping(editButton, loc);
+        //If button clicked, int is the case report id to edit
+        connect(mapper, SIGNAL(mapped(int)), this, SLOT(editCase(int)));
 
-        //Fill the table
-        ui->tableWidget->setItem(i, 0, date = new QTableWidgetItem(caseList[i].getDateOfReport()));
-        date->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 1, region = new QTableWidgetItem(regionName));
-        region->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 2, type = new QTableWidgetItem(diseaseType));
-        type->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 3, quantity = new QTableWidgetItem());
-        quantity->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        quantity->setData(Qt::DisplayRole, caseList[i].getQuantity());
-        //Edit button
-        ui->tableWidget->setCellWidget(i, 4, editButton);
-    }
-    ui->tableWidget->setSortingEnabled(true);
-    ui->tableWidget->resizeRowsToContents();
-
-    //If button clicked, int is the case report id to edit
-    connect(mapper, SIGNAL(mapped(int)), this, SLOT(editCase(int)));
-
-    /*
+        /*
     QSignalMapper *mapper = new QSignalMapper();
     //Set the number rows and columns of the table
     ui->tableWidget->setRowCount(4);
@@ -90,8 +90,8 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
 
     connect(mapper, SIGNAL(mapped(int)), this, SLOT(editCase(int)));
     */
-}
-delete dh;
+    }
+    delete dh;
 }
 
 
