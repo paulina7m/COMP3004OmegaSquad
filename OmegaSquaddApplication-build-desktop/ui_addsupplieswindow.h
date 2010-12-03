@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addsupplieswindow.ui'
 **
-** Created: Thu Dec 2 13:22:55 2010
+** Created: Fri Dec 3 17:28:59 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -31,11 +31,11 @@ class Ui_AddSuppliesWindow
 {
 public:
     QLabel *label;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QGridLayout *gridLayout;
     QGroupBox *groupBox;
     QLabel *label_6;
@@ -57,29 +57,29 @@ public:
         QFont font;
         font.setPointSize(20);
         label->setFont(font);
-        widget = new QWidget(AddSuppliesWindow);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(20, 380, 170, 32));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(AddSuppliesWindow);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(20, 380, 170, 32));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         horizontalLayout->addWidget(pushButton);
 
-        pushButton_2 = new QPushButton(widget);
+        pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
         horizontalLayout->addWidget(pushButton_2);
 
-        widget1 = new QWidget(AddSuppliesWindow);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(20, 50, 261, 321));
-        gridLayout = new QGridLayout(widget1);
+        layoutWidget1 = new QWidget(AddSuppliesWindow);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(20, 50, 261, 321));
+        gridLayout = new QGridLayout(layoutWidget1);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        groupBox = new QGroupBox(widget1);
+        groupBox = new QGroupBox(layoutWidget1);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         label_6 = new QLabel(groupBox);
         label_6->setObjectName(QString::fromUtf8("label_6"));
@@ -91,7 +91,7 @@ public:
 
         gridLayout->addWidget(groupBox, 0, 0, 1, 1);
 
-        groupBox_2 = new QGroupBox(widget1);
+        groupBox_2 = new QGroupBox(layoutWidget1);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         comboBox = new QComboBox(groupBox_2);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
@@ -99,7 +99,7 @@ public:
 
         gridLayout->addWidget(groupBox_2, 1, 0, 1, 1);
 
-        groupBox_3 = new QGroupBox(widget1);
+        groupBox_3 = new QGroupBox(layoutWidget1);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         comboBox_2 = new QComboBox(groupBox_3);
         comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
@@ -107,7 +107,7 @@ public:
 
         gridLayout->addWidget(groupBox_3, 2, 0, 1, 1);
 
-        groupBox_4 = new QGroupBox(widget1);
+        groupBox_4 = new QGroupBox(layoutWidget1);
         groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
         spinBox = new QSpinBox(groupBox_4);
         spinBox->setObjectName(QString::fromUtf8("spinBox"));
@@ -126,7 +126,7 @@ public:
 
     void retranslateUi(QDialog *AddSuppliesWindow)
     {
-        AddSuppliesWindow->setWindowTitle(QApplication::translate("AddSuppliesWindow", "Dialog", 0, QApplication::UnicodeUTF8));
+        AddSuppliesWindow->setWindowTitle(QApplication::translate("AddSuppliesWindow", "Supply Data Entry Form", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("AddSuppliesWindow", "Supply Data Entry Form", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("AddSuppliesWindow", "Submit", 0, QApplication::UnicodeUTF8));
         pushButton_2->setText(QApplication::translate("AddSuppliesWindow", "Cancel", 0, QApplication::UnicodeUTF8));

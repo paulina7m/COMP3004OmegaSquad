@@ -43,7 +43,6 @@ public slots:
 
 
 private slots:
-    void setCenter(qreal latitude, qreal longitude);
     void addJavaScriptObject();
 
 };

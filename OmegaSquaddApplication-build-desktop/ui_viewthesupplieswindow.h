@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'viewthesupplieswindow.ui'
 **
-** Created: Thu Dec 2 13:22:56 2010
+** Created: Fri Dec 3 17:28:59 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -29,7 +29,7 @@ class Ui_ViewTheSuppliesWindow
 public:
     QLabel *label;
     QTableWidget *tableWidget;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
@@ -38,7 +38,7 @@ public:
     {
         if (ViewTheSuppliesWindow->objectName().isEmpty())
             ViewTheSuppliesWindow->setObjectName(QString::fromUtf8("ViewTheSuppliesWindow"));
-        ViewTheSuppliesWindow->resize(579, 375);
+        ViewTheSuppliesWindow->resize(597, 375);
         label = new QLabel(ViewTheSuppliesWindow);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(50, 10, 201, 71));
@@ -57,21 +57,21 @@ public:
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        tableWidget->setGeometry(QRect(50, 80, 471, 192));
+        tableWidget->setGeometry(QRect(50, 80, 491, 192));
         tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         tableWidget->horizontalHeader()->setDefaultSectionSize(112);
-        widget = new QWidget(ViewTheSuppliesWindow);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(50, 300, 272, 32));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(ViewTheSuppliesWindow);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(50, 300, 272, 32));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         horizontalLayout->addWidget(pushButton);
 
-        pushButton_2 = new QPushButton(widget);
+        pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -86,7 +86,7 @@ public:
 
     void retranslateUi(QDialog *ViewTheSuppliesWindow)
     {
-        ViewTheSuppliesWindow->setWindowTitle(QApplication::translate("ViewTheSuppliesWindow", "View Supplies", 0, QApplication::UnicodeUTF8));
+        ViewTheSuppliesWindow->setWindowTitle(QApplication::translate("ViewTheSuppliesWindow", "View Inventory", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("ViewTheSuppliesWindow", "Supplies Data", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("ViewTheSuppliesWindow", "City", 0, QApplication::UnicodeUTF8));

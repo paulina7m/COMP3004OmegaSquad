@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'managetheshipmentswindow.ui'
 **
-** Created: Fri Dec 3 01:49:46 2010
+** Created: Fri Dec 3 17:28:59 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -34,7 +34,7 @@ public:
     {
         if (ManageTheShipmentsWindow->objectName().isEmpty())
             ManageTheShipmentsWindow->setObjectName(QString::fromUtf8("ManageTheShipmentsWindow"));
-        ManageTheShipmentsWindow->resize(1309, 499);
+        ManageTheShipmentsWindow->resize(1341, 499);
         QFont font;
         font.setPointSize(10);
         ManageTheShipmentsWindow->setFont(font);
@@ -70,7 +70,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(10, __qtablewidgetitem10);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        tableWidget->setGeometry(QRect(30, 80, 1251, 351));
+        tableWidget->setGeometry(QRect(30, 80, 1261, 351));
         tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         tableWidget->horizontalHeader()->setDefaultSectionSize(112);
         pushButton = new QPushButton(ManageTheShipmentsWindow);
@@ -100,7 +100,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QApplication::translate("ManageTheShipmentsWindow", "Type", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("ManageTheShipmentsWindow", "Quantity Requsted", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem4->setText(QApplication::translate("ManageTheShipmentsWindow", "Quantity Requested", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
         ___qtablewidgetitem5->setText(QApplication::translate("ManageTheShipmentsWindow", "Quantity Shipped", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);

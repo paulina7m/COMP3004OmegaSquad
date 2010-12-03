@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'adddiseaseswindow.ui'
 **
-** Created: Fri Dec 3 01:49:46 2010
+** Created: Fri Dec 3 17:28:59 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -31,7 +31,7 @@ class Ui_AddDiseasesWindow
 {
 public:
     QLabel *label;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QGroupBox *groupBox_4;
     QLabel *label_6;
@@ -41,7 +41,7 @@ public:
     QComboBox *comboBox_2;
     QGroupBox *groupBox_3;
     QSpinBox *spinBox;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
@@ -57,13 +57,13 @@ public:
         QFont font;
         font.setPointSize(20);
         label->setFont(font);
-        widget = new QWidget(AddDiseasesWindow);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(40, 70, 291, 331));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(AddDiseasesWindow);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(40, 70, 291, 331));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        groupBox_4 = new QGroupBox(widget);
+        groupBox_4 = new QGroupBox(layoutWidget);
         groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
         label_6 = new QLabel(groupBox_4);
         label_6->setObjectName(QString::fromUtf8("label_6"));
@@ -75,7 +75,7 @@ public:
 
         verticalLayout->addWidget(groupBox_4);
 
-        groupBox = new QGroupBox(widget);
+        groupBox = new QGroupBox(layoutWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         comboBox = new QComboBox(groupBox);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
@@ -83,7 +83,7 @@ public:
 
         verticalLayout->addWidget(groupBox);
 
-        groupBox_2 = new QGroupBox(widget);
+        groupBox_2 = new QGroupBox(layoutWidget);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         comboBox_2 = new QComboBox(groupBox_2);
         comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
@@ -91,7 +91,7 @@ public:
 
         verticalLayout->addWidget(groupBox_2);
 
-        groupBox_3 = new QGroupBox(widget);
+        groupBox_3 = new QGroupBox(layoutWidget);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         spinBox = new QSpinBox(groupBox_3);
         spinBox->setObjectName(QString::fromUtf8("spinBox"));
@@ -100,18 +100,18 @@ public:
 
         verticalLayout->addWidget(groupBox_3);
 
-        widget1 = new QWidget(AddDiseasesWindow);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(41, 420, 170, 32));
-        horizontalLayout = new QHBoxLayout(widget1);
+        layoutWidget1 = new QWidget(AddDiseasesWindow);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(41, 420, 170, 32));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(widget1);
+        pushButton = new QPushButton(layoutWidget1);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         horizontalLayout->addWidget(pushButton);
 
-        pushButton_2 = new QPushButton(widget1);
+        pushButton_2 = new QPushButton(layoutWidget1);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -126,7 +126,7 @@ public:
 
     void retranslateUi(QDialog *AddDiseasesWindow)
     {
-        AddDiseasesWindow->setWindowTitle(QApplication::translate("AddDiseasesWindow", "Add Disease", 0, QApplication::UnicodeUTF8));
+        AddDiseasesWindow->setWindowTitle(QApplication::translate("AddDiseasesWindow", "Epidemics Data Entry Form", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("AddDiseasesWindow", "Epidemics Data Entry Form", 0, QApplication::UnicodeUTF8));
         groupBox_4->setTitle(QApplication::translate("AddDiseasesWindow", "Date Of Entry", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("AddDiseasesWindow", "TextLabel", 0, QApplication::UnicodeUTF8));

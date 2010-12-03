@@ -33,16 +33,6 @@ GoogleMap::GoogleMap(QWidget *parent, QMainWindow *pwindow): QWebView(parent){
 }
 
 
-void GoogleMap::setCenter(qreal latitude, qreal longitude) {
-    QString code = "map.set_center(new google.maps.LatLng(%1, %2));";
-    QWebFrame *frame = page()->mainFrame();
-    frame->evaluateJavaScript(code.arg(latitude).arg(longitude));
-    frame = mapWebPage->mainFrame();
-    frame->evaluateJavaScript(code.arg(latitude).arg(longitude));
-}
-
-
-
 void GoogleMap::processMapAlert(QString name, QString id){
     QString thename = name;
     if(thename.isEmpty()){

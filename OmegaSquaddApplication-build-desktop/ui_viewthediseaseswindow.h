@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'viewthediseaseswindow.ui'
 **
-** Created: Thu Dec 2 13:22:55 2010
+** Created: Fri Dec 3 17:28:59 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -29,7 +29,7 @@ class Ui_ViewTheDiseasesWindow
 public:
     QLabel *label;
     QTableWidget *tableWidget;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
@@ -62,18 +62,18 @@ public:
         tableWidget->setGeometry(QRect(40, 80, 581, 192));
         tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         tableWidget->horizontalHeader()->setDefaultSectionSize(112);
-        widget = new QWidget(ViewTheDiseasesWindow);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(40, 300, 267, 32));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(ViewTheDiseasesWindow);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(40, 300, 267, 32));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         horizontalLayout->addWidget(pushButton);
 
-        pushButton_2 = new QPushButton(widget);
+        pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -88,7 +88,7 @@ public:
 
     void retranslateUi(QDialog *ViewTheDiseasesWindow)
     {
-        ViewTheDiseasesWindow->setWindowTitle(QApplication::translate("ViewTheDiseasesWindow", "View Diseases", 0, QApplication::UnicodeUTF8));
+        ViewTheDiseasesWindow->setWindowTitle(QApplication::translate("ViewTheDiseasesWindow", "View Epidemic Cases", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("ViewTheDiseasesWindow", "Epidemic Cases", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("ViewTheDiseasesWindow", "Date", 0, QApplication::UnicodeUTF8));
