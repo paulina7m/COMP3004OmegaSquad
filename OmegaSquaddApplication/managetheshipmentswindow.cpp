@@ -177,7 +177,7 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
 
                 connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
                 //row, id, shippingstate for Shipment
-                signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(shipmentId).arg(shipmentDetailId).arg(quantityShipped).arg(srcRegionId).arg(destRegionId).arg(supplyId));
+                signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(shipmentId).arg(shipmentDetailId).arg(quantityRequested).arg(srcRegionId).arg(destRegionId).arg(supplyId));
             }
         }
         ui->tableWidget->setSortingEnabled(true);
@@ -349,7 +349,8 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
                 }
                 else {
                     int updateQuantity = srcInventoryList[i].getQuantity() - shipmentQuantity;
-                    shipmentQuantity = updateQuantity;
+                    //shipmentQuantity = updateQuantity;
+                    qDebug() << shipmentQuantity;
                     //Substract the updated quantity from the source regions inventory
                     dh->updateInventory(srcInventoryList[i].getId(), updateQuantity);
                     updateSrcInventory = true;
@@ -381,6 +382,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
             if (updateSrcInventory == false) {
                 //qDebug() << "error, this source inventory should exist";
             }
+            qDebug() << shipmentQuantity;
             QTableWidgetItem *quant;
             ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
             quant->setData(Qt::DisplayRole, shipmentQuantity);

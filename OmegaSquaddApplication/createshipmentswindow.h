@@ -29,6 +29,7 @@ private:
     QList<SupplyType> supplyList;
     QList<Region1> regionList;
     QList<Inventory> inventoryList;
+    QStringList regionComboList;
     SupplyType *aSupply;
     SupplyType *bSupply;
     Region1 *aRegion1;

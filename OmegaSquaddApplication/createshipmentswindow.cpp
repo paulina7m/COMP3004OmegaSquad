@@ -14,11 +14,13 @@ CreateShipmentsWindow::CreateShipmentsWindow(QWidget *parent) :
     //srcRegion, destRegion
     QString supplyAmount = "";
     QString supplyQuantity;
+    regionComboList = fetchListOfRegions();
     bool quantityFound = false;
     DataHandler *dh = new DataHandler();
     if (dh->isConnected()) {
-        ui->comboBox->addItems(fetchListOfRegions());
-        ui->comboBox_2->addItems(fetchListOfRegions());
+        ui->comboBox->addItems(regionComboList);
+        ui->comboBox_2->addItems(regionComboList);
+        ui->comboBox_2->setCurrentIndex(1);
         ui->comboBox_3->addItems(fetchListOfSupplies());
         inventoryList = dh->getInventory();
 
@@ -173,57 +175,63 @@ void CreateShipmentsWindow::fromManager(int flag) {
 }
 
 void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
-    //Save the srcRegion, destRegion, shipmentState, createdDate, supplytype, quantityRequested
-    if (ui->spinBox->value() == 0)
-    {
-        msgBox.setText("Quantity must be greater than 0.");
+    //If the source and destination regions are the same
+    if(ui->comboBox->currentText() == ui->comboBox_2->currentText()) {
+        msgBox.setText("Source and destination region cannot be the same.");
         msgBox.exec();
     }
     else {
-
-        int srcRegionId;
-        int destRegionId;
-        int supplyType;
-        QString date;
-        int quantity;
-
-
-        //Get the region ID
-        for (int i = 0; i < regionList.size(); i++) {
-            if (ui->comboBox->currentText() == regionList[i].getName()) {
-                srcRegionId = regionList[i].getId();
-            }
+        //Save the srcRegion, destRegion, shipmentState, createdDate, supplytype, quantityRequested
+        if (ui->spinBox->value() == 0)
+        {
+            msgBox.setText("Quantity must be greater than 0.");
+            msgBox.exec();
         }
+        else {
 
-        for (int i = 0; i < regionList.size(); i++) {
-            if (ui->comboBox_2->currentText() == regionList[i].getName()) {
-                destRegionId = regionList[i].getId();
+            int srcRegionId;
+            int destRegionId;
+            int supplyType;
+            QString date;
+            int quantity;
+
+
+            //Get the region ID
+            for (int i = 0; i < regionList.size(); i++) {
+                if (ui->comboBox->currentText() == regionList[i].getName()) {
+                    srcRegionId = regionList[i].getId();
+                }
             }
-        }
 
-        //Get the supplyType ID
-        for (int i = 0; i < supplyList.size(); i++) {
-            if (ui->comboBox_3->currentText() == supplyList[i].getName()) {
-                supplyType = supplyList[i].getId();
+            for (int i = 0; i < regionList.size(); i++) {
+                if (ui->comboBox_2->currentText() == regionList[i].getName()) {
+                    destRegionId = regionList[i].getId();
+                }
             }
-        }
 
-        //Get the quantity entered
-        quantity = ui->spinBox->value();
-        date = QDate::currentDate().toString("yyyy-MM-dd");
+            //Get the supplyType ID
+            for (int i = 0; i < supplyList.size(); i++) {
+                if (ui->comboBox_3->currentText() == supplyList[i].getName()) {
+                    supplyType = supplyList[i].getId();
+                }
+            }
 
-        //qDebug() << quantity;
+            //Get the quantity entered
+            quantity = ui->spinBox->value();
+            date = QDate::currentDate().toString("yyyy-MM-dd");
 
-        //Save Shipment
-        //Required inputs: Region Id for the supply, the supply type and the quantity
-        //DOES NOT WORK
-        //Required inputs: source region id number , the destination region id number, the date of creation ("YYYY-MM-DD") and Quantity requested
-        //Optional inputs: notes (this can be empty string)
-        //(int srcRegion, int destRegion, QString createdDate, int supplyType, int quantityRequested, QString notes)
-        DataHandler *dh = new DataHandler;
-        dh->saveShipment(srcRegionId, destRegionId, date, supplyType, quantity, "");
+            //qDebug() << quantity;
 
-        /*
+            //Save Shipment
+            //Required inputs: Region Id for the supply, the supply type and the quantity
+            //DOES NOT WORK
+            //Required inputs: source region id number , the destination region id number, the date of creation ("YYYY-MM-DD") and Quantity requested
+            //Optional inputs: notes (this can be empty string)
+            //(int srcRegion, int destRegion, QString createdDate, int supplyType, int quantityRequested, QString notes)
+            DataHandler *dh = new DataHandler;
+            dh->saveShipment(srcRegionId, destRegionId, date, supplyType, quantity, "");
+
+            /*
     int srcQuantity;
     int destQuantity;
     bool destUpdated = false;
@@ -251,23 +259,24 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
     }
     */
 
-        delete dh;
+            delete dh;
 
 
 
-        //Use a confirmation popup dialog
-        msgBox.setText("Shipment has been created.");
-        msgBox.exec();
+            //Use a confirmation popup dialog
+            msgBox.setText("Shipment has been created.");
+            msgBox.exec();
 
-        if (cameFrom) {
-            //open the management window again
-            ManageTheShipmentsWindow *managementWindow = new ManageTheShipmentsWindow;
-            managementWindow->show();
-            managementWindow->isModal();
+            if (cameFrom) {
+                //open the management window again
+                ManageTheShipmentsWindow *managementWindow = new ManageTheShipmentsWindow;
+                managementWindow->show();
+                managementWindow->isModal();
+            }
+
+            //close the window
+            CreateShipmentsWindow::close();
         }
-
-        //close the window
-        CreateShipmentsWindow::close();
     }
 }
 
