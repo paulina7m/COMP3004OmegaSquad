@@ -28,7 +28,7 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
     //CHECK THIS
     //Set the number rows and columns of the table
     ui->tableWidget->setRowCount(shipmentList.size());
-    ui->tableWidget->setColumnCount(10);
+    ui->tableWidget->setColumnCount(11);
     QString srcRegionName;
     int srcRegionId;
     QString destRegionName;
@@ -42,7 +42,8 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
     int shipmentId;
     int shipmentDetailId;
     QString statusStr;
-    int quantity;
+    int quantityShipped;
+    int quantityRequested;
 
     //qDebug() << "before looping";
     for (int i = 0; i < shipmentList.size(); i++) {
@@ -58,12 +59,8 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
                         supplyId = supplyList[k].getId();
                     }
                 }
-                if (shipmentDetailList[l].getQuantityShipped() > 0) {
-                    quantity = shipmentDetailList[l].getQuantityShipped();
-                }
-                else {
-                    quantity = shipmentDetailList[l].getQuantityRequested();
-                }
+                quantityShipped = shipmentDetailList[l].getQuantityShipped();
+                quantityRequested = shipmentDetailList[l].getQuantityRequested();
             }
         }
 
@@ -123,26 +120,29 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
         destText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(i, 3, typeText = new QTableWidgetItem(supplyType));
         typeText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 4, quantityText = new QTableWidgetItem());
-        quantityText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        quantityText->setData(Qt::DisplayRole, quantity);
-        ui->tableWidget->setItem(i, 5, createdText = new QTableWidgetItem(dateCreated));
+        ui->tableWidget->setItem(i, 4, quantRequested = new QTableWidgetItem());
+        quantRequested->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        quantRequested->setData(Qt::DisplayRole, quantityRequested);
+        ui->tableWidget->setItem(i, 5, quantShipped = new QTableWidgetItem());
+        quantShipped->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        quantShipped->setData(Qt::DisplayRole, quantityShipped);
+        ui->tableWidget->setItem(i, 6, createdText = new QTableWidgetItem(dateCreated));
         createdText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 6, shippedText = new QTableWidgetItem(dateShipped));
+        ui->tableWidget->setItem(i, 7, shippedText = new QTableWidgetItem(dateShipped));
         shippedText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 7, receivedText = new QTableWidgetItem(dateReceived));
+        ui->tableWidget->setItem(i, 8, receivedText = new QTableWidgetItem(dateReceived));
         receivedText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        ui->tableWidget->setItem(i, 8, cancelledText = new QTableWidgetItem(dateCancelled));
+        ui->tableWidget->setItem(i, 9, cancelledText = new QTableWidgetItem(dateCancelled));
         cancelledText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
         //If received
         if (status == 2) {
-            ui->tableWidget->setItem(i, 9, statusText = new QTableWidgetItem("Received"));
+            ui->tableWidget->setItem(i, 10, statusText = new QTableWidgetItem("Received"));
             statusText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         }
         //If cancelled
         else if (status == 3) {
-            ui->tableWidget->setItem(i, 9, statusText = new QTableWidgetItem("Cancelled"));
+            ui->tableWidget->setItem(i, 10, statusText = new QTableWidgetItem("Cancelled"));
             statusText->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         }
         //If Shipped, cannot be cancelled or created, remove from list
@@ -154,13 +154,13 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
 
             Box->addItems(shipStateList);
 
-            ui->tableWidget->setCellWidget(i, 9, Box);
+            ui->tableWidget->setCellWidget(i, 10, Box);
             Box->setCurrentIndex(0);
 
 
             connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
             //row, id, shippingstate for Shipment
-            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(shipmentId).arg(shipmentDetailId).arg(quantity).arg(srcRegionId).arg(destRegionId).arg(supplyId));
+            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(shipmentId).arg(shipmentDetailId).arg(quantityShipped).arg(srcRegionId).arg(destRegionId).arg(supplyId));
         }
         //otherwise have a dropdown list of options
         else {
@@ -172,12 +172,12 @@ ManageTheShipmentsWindow::ManageTheShipmentsWindow(QWidget *parent) :
 
             Box->addItems(shipStateList);
 
-            ui->tableWidget->setCellWidget(i, 9, Box);
+            ui->tableWidget->setCellWidget(i, 10, Box);
             Box->setCurrentIndex(status);
 
             connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
             //row, id, shippingstate for Shipment
-            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(shipmentId).arg(shipmentDetailId).arg(quantity).arg(srcRegionId).arg(destRegionId).arg(supplyId));
+            signalMapper->setMapping(Box, QString("%1-%2-%3-%4-%5-%6").arg(shipmentId).arg(shipmentDetailId).arg(quantityShipped).arg(srcRegionId).arg(destRegionId).arg(supplyId));
         }
     }
     ui->tableWidget->setSortingEnabled(true);
@@ -207,7 +207,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
 
     QList<QTableWidgetItem*> widgetItems = ui->tableWidget->findItems(idStr.setNum(id), Qt::MatchExactly);
     int row = ui->tableWidget->row(widgetItems[0]);
-    QComboBox* Box = (QComboBox*)ui->tableWidget->cellWidget(row, 9);
+    QComboBox* Box = (QComboBox*)ui->tableWidget->cellWidget(row, 10);
     shipmentState = Box->currentText();
 
     /*
@@ -223,9 +223,12 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
 
     //Cancelled
     if (shipmentState == "Cancelled") {
-        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
-        ui->tableWidget->removeCellWidget(row, 9);
-        ui->tableWidget->setItem(row, 9, new QTableWidgetItem("Cancelled"));
+        QTableWidgetItem *quant;
+        ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
+        quant->setData(Qt::DisplayRole, 0);
+        ui->tableWidget->setItem(row, 9, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        ui->tableWidget->removeCellWidget(row, 10);
+        ui->tableWidget->setItem(row, 10, new QTableWidgetItem("Cancelled"));
 
         DataHandler *dh = new DataHandler();
         //Update the Shipment in the database
@@ -246,9 +249,9 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
     }
     //Received
     else if (shipmentState == "Received") {
-        ui->tableWidget->setItem(row, 7, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
-        ui->tableWidget->removeCellWidget(row, 9);
-        ui->tableWidget->setItem(row, 9, new QTableWidgetItem("Received"));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        ui->tableWidget->removeCellWidget(row, 10);
+        ui->tableWidget->setItem(row, 10, new QTableWidgetItem("Received"));
 
         DataHandler *dh = new DataHandler();
         //Update the Shipment in the database
@@ -275,6 +278,11 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
                 int updateQuantity = inventoryList[i].getQuantity() + shipmentQuantity;
                 //Update Inventory with the new quantity
                 dh->updateInventory(inventoryList[i].getId(), updateQuantity);
+
+                QTableWidgetItem *quant;
+                ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
+                quant->setData(Qt::DisplayRole, updateQuantity);
+
                 updateDestInventory = true;
                 break;
             }
@@ -297,8 +305,8 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
     }
     //Shipped
     else if (shipmentState == "Shipped") {
-        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
-        ui->tableWidget->removeCellWidget(row, 9);
+        ui->tableWidget->setItem(row, 7, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        ui->tableWidget->removeCellWidget(row, 10);
         QComboBox *Box = new QComboBox(this);
         shipStateList.clear();
         shipStateList.push_front("Received");
@@ -306,7 +314,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
 
         Box->addItems(shipStateList);
 
-        ui->tableWidget->setCellWidget(row, 9, Box);
+        ui->tableWidget->setCellWidget(row, 10, Box);
         Box->setCurrentIndex(0);
 
         DataHandler *dh = new DataHandler();
@@ -335,7 +343,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
                     QString quantStr;
                     //Substract the updated quantity from the source regions inventory
                     dh->updateInventory(srcInventoryList[i].getId(), 0);
-                    ui->tableWidget->setItem(row, 4, new QTableWidgetItem(quantStr.setNum(shipmentQuantity)));
+                    ui->tableWidget->setItem(row, 5, new QTableWidgetItem(quantStr.setNum(shipmentQuantity)));
                     updateSrcInventory = true;
                     break;
                 }
@@ -351,9 +359,12 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
         }
 
         if (cancelled) {
-            ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
-            ui->tableWidget->removeCellWidget(row, 9);
-            ui->tableWidget->setItem(row, 9, new QTableWidgetItem("Cancelled"));
+            ui->tableWidget->setItem(row, 9, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+            ui->tableWidget->removeCellWidget(row, 10);
+            ui->tableWidget->setItem(row, 10, new QTableWidgetItem("Cancelled"));
+            QTableWidgetItem *quant;
+            ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
+            quant->setData(Qt::DisplayRole, 0);
 
             connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
 
@@ -370,6 +381,9 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
             if (updateSrcInventory == false) {
                 //qDebug() << "error, this source inventory should exist";
             }
+            QTableWidgetItem *quant;
+            ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
+            quant->setData(Qt::DisplayRole, shipmentQuantity);
 
             //Update the Shipment in the database
             //Update Shipments

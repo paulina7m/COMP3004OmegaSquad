@@ -32,7 +32,8 @@ private:
     QTableWidgetItem *sourceText;
     QTableWidgetItem *destText;
     QTableWidgetItem *typeText;
-    QTableWidgetItem *quantityText;
+    QTableWidgetItem *quantRequested;
+    QTableWidgetItem *quantShipped;
     QTableWidgetItem *createdText;
     QTableWidgetItem *shippedText;
     QTableWidgetItem *receivedText;
