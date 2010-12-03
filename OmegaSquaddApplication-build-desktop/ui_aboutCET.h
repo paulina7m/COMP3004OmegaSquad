@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aboutCET.ui'
 **
-** Created: Thu Dec 2 16:07:55 2010
+** Created: Fri Dec 3 01:52:29 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -34,7 +34,7 @@ public:
         AboutCETDialog->resize(400, 300);
         okButton = new QPushButton(AboutCETDialog);
         okButton->setObjectName(QString::fromUtf8("okButton"));
-        okButton->setGeometry(QRect(130, 260, 114, 32));
+        okButton->setGeometry(QRect(120, 260, 114, 32));
         textEdit = new QTextEdit(AboutCETDialog);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
         textEdit->setEnabled(false);

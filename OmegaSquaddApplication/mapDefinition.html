@@ -159,6 +159,8 @@
         	var marker1013;
         	var marker1014;
 
+            var oldMarkerArray = new Array();
+
 	
   function initialize() {
 	naviOptions = {
@@ -326,442 +328,442 @@ function setupMarkers(){
         //Territories
         	marker6201 = new google.maps.Marker({
 	        position: new google.maps.LatLng(66.23145747862573,-101.689453125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker6101 = new google.maps.Marker({
 	        position: new google.maps.LatLng(65.07213008560697,-124.1015625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker6001 = new google.maps.Marker({
 	        position: new google.maps.LatLng(63.724183392123315,-135.5712890625), 
-	        map: map
+	        map: map, visible:false
 	});
         //British Columbia
         	marker5951 = new google.maps.Marker({
 	        position: new google.maps.LatLng(57.70414723434193,-129.9462890625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5952 = new google.maps.Marker({
 	        position: new google.maps.LatLng(54.546579538405005,-124.013671875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5933 = new google.maps.Marker({
 	        position: new google.maps.LatLng(52.5897007687178,-126.2548828125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5943 = new google.maps.Marker({
 	        position: new google.maps.LatLng(51.20688339486559,-125.4638671875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5942 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.23912083246698,-124.98046875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5941 = new google.maps.Marker({
 	        position: new google.maps.LatLng(48.574789910928864,-124.1455078125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5922 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.439556958940855,-122.6513671875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5921 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.35375571830993,-121.6845703125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5914 = new google.maps.Marker({
 	        position: new google.maps.LatLng(51.31688050404585,-121.728515625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5913 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.5822260446217,-119.9267578125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5912 = new google.maps.Marker({
 	        position: new google.maps.LatLng(50.00773901463687,-117.5537109375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5911 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.837982453084834,-116.015625), 
-	        map: map
+	        map: map, visible:false
 	});
 
         	marker5923 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.13859653703879,-122.904052734375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5931 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.17452151806784,-123.101806640625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5932 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.26063518364422,-123.101806640625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker5953 = new google.maps.Marker({
 	        position: new google.maps.LatLng(56.559482483762245,-121.22314453125), 
-	        map: map
+	        map: map, visible:false
 	});
         //Alberta
 			marker4821 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.5822260446217, -113.466796875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4822 = new google.maps.Marker({
 	        position: new google.maps.LatLng(50.56928286558243,-111.005859375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4823 = new google.maps.Marker({
 	        position: new google.maps.LatLng(50.792047064406866,-114.43359375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4824 = new google.maps.Marker({
 	        position: new google.maps.LatLng(52.29504228453735,-113.5546875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4825 = new google.maps.Marker({
 	        position: new google.maps.LatLng(53.30462107510271,-111.8408203125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4826 = new google.maps.Marker({
 	        position: new google.maps.LatLng(53.54030739150019,-113.6865234375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4827 = new google.maps.Marker({
 	        position: new google.maps.LatLng(54.876606654108684,-113.642578125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4828 = new google.maps.Marker({
 	        position: new google.maps.LatLng(56.26776108757582,-117.24609375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4829 = new google.maps.Marker({
 	        position: new google.maps.LatLng(58.63121664342478,-113.642578125), 
-	        map: map
+	        map: map, visible:false
 	});
         //Sasketchewan
         	marker4701 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.468124067331644,-103.9306640625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4702 = new google.maps.Marker({
 	        position: new google.maps.LatLng(50.17689812200107,-105.9521484375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4703 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.89463439573421,-108.45703125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4704 = new google.maps.Marker({
 	        position: new google.maps.LatLng(50.792047064406866,-104.5458984375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4705 = new google.maps.Marker({
 	        position: new google.maps.LatLng(51.72702815704774,-102.65625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4706 = new google.maps.Marker({
 	        position: new google.maps.LatLng(52.1874047455997,-105.8203125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4707 = new google.maps.Marker({
 	        position: new google.maps.LatLng(51.80861475198521,-108.80859375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4708 = new google.maps.Marker({
 	        position: new google.maps.LatLng(53.330872983017066,-103.4912109375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4709 = new google.maps.Marker({
 	        position: new google.maps.LatLng(53.56641415275043,-106.5673828125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4710 = new google.maps.Marker({
 	        position: new google.maps.LatLng(53.64463782485651,-109.0283203125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4711 = new google.maps.Marker({
 	        position: new google.maps.LatLng(56.728621973140726,-104.2822265625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4712 = new google.maps.Marker({
 	        position: new google.maps.LatLng(56.80087831233043,-108.369140625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4713 = new google.maps.Marker({
 	        position: new google.maps.LatLng(59.512029386502704,-106.34765625), 
-	        map: map
+	        map: map, visible:false
 	});
         //Manitoba
         	marker4610 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.866316729538674,-97.1630859375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4615 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.809631563563094,-100.01953125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4620 = new google.maps.Marker({
 	        position: new google.maps.LatLng(51.72702815704774,-96.064453125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4625 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.210420445650286,-96.5478515625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4630 = new google.maps.Marker({
 	        position: new google.maps.LatLng(52.53627304145948,-97.9541015625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4640 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.49667452747044,-97.998046875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4645 = new google.maps.Marker({
 	        position: new google.maps.LatLng(50.45750402042058,-100.5908203125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4660 = new google.maps.Marker({
 	        position: new google.maps.LatLng(52.26815737376817,-100.4150390625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4670 = new google.maps.Marker({
 	        position: new google.maps.LatLng(54.265224078605655,-100.6787109375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4680 = new google.maps.Marker({
 	        position: new google.maps.LatLng(56.75272287205736,-96.2841796875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker4690 = new google.maps.Marker({
 	        position: new google.maps.LatLng(58.75110666755426,-94.119873046875), 
-	        map: map
+	        map: map, visible:false
 	});
         //Ontario
         	marker3501 = new google.maps.Marker({
 	        position: new google.maps.LatLng(42.5530802889558,-82.2216796875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3502 = new google.maps.Marker({
 	        position: new google.maps.LatLng(43.35713822211053,-81.3427734375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3503 = new google.maps.Marker({
 	        position: new google.maps.LatLng(43.67581809328341,-80.4638671875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3504 = new google.maps.Marker({
 	        position: new google.maps.LatLng(43.004647127794435,-79.98046875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3505 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.024421519659334,-80.2001953125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3506 = new google.maps.Marker({
 	        position: new google.maps.LatLng(43.58039085560784,-79.892578125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3507 = new google.maps.Marker({
 	        position: new google.maps.LatLng(43.644025847699496,-79.365234375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3508 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.024421519659334,-79.541015625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3509 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.59046718130883,-78.7939453125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3510 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.77793589631623,-76.9482421875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3511 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.213003555993964,-75.322265625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3512 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.809121700077355,-79.62890625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3513 = new google.maps.Marker({
 	        position: new google.maps.LatLng(50.98609893339354,-82.3974609375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker3514 = new google.maps.Marker({
 	        position: new google.maps.LatLng(51.944264879028765,-89.7802734375), 
-	        map: map
+	        map: map, visible:false
 	});
         //Quebec
         	marker2401 = new google.maps.Marker({
 	        position: new google.maps.LatLng(48.10743118848038,-68.7744140625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2402 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.66762782262194,-72.31201171875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2403 = new google.maps.Marker({
 	        position: new google.maps.LatLng(47.30903424774781,-71.34521484375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2404 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.164614496897094,-72.333984375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2405 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.30580259943578,-71.6748046875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2406 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.483243508682186,-73.67431640625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2407 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.558860303117164,-76.8603515625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2408 = new google.maps.Marker({
 	        position: new google.maps.LatLng(47.90161354142075,-77.8271484375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2409 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.49667452747044,-63.10546875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2410 = new google.maps.Marker({
 	        position: new google.maps.LatLng(52.29504228453735,-75.146484375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2411 = new google.maps.Marker({
 	        position: new google.maps.LatLng(48.74894534343293,-65.0830078125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2412 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.52863469527167,-70.7080078125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2413 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.637087095718734,-73.729248046875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2414 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.52863469527167,-73.916015625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2415 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.800059446787316,-75.0146484375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2416 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.55252525134013,-72.7734375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2417 = new google.maps.Marker({
 	        position: new google.maps.LatLng(57.468589192089325,-71.630859375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker2418 = new google.maps.Marker({
 	        position: new google.maps.LatLng(51.37178037591737,-78.7060546875), 
-	        map: map
+	        map: map, visible:false
 	});
         //New Brunswick
         	marker1301 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.46813299215554,-65.0390625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1302 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.706179285330855,-65.7421875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1303 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.255846818480315,-67.0166015625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1304 = new google.maps.Marker({
 	        position: new google.maps.LatLng(47.60616304386874,-67.8076171875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1305 = new google.maps.Marker({
 	        position: new google.maps.LatLng(47.81315451752768,-66.4892578125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1306 = new google.maps.Marker({
 	        position: new google.maps.LatLng(47.57652571374621,-65.6103515625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1307 = new google.maps.Marker({
 	        position: new google.maps.LatLng(47.10004469402519,-66.0498046875), 
-	        map: map
+	        map: map, visible:false
 	});
         //Nova Scotia
         	marker1211 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.402391829093915,-64.775390625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1212 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.08758502824516,-65.7861328125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1213 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.87144275016589,-65.126953125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1214 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.336701909968106,-63.45703125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1215 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.73685954736049,-64.0283203125), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1216 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.55252525134013,-62.490234375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1217 = new google.maps.Marker({
 	        position: new google.maps.LatLng(45.49094569262732,-61.787109375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1218 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.042735653846506,-60.3369140625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1219 = new google.maps.Marker({
 	        position: new google.maps.LatLng(44.87144275016589,-63.28125), 
-	        map: map
+	        map: map, visible:false
 	});
         //Prince Edward Island
         	marker1101 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.37725420510028,-62.5341796875), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1102 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.34692761055676,-63.193359375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1103 = new google.maps.Marker({
 	        position: new google.maps.LatLng(46.46813299215554,-63.9404296875), 
-	        map: map
+	        map: map, visible:false
 	});
         //Newfoundland and Labrador
         	marker1011 = new google.maps.Marker({
 	        position: new google.maps.LatLng(47.96050238891509,-54.2724609375), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1012 = new google.maps.Marker({
 	        position: new google.maps.LatLng(48.80686346108517,-55.7666015625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1013 = new google.maps.Marker({
 	        position: new google.maps.LatLng(49.23912083246698,-57.65625), 
-	        map: map
+	        map: map, visible:false
 	});
         	marker1014 = new google.maps.Marker({
 	        position: new google.maps.LatLng(54.00776876193478,-61.34765625), 
-	        map: map
+	        map: map, visible:false
 	});
 	
 	
@@ -1100,10 +1102,36 @@ function setupMarkers(){
 	});
 	
 	
-	
 }
 
+function updateIcons(iconURL, markerArray){
+	var myArray = markerArray;
+	
+	for (var j=0; j<myArray.length; j++) {
+		myArray[j].setIcon(iconURL);
+		myArray[j].setVisible(true);
+	}	
+	
+    oldMarkerArray = oldMarkerArray.concat(myArray);
+
+}
+
+function clearIcons(){
+	if(oldMarkerArray.legth != 0){
+		
+		for (var i=0; i<oldMarkerArray.length; i++) {
+			oldMarkerArray[i].setVisible(false);
+		}
+		
+	}
+
+   
+}
+
+
 </script>
+
+
 </head>
 <body onload="initialize()">
   <div id="map_canvas" style="width: 765px; height: 445px"></div>

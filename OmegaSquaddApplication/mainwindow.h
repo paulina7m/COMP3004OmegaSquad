@@ -30,17 +30,25 @@ private:
     QList<DiseaseType> diseaseList;
     QList<CaseReport> caseReports;
     QList<Inventory> inventory;
+    QList<int> regionsWithCasesForSelectedDisease;
+    QList<QString> regionsWithDataForSelType_low;
+    QList<QString> regionsWithDataForSelType_normal;
+    QList<QString> regionsWithDataForSelType_high;
     QStringList fetchListOfDiseases();
     QStringList fetchListOfSupplyTypes();
     int selectedCaseOrSupplyID;
     void fetchDataForSelectedType();
-    void calculateBadGoodWorse();
-    void currentIndexChangedForTypeSelector();
+    void calculateLowHighNormal();
+    QString getSupplyTypeName(int supplyTypeID);
+    QString getDiseaseName(int diseaseID);
+    int getTotalNumberOfCasesForRegion(int regionID, QList<CaseReport> list);
+
 
 
 private slots:
     void initializeMap();
     void currentIndexChangedForESSelector(int index);
+    void currentIndexChangedForTypeSelector(int index);
 //    void showAboutCETDialog();
 //    void closeAboutCETDialog(); // close function already exists - Gavin
     void AddDiseaseHandler();

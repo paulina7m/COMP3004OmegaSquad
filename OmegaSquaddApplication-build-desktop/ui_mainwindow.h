@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu Dec 2 17:46:04 2010
+** Created: Thu Dec 2 18:38:15 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -145,7 +145,7 @@ public:
         numberofbox->setGeometry(QRect(10, 210, 151, 31));
         pushButton = new QPushButton(groupBox);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(20, 300, 114, 32));
+        pushButton->setGeometry(QRect(30, 270, 114, 32));
         loadinglabel = new QTextEdit(centralWidget);
         loadinglabel->setObjectName(QString::fromUtf8("loadinglabel"));
         loadinglabel->setEnabled(false);

@@ -5,6 +5,7 @@
 #include <QtGui>
 #include <QtWebKit>
 #include <QDebug>
+#include "../CETClientApplication/DataHandler.h"
 
 
 class GoogleMap : public QWebView
@@ -31,7 +32,8 @@ public Q_SLOTS:
 
 public:
     explicit GoogleMap(QWidget *parent = 0, QMainWindow *pwindow = 0);
-    void updateIcons(int index);
+    void updateIcons(int index, QList<QString>low, QList<QString> normal, QList<QString> high);
+    QString getIconUrlForIndex(int index, QString level);
 
 signals:
     void mapItemClicked(QString name, QString id);
