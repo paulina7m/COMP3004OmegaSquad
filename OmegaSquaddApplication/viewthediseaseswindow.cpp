@@ -42,8 +42,13 @@ ViewTheDiseasesWindow::ViewTheDiseasesWindow(QWidget *parent) :
         }
         //Edit buttons for each case
         QPushButton *editButton = new QPushButton("Edit");
+        editButton->setStyleSheet("QPushButton {border-color: black; padding: 0px; width: 3em; height: 3em; }");
+
+        //Slot for when an edit button is pressed
         connect(editButton, SIGNAL(clicked()), mapper, SLOT(map()));
         mapper->setMapping(editButton, loc);
+
+        //Fill the table
         ui->tableWidget->setItem(i, 0, date = new QTableWidgetItem(caseList[i].getDateOfReport()));
         date->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(i, 1, region = new QTableWidgetItem(regionName));
@@ -98,6 +103,7 @@ void ViewTheDiseasesWindow::editCase(int caseId) {
     updateCaseReport->isModal();
     updateCaseReport->updateCases(caseId);
 
+    QObject::connect(updateCaseReport,SIGNAL(caseUpdated()),this,SLOT(emitDiseasesEditedSignal()));
     //Close this window
     ViewTheDiseasesWindow::close();
 }
@@ -110,7 +116,13 @@ void ViewTheDiseasesWindow::viewTheDiseasesWindowNewButtonHandler() {
     AddDiseasesWindow *addDiseasesWindow = new AddDiseasesWindow;
     addDiseasesWindow->show();
     addDiseasesWindow->isModal();
+
+    QObject::connect(addDiseasesWindow,SIGNAL(diseaseAdded()),this,SLOT(emitDiseasesEditedSignal()));
     ViewTheDiseasesWindow::close();
+}
+
+void ViewTheDiseasesWindow::emitDiseasesEditedSignal(){
+    emit diseasesViewedEdited();
 }
 
 ViewTheDiseasesWindow::~ViewTheDiseasesWindow()

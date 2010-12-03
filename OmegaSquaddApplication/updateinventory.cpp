@@ -57,6 +57,7 @@ void updateinventory::UpdateInventorySubmitButtonHandler() {
     viewTheSuppliesWindow->show();
     viewTheSuppliesWindow->isModal();
 
+    emit suppliesUpdated();
     updateinventory::close();
 }
 

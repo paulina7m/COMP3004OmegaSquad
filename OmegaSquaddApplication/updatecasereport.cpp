@@ -76,6 +76,7 @@ void UpdateCaseReport::updateCaseReportCancelButtonHandler() {
     viewTheDiseasesWindow->show();
     viewTheDiseasesWindow->isModal();
 
+    emit caseUpdated();
     UpdateCaseReport::close();
 }
 

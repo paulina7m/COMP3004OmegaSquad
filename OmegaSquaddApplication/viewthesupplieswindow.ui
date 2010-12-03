@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>579</width>
+    <width>597</width>
     <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>View Supplies</string>
+   <string>View Inventory</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -36,7 +36,7 @@
     <rect>
      <x>50</x>
      <y>80</y>
-     <width>471</width>
+     <width>491</width>
      <height>192</height>
     </rect>
    </property>
@@ -67,7 +67,7 @@
     </property>
    </column>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>50</x>

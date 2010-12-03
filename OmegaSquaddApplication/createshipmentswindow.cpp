@@ -186,9 +186,7 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
     int supplyType;
     QString date;
     int quantity;
-    int srcQuantity;
-    int destQuantity;
-    bool destUpdated = false;
+
 
     //Get the region ID
     for (int i = 0; i < regionList.size(); i++) {
@@ -226,6 +224,9 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
     dh->saveShipment(srcRegionId, destRegionId, date, supplyType, quantity, "");
 
     /*
+    int srcQuantity;
+    int destQuantity;
+    bool destUpdated = false;
     //Update the source regions depleted inventory
     for (int i = 0; i < inventoryList.size(); i++) {
         if (inventoryList[i].getRegionId() == srcRegionId) {

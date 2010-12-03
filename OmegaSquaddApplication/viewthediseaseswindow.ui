@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>View Diseases</string>
+   <string>View Epidemic Cases</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -72,7 +72,7 @@
     </property>
    </column>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>40</x>

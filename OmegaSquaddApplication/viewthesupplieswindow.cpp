@@ -40,10 +40,16 @@ ViewTheSuppliesWindow::ViewTheSuppliesWindow(QWidget *parent) :
                 supplyType = supplyList[k].getName();
             }
         }
-        //Edit buttons for each case
+
+        //Edit button
         QPushButton *editButton = new QPushButton("Edit");
+        editButton->setStyleSheet("QPushButton {border-color: black; padding: 0px; width: 3em; height: 3em; }");
+
+        //Slot for when an edit button is pressed
         connect(editButton, SIGNAL(clicked()), mapper, SLOT(map()));
         mapper->setMapping(editButton, loc);
+
+        //Fill the table
         ui->tableWidget->setItem(i, 0, region = new QTableWidgetItem(regionName));
         region->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(i, 1, type = new QTableWidgetItem(supplyType));
@@ -96,14 +102,20 @@ void ViewTheSuppliesWindow::editInventory(int invId) {
     updateInventory->isModal();
     updateInventory->updateInventory(invId);
 
+    QObject::connect(updateInventory,SIGNAL(suppliesUpdated()),this,SLOT(emitSuppliesEditedSignal()));
     //Close this window
     ViewTheSuppliesWindow::close();
+}
+
+void ViewTheSuppliesWindow::emitSuppliesEditedSignal(){
+    emit suppliesViewedEdited();
 }
 
 void ViewTheSuppliesWindow::ViewTheSuppliesWindowSubmitButtonHandler() {
     AddSuppliesWindow *addSuppliesWindow = new AddSuppliesWindow;
     addSuppliesWindow->show();
     addSuppliesWindow->isModal();
+    QObject::connect(addSuppliesWindow,SIGNAL(suppliesAdded()),this,SLOT(emitDiseasesEditedSignal()));
     ViewTheSuppliesWindow::close();
 }
 
