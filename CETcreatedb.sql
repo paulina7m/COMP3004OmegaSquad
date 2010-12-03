@@ -323,7 +323,7 @@ create table Inventory(
 	regionId integer NOT NULL references Region(id),
 	supplyType integer NOT NULL references SupplyType(id),
 	quantity integer, 
-	Required integer
+	required integer
 	);
 
 --inserting data into the table Inventory
