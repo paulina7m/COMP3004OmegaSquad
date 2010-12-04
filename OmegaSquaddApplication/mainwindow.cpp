@@ -24,9 +24,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     font.setPointSize(9);
     ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black; }; ");
     if (dh->isConnected()) {
+        /*
         connectionMessage = new QLabel("Connected to server.");
         connectionMessage->setFont(font);
         ui->statusBar->addWidget(connectionMessage);
+        */
     }
     else {
         connectionMessage = new QLabel("Not connected to server.");
@@ -56,9 +58,11 @@ void MainWindow::checkConnection() {
     QFont font;
     font.setPointSize(9);
     if (dh->isConnected()) {
+        /*
         connectionMessage = new QLabel("Connected to server.");
         connectionMessage->setFont(font);
         ui->statusBar->addWidget(connectionMessage);
+        */
     }
     else {
         connectionMessage = new QLabel("Not connected to server.");
