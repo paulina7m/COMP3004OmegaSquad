@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->statusBar->addWidget(connectionMessage);
     }
     else {
-        connectionMessage = new QLabel("Not connected to server. Check IP address.");
+        connectionMessage = new QLabel("Not connected to server.");
         connectionMessage->setFont(font);
         ui->statusBar->addWidget(connectionMessage);
     }
@@ -61,7 +61,7 @@ void MainWindow::checkConnection() {
         ui->statusBar->addWidget(connectionMessage);
     }
     else {
-        connectionMessage = new QLabel("Not connected to server. Check IP address.");
+        connectionMessage = new QLabel("Not connected to server.");
         connectionMessage->setFont(font);
         ui->statusBar->addWidget(connectionMessage);
     }
