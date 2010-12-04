@@ -20,6 +20,7 @@ ConfigureCet::ConfigureCet(QWidget *parent) :
     QString filename = "config.cet";
     file = new QFile(filename);
 
+
     if(!file->exists()) //if file does not exist
     {
         if (!file->open(QIODevice::ReadWrite)) //open it in read write mode, this creates a new file
@@ -30,7 +31,9 @@ ConfigureCet::ConfigureCet(QWidget *parent) :
             //qDebug() << "file created";
             QString newIP = "127.0.0.1";
             file->write(newIP.toAscii(),newIP.length());
+            file->setPermissions(QFile::ReadOwner | QFile::WriteOwner | QFile::ReadUser | QFile::WriteUser | QFile::ReadGroup | QFile::WriteGroup | QFile::ReadOther | QFile::WriteOther);
         }
+        ui->plainTextEdit->setPlainText("127.0.0.1");
     }else{ //if file does exist open for reading
         if (!file->open(QIODevice::ReadWrite)){
             //qDebug() << "error opening file";

@@ -12,7 +12,6 @@ ClientConnection::ClientConnection(QObject* parent): QObject(parent)
     connect(&client,SIGNAL(readyRead()),this,SLOT(readMessage()));
 
 
-    /*
     QString filename = "config.cet";
     QFile file;
     file.setFileName(filename);
@@ -22,7 +21,8 @@ ClientConnection::ClientConnection(QObject* parent): QObject(parent)
     }
     else { //if file does exist open for reading
 
-        if (file.open(QIODevice::ReadOnly)) {
+
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             address = file.readAll();
         }
         //qDebug() << ipAddress;
@@ -30,9 +30,7 @@ ClientConnection::ClientConnection(QObject* parent): QObject(parent)
     }
     file.close();
     //qDebug() << address;
-    */
 
-    address = "127.0.0.1";
 }
 
 ClientConnection::~ClientConnection()
