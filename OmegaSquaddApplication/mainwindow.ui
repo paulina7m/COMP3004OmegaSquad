@@ -255,8 +255,8 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionClose"/>
     <addaction name="actionConfigure"/>
+    <addaction name="actionClose"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -299,7 +299,13 @@ p, li { white-space: pre-wrap; }
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </widget>
   <action name="actionAbout_CET">
    <property name="text">
     <string>About CET</string>
@@ -357,7 +363,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionClose">
    <property name="text">
-    <string>Close</string>
+    <string>Exit</string>
    </property>
   </action>
   <action name="actionTabular_Diseases_Data">

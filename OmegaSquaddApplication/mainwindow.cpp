@@ -18,6 +18,24 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     this->setGeometry(100,100, 998,569);
     ui->setupUi(this);
+
+    DataHandler *dh = new DataHandler();
+    QFont font;
+    font.setPointSize(9);
+    ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black; }; ");
+    if (dh->isConnected()) {
+        connectionMessage = new QLabel("Connected to server.");
+        connectionMessage->setFont(font);
+        ui->statusBar->addWidget(connectionMessage);
+    }
+    else {
+        connectionMessage = new QLabel("Not connected to server. Check IP address.");
+        connectionMessage->setFont(font);
+        ui->statusBar->addWidget(connectionMessage);
+    }
+    delete dh;
+
+
     this->ui->type_selector->clear();
     this->ui->type_selector->addItems(fetchListOfDiseases());
     fetchDataForSelectedType();
@@ -25,11 +43,29 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     selectedCaseOrSupplyID = 0;
     QObject::connect(ui->e_s_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForESSelector(int)));
     QObject::connect(ui->type_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForTypeSelector(int)));
+
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(checkConnection()));
+    timer->start(30000); //30 seconds
 }
 
-
-void MainWindow::ipChanged() {
-    qDebug() << "ip changed";
+//Check the connection every 30 seconds
+void MainWindow::checkConnection() {
+    ui->statusBar->removeWidget(connectionMessage);
+    DataHandler *dh = new DataHandler();
+    QFont font;
+    font.setPointSize(9);
+    if (dh->isConnected()) {
+        connectionMessage = new QLabel("Connected to server.");
+        connectionMessage->setFont(font);
+        ui->statusBar->addWidget(connectionMessage);
+    }
+    else {
+        connectionMessage = new QLabel("Not connected to server. Check IP address.");
+        connectionMessage->setFont(font);
+        ui->statusBar->addWidget(connectionMessage);
+    }
+    delete dh;
 }
 
 void MainWindow::initializeMap(){

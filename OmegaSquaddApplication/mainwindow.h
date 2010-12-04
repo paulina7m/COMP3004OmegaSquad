@@ -37,6 +37,7 @@ private:
     QList<QString> regionsWithDataForSelType_high;
     QStringList fetchListOfDiseases();
     QStringList fetchListOfSupplyTypes();
+    QLabel *connectionMessage;
     int selectedCaseOrSupplyID;
     void fetchDataForSelectedType();
     void calculateLowHighNormal();
@@ -61,13 +62,13 @@ private slots:
     void ManageShipmentsHandler();
     void AboutCETHandler();
     void EditDataHandler();
+    void checkConnection();
 
 
 public Q_SLOTS:
     void setNameIDValue(QString name, QString id);
     void hideLoadingLabel();
     void updateData();
-
 
 
 };
