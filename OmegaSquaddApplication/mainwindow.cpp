@@ -25,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     selectedCaseOrSupplyID = 0;
     QObject::connect(ui->e_s_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForESSelector(int)));
     QObject::connect(ui->type_selector,SIGNAL(currentIndexChanged(int)),this,SLOT(currentIndexChangedForTypeSelector(int)));
-
 }
 
 
@@ -124,6 +123,7 @@ void MainWindow::currentIndexChangedForTypeSelector(int index){
         fetchDataForSelectedType();
         calculateLowHighNormal();
         gmap->updateIcons(this->ui->type_selector->currentIndex(), regionsWithDataForSelType_low, regionsWithDataForSelType_normal, regionsWithDataForSelType_high);
+
     }
 }
 
@@ -219,7 +219,77 @@ void MainWindow::calculateLowHighNormal(){
 
     } else {
         //get a set of supplyList for which there is data for selected supply type
+        regionsWithDataForSelType_low.clear();
+        regionsWithDataForSelType_normal.clear();
+        regionsWithDataForSelType_high.clear();
+        regionsWithCasesForSelectedDisease.clear();
 
+        QList<Inventory> inventoryForSelectedSupplyType;
+        QList<int> regionIDQuantity;
+        //get a set of inventory for which there is data for selected supply type
+        for (int i = 0; i < inventory.size(); i++) {
+            if(getSupplyTypeName(inventory[i].getSupplyType()) == this->ui->type_selector->currentText()){
+                inventoryForSelectedSupplyType.push_front(inventory[i]);
+            }
+        }
+
+        //make a list of quantities available for any region
+        for (int i = 0; i < inventoryForSelectedSupplyType.size(); i++) {
+            regionIDQuantity.push_front(inventoryForSelectedSupplyType[i].getQuantity());
+        }
+
+        //find the lowest and the highest values, tu use as thresholds
+        if(!regionIDQuantity.isEmpty()){
+            qSort(regionIDQuantity.begin(), regionIDQuantity.end());
+            int highThreshold = regionIDQuantity.last();
+            int lowThreshold = regionIDQuantity.first();
+            int oneThird = (highThreshold - lowThreshold) / 3;
+
+
+            DataHandler *dh = new DataHandler;
+            QList<Region1> listOfRegions = dh->getRegions();
+            delete dh;
+
+            //create low, normal and high lists
+            if(oneThird != 0){
+                for (int i = 0; i < listOfRegions.size(); i++) {
+                    for (int k = 0; k < inventoryForSelectedSupplyType.size(); k++){
+                        if(inventoryForSelectedSupplyType[k].getRegionId() == listOfRegions[i].getId()){
+                            int totalCases = inventoryForSelectedSupplyType[k].getQuantity();
+                            if(totalCases != 0){
+                                if((totalCases >= lowThreshold) && (totalCases < (lowThreshold + oneThird))){
+                                    QString idString;
+                                    idString.setNum(listOfRegions[i].getId());
+                                    if(!regionsWithDataForSelType_low.contains(idString)){
+                                        regionsWithDataForSelType_low.push_front(idString);
+                                    }
+                                } else if ((totalCases >= (lowThreshold + oneThird)) && (totalCases < (lowThreshold + oneThird + oneThird))){
+                                    QString idString;
+                                    idString.setNum(listOfRegions[i].getId());
+                                    if(!regionsWithDataForSelType_normal.contains(idString)){
+                                        regionsWithDataForSelType_normal.push_front(idString);
+                                    }
+
+                                } else if ((totalCases > (lowThreshold + oneThird + oneThird) && (totalCases <= highThreshold))){
+                                    QString idString;
+                                    idString.setNum(listOfRegions[i].getId());
+                                    if(!regionsWithDataForSelType_high.contains(idString)){
+                                        regionsWithDataForSelType_high.push_front(idString);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            } else {
+                for (int i = 0; i < regionsWithCasesForSelectedDisease.size(); i++) {
+                    QString idString;
+                    idString.setNum(regionsWithCasesForSelectedDisease[i]);
+                    regionsWithDataForSelType_normal.push_front(idString);
+                }
+            }
+        }
     }
 }
 
@@ -247,11 +317,6 @@ QString MainWindow::getDiseaseName(int diseaseID){
 
 void MainWindow::hideLoadingLabel(){
     this->ui->loadinglabel->hide();
-    int counter = 0;
-    while(counter<1000000000){
-        //wait, icons need to laod a bit later
-        counter++;
-    }
     qDebug() << "done";
     currentIndexChangedForTypeSelector(ui->type_selector->currentIndex());
 }

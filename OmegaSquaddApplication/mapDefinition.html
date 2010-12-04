@@ -160,6 +160,7 @@
         	var marker1014;
 
             var oldMarkerArray = new Array();
+			var firstLoad = 1;
 
 	
   function initialize() {
@@ -311,8 +312,9 @@
 			
 			google.maps.event.addListener(geoXmlnunavut5, 'metadata_changed', 
 			function(){ 
-			        setTimeout('GoogleMapObjectInQ.mapTilesLoaded();', 14000)
-					setTimeout('setupMarkers();', 25000)
+			        setupMarkers();
+					//setTimeout('', 10000)
+					setTimeout('GoogleMapObjectInQ.mapTilesLoaded();', 15000)
 			});
 			
 		
@@ -1111,21 +1113,19 @@ function updateIcons(iconURL, markerArray){
 		myArray[j].setIcon(iconURL);
 		myArray[j].setVisible(true);
 	}	
-	
+
     oldMarkerArray = oldMarkerArray.concat(myArray);
 
 }
 
 function clearIcons(){
-	if(oldMarkerArray.legth != 0){
+	if(oldMarkerArray.length != 0){
 		
 		for (var i=0; i<oldMarkerArray.length; i++) {
 			oldMarkerArray[i].setVisible(false);
 		}
 		
 	}
-
-   
 }
 
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'createshipmentswindow.ui'
 **
-** Created: Fri Dec 3 01:49:46 2010
+** Created: Fri Dec 3 17:28:59 2010
 **      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -39,8 +39,10 @@ public:
     QLabel *label_3;
     QComboBox *comboBox_2;
     QGroupBox *groupBox_2;
-    QComboBox *comboBox_3;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_2;
     QLabel *srcRegionSupplies;
+    QComboBox *comboBox_3;
     QGroupBox *groupBox_3;
     QSpinBox *spinBox;
     QWidget *layoutWidget1;
@@ -91,18 +93,33 @@ public:
         groupBox_2 = new QGroupBox(CreateShipmentsWindow);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         groupBox_2->setGeometry(QRect(50, 240, 331, 121));
-        comboBox_3 = new QComboBox(groupBox_2);
-        comboBox_3->setObjectName(QString::fromUtf8("comboBox_3"));
-        comboBox_3->setGeometry(QRect(20, 80, 291, 22));
-        srcRegionSupplies = new QLabel(groupBox_2);
+        widget = new QWidget(groupBox_2);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(20, 30, 291, 81));
+        verticalLayout_2 = new QVBoxLayout(widget);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        srcRegionSupplies = new QLabel(widget);
         srcRegionSupplies->setObjectName(QString::fromUtf8("srcRegionSupplies"));
-        srcRegionSupplies->setGeometry(QRect(20, 30, 291, 41));
+        QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(srcRegionSupplies->sizePolicy().hasHeightForWidth());
+        srcRegionSupplies->setSizePolicy(sizePolicy);
         QFont font1;
         font1.setBold(true);
         font1.setWeight(75);
         srcRegionSupplies->setFont(font1);
         srcRegionSupplies->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         srcRegionSupplies->setWordWrap(true);
+
+        verticalLayout_2->addWidget(srcRegionSupplies);
+
+        comboBox_3 = new QComboBox(widget);
+        comboBox_3->setObjectName(QString::fromUtf8("comboBox_3"));
+
+        verticalLayout_2->addWidget(comboBox_3);
+
         groupBox_3 = new QGroupBox(CreateShipmentsWindow);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         groupBox_3->setGeometry(QRect(50, 370, 331, 80));
@@ -139,7 +156,7 @@ public:
     void retranslateUi(QDialog *CreateShipmentsWindow)
     {
         CreateShipmentsWindow->setWindowTitle(QApplication::translate("CreateShipmentsWindow", "Create Shipment", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("CreateShipmentsWindow", "Create A Shipment", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("CreateShipmentsWindow", "Create Shipment", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("CreateShipmentsWindow", "Regions", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("CreateShipmentsWindow", "From:", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("CreateShipmentsWindow", "To:", 0, QApplication::UnicodeUTF8));
