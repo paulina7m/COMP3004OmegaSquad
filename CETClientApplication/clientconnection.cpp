@@ -21,8 +21,8 @@ ClientConnection::ClientConnection(QObject* parent): QObject(parent)
     }
     else { //if file does exist open for reading
 
-
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        file.setPermissions(QFile::ReadOwner | QFile::WriteOwner | QFile::ReadUser | QFile::WriteUser | QFile::ReadGroup | QFile::WriteGroup | QFile::ReadOther | QFile::WriteOther);
+        if (file.open(QIODevice::ReadOnly)) {
             address = file.readAll();
         }
         //qDebug() << ipAddress;

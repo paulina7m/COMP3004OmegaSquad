@@ -28,6 +28,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 
+void MainWindow::ipChanged() {
+    qDebug() << "ip changed";
+}
+
 void MainWindow::initializeMap(){
     gmap = new GoogleMap(ui->mapView, this);
     QObject::connect(gmap, SIGNAL(mapItemClicked(QString, QString)),
@@ -82,22 +86,26 @@ void MainWindow::setNameIDValue(QString name, QString id){
 QStringList MainWindow::fetchListOfDiseases(){
     QStringList list;
     DataHandler *dh = new DataHandler();
-    diseaseList = dh->getDiseaseTypes();
-    for (int i = 0; i < diseaseList.size(); i++) {
-        list.push_front(diseaseList[i].getName());
+    if (dh->isConnected()) {
+        diseaseList = dh->getDiseaseTypes();
+        for (int i = 0; i < diseaseList.size(); i++) {
+            list.push_front(diseaseList[i].getName());
+        }
+        delete dh;
     }
-    delete dh;
     return list;
 }
 
 QStringList MainWindow::fetchListOfSupplyTypes(){
     QStringList list;
     DataHandler *dh = new DataHandler;
-    supplyList = dh->getSupplyTypes();
-    for (int i = 0; i < supplyList.size(); i++) {
-        list.push_front(supplyList[i].getName());
+    if (dh->isConnected()) {
+        supplyList = dh->getSupplyTypes();
+        for (int i = 0; i < supplyList.size(); i++) {
+            list.push_front(supplyList[i].getName());
+        }
+        delete dh;
     }
-    delete dh;
     return list;
 }
 
@@ -129,9 +137,11 @@ void MainWindow::currentIndexChangedForTypeSelector(int index){
 
 void MainWindow::fetchDataForSelectedType(){
     DataHandler *dh = new DataHandler;
-    caseReports = dh->getCaseReports();
-    inventory = dh->getInventory();
-    delete dh;
+    if (dh->isConnected()) {
+        caseReports = dh->getCaseReports();
+        inventory = dh->getInventory();
+        delete dh;
+    }
 }
 
 
@@ -164,55 +174,57 @@ void MainWindow::calculateLowHighNormal(){
 
         //add up total quantities for each region
         DataHandler *dh = new DataHandler;
-        QList<Region1> listOfRegions = dh->getRegions();
-        delete dh;
-        for (int i = 0; i < listOfRegions.size(); i++) {
-            int totalNumberOfCasesForRegion = getTotalNumberOfCasesForRegion(listOfRegions[i].getId(), caseReportsForSelectedDisease);
-            if(totalNumberOfCasesForRegion != 0){
-                regionIDQuantity.push_front(totalNumberOfCasesForRegion);
-                regionsWithCasesForSelectedDisease.push_front(listOfRegions[i].getId());
+        if (dh->isConnected()) {
+            QList<Region1> listOfRegions = dh->getRegions();
+            delete dh;
+            for (int i = 0; i < listOfRegions.size(); i++) {
+                int totalNumberOfCasesForRegion = getTotalNumberOfCasesForRegion(listOfRegions[i].getId(), caseReportsForSelectedDisease);
+                if(totalNumberOfCasesForRegion != 0){
+                    regionIDQuantity.push_front(totalNumberOfCasesForRegion);
+                    regionsWithCasesForSelectedDisease.push_front(listOfRegions[i].getId());
+                }
             }
-        }
 
-        //find the lowest and the highest values, tu use as thresholds
-        if(!regionIDQuantity.isEmpty()){
-            qSort(regionIDQuantity.begin(), regionIDQuantity.end());
-            int highThreshold = regionIDQuantity.last();
-            int lowThreshold = regionIDQuantity.first();
-            int oneThird = (highThreshold - lowThreshold) / 3;
+            //find the lowest and the highest values, tu use as thresholds
+            if(!regionIDQuantity.isEmpty()){
+                qSort(regionIDQuantity.begin(), regionIDQuantity.end());
+                int highThreshold = regionIDQuantity.last();
+                int lowThreshold = regionIDQuantity.first();
+                int oneThird = (highThreshold - lowThreshold) / 3;
 
-            //create low, normal and high lists
-            if(oneThird != 0){
-                for (int i = 0; i < listOfRegions.size(); i++) {
-                    int totalCases = getTotalNumberOfCasesForRegion(listOfRegions[i].getId(), caseReportsForSelectedDisease);
-                    if(totalCases != 0){
-                        if((totalCases >= lowThreshold) && (totalCases < (lowThreshold + oneThird))){
-                            QString idString;
-                            idString.setNum(listOfRegions[i].getId());
-                            if(!regionsWithDataForSelType_low.contains(idString)){
-                                regionsWithDataForSelType_low.push_front(idString);
-                            }
-                        } else if ((totalCases >= (lowThreshold + oneThird)) && (totalCases < (lowThreshold + oneThird + oneThird))){
-                            QString idString;
-                            idString.setNum(listOfRegions[i].getId());
-                            if(!regionsWithDataForSelType_normal.contains(idString)){
-                                regionsWithDataForSelType_normal.push_front(idString);
-                            }
+                //create low, normal and high lists
+                if(oneThird != 0){
+                    for (int i = 0; i < listOfRegions.size(); i++) {
+                        int totalCases = getTotalNumberOfCasesForRegion(listOfRegions[i].getId(), caseReportsForSelectedDisease);
+                        if(totalCases != 0){
+                            if((totalCases >= lowThreshold) && (totalCases < (lowThreshold + oneThird))){
+                                QString idString;
+                                idString.setNum(listOfRegions[i].getId());
+                                if(!regionsWithDataForSelType_low.contains(idString)){
+                                    regionsWithDataForSelType_low.push_front(idString);
+                                }
+                            } else if ((totalCases >= (lowThreshold + oneThird)) && (totalCases < (lowThreshold + oneThird + oneThird))){
+                                QString idString;
+                                idString.setNum(listOfRegions[i].getId());
+                                if(!regionsWithDataForSelType_normal.contains(idString)){
+                                    regionsWithDataForSelType_normal.push_front(idString);
+                                }
 
-                        } else if ((totalCases > (lowThreshold + oneThird + oneThird) && (totalCases <= highThreshold))){
-                            QString idString;
-                            idString.setNum(listOfRegions[i].getId());
-                            if(!regionsWithDataForSelType_high.contains(idString)){
-                                regionsWithDataForSelType_high.push_front(idString);
+                            } else if ((totalCases > (lowThreshold + oneThird + oneThird) && (totalCases <= highThreshold))){
+                                QString idString;
+                                idString.setNum(listOfRegions[i].getId());
+                                if(!regionsWithDataForSelType_high.contains(idString)){
+                                    regionsWithDataForSelType_high.push_front(idString);
+                                }
                             }
                         }
                     }
-                }
-            } else {
-                for (int i = 0; i < regionsWithCasesForSelectedDisease.size(); i++) {
-                    QString idString;
-                    idString.setNum(regionsWithCasesForSelectedDisease[i]);
-                    regionsWithDataForSelType_normal.push_front(idString);
+                } else {
+                    for (int i = 0; i < regionsWithCasesForSelectedDisease.size(); i++) {
+                        QString idString;
+                        idString.setNum(regionsWithCasesForSelectedDisease[i]);
+                        regionsWithDataForSelType_normal.push_front(idString);
+                    }
                 }
             }
         }
@@ -247,8 +259,11 @@ void MainWindow::calculateLowHighNormal(){
 
 
             DataHandler *dh = new DataHandler;
-            QList<Region1> listOfRegions = dh->getRegions();
-            delete dh;
+            QList<Region1> listOfRegions;
+            if (dh->isConnected()) {
+                listOfRegions = dh->getRegions();
+                delete dh;
+            }
 
             //create low, normal and high lists
             if(oneThird != 0){

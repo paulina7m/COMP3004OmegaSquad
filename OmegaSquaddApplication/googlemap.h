@@ -1,7 +1,7 @@
 #ifndef GOOGLEMAP_H
 #define GOOGLEMAP_H
 
-#include <QtCore>
+//#include <QtCore>
 #include <QtGui>
 #include <QtWebKit>
 #include <QDebug>

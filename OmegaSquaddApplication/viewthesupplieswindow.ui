@@ -48,7 +48,7 @@
    </attribute>
    <column>
     <property name="text">
-     <string>City</string>
+     <string>Region</string>
     </property>
    </column>
    <column>

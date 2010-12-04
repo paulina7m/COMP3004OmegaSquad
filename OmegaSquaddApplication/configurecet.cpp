@@ -6,6 +6,8 @@
 #include <QTextStream>
 #include <QDir>
 #include <QRegExpValidator>
+#include <QLabel>
+#include "../CETClientApplication/DataHandler.h"
 
 ConfigureCet::ConfigureCet(QWidget *parent) :
         QDialog(parent),
@@ -33,7 +35,7 @@ ConfigureCet::ConfigureCet(QWidget *parent) :
             file->write(newIP.toAscii(),newIP.length());
             file->setPermissions(QFile::ReadOwner | QFile::WriteOwner | QFile::ReadUser | QFile::WriteUser | QFile::ReadGroup | QFile::WriteGroup | QFile::ReadOther | QFile::WriteOther);
         }
-        ui->plainTextEdit->setPlainText("127.0.0.1");
+        ui->lineEdit->setText("127.0.0.1");
     }else{ //if file does exist open for reading
         if (!file->open(QIODevice::ReadWrite)){
             //qDebug() << "error opening file";
@@ -41,7 +43,7 @@ ConfigureCet::ConfigureCet(QWidget *parent) :
             //qDebug() << "file opened";
             //read in ip address
             ipAddress = file->readAll();
-            ui->plainTextEdit->setPlainText(ipAddress);
+            ui->lineEdit->setText(ipAddress);
             //qDebug() << ipAddress;
         }
     }
@@ -49,7 +51,7 @@ ConfigureCet::ConfigureCet(QWidget *parent) :
 }
 
 void ConfigureCet::configureCetSubmitButtonHandler() {
-    QString newIP = (QString) ui->plainTextEdit->toPlainText();
+    QString newIP = ui->lineEdit->text();
     QRegExp rx("^[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]$");
     if (newIP == "..." || !rx.exactMatch(newIP)) {
         //false
@@ -68,6 +70,7 @@ void ConfigureCet::configureCetSubmitButtonHandler() {
             file->write(newIP.toAscii(),newIP.length());
             //qDebug() << ipAddress;
         }
+
         file->close();
         ConfigureCet::close();
     }
