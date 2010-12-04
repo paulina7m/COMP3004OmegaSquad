@@ -3,6 +3,7 @@
 #include <QtGui>
 #include <QtWebKit>
 #include <QList>
+#include "configurecet.h"
 #include "adddiseaseswindow.h"
 #include "addsupplieswindow.h"
 #include "viewthediseaseswindow.h"
@@ -314,6 +315,13 @@ void MainWindow::AboutCETHandler()
     aboutDialog->isModal();
 }
 
+void MainWindow::on_actionConfigure_triggered()
+{
+    ConfigureCet *configCet = new ConfigureCet;
+    configCet->showNormal();
+    configCet->isModal();
+}
+
 void MainWindow::EditDataHandler(){
     if(this->ui->e_s_selector->currentIndex() == 0){
         ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
@@ -327,3 +335,5 @@ void MainWindow::EditDataHandler(){
         QObject::connect(viewTheSuppliesWindow,SIGNAL(suppliesViewedEdited()),this,SLOT(updateData()));
     }
 }
+
+

@@ -7,15 +7,37 @@ using namespace std;
 
 ClientConnection::ClientConnection(QObject* parent): QObject(parent)
 {
-  //chunked = true;
-  connect(&client, SIGNAL(connected()), this, SLOT(startTransfer()));
-  connect(&client,SIGNAL(readyRead()),this,SLOT(readMessage()));
-  address = "127.0.0.1";
+    //chunked = true;
+    connect(&client, SIGNAL(connected()), this, SLOT(startTransfer()));
+    connect(&client,SIGNAL(readyRead()),this,SLOT(readMessage()));
+
+
+    /*
+    QString filename = "config.cet";
+    QFile file;
+    file.setFileName(filename);
+    if(!file.exists()) //if file does not exist
+    {
+        address = "127.0.0.1";
+    }
+    else { //if file does exist open for reading
+
+        if (file.open(QIODevice::ReadOnly)) {
+            address = file.readAll();
+        }
+        //qDebug() << ipAddress;
+
+    }
+    file.close();
+    //qDebug() << address;
+    */
+
+    address = "127.0.0.1";
 }
 
 ClientConnection::~ClientConnection()
 {
-  client.close();
+    client.close();
 }
 
 bool ClientConnection::connectionOpen() {
@@ -34,15 +56,15 @@ bool ClientConnection::connectionOpen() {
 
 void ClientConnection::start(QString address, quint16 port)
 {
-  QHostAddress addr(address);
-  client.connectToHost(addr,port);
+    QHostAddress addr(address);
+    client.connectToHost(addr,port);
 }
 
 void ClientConnection::startTransfer()
 {
 
-        //client.write(xmlRequest.toAscii(),xmlRequest.length()+1);
-        //client.write("<?xml version=\"1.0\"?><message><command>getIdNumbers</command><getIdNumbersRequest><blockSize>10</blockSize></getIdNumbersRequest></message>",1024);
+    //client.write(xmlRequest.toAscii(),xmlRequest.length()+1);
+    //client.write("<?xml version=\"1.0\"?><message><command>getIdNumbers</command><getIdNumbersRequest><blockSize>10</blockSize></getIdNumbersRequest></message>",1024);
 
 }
 QString ClientConnection::getAddress()

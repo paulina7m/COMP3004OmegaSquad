@@ -22,7 +22,6 @@ public slots:
   void startTransfer();
   void readMessage();
 private:
-
   QString address;
   QTcpSocket client;
   QTcpSocket test;

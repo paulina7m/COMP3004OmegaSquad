@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     ../CETClientApplication/CaseReport.cpp \
     updatecasereport.cpp \
     updateinventory.cpp \
-    ../CETClientApplication/Region1.cpp
+    ../CETClientApplication/Region1.cpp \
+    configurecet.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -63,7 +64,8 @@ HEADERS  += mainwindow.h \
     ../CETClientApplication/User.h \
     updatecasereport.h \
     updateinventory.h \
-    ../CETClientApplication/Region1.h
+    ../CETClientApplication/Region1.h \
+    configurecet.h
 
 
 FORMS    += mainwindow.ui \
@@ -75,7 +77,8 @@ FORMS    += mainwindow.ui \
     viewthediseaseswindow.ui \
     viewthesupplieswindow.ui \
     updatecasereport.ui \
-    updateinventory.ui
+    updateinventory.ui \
+    configurecet.ui
 
 RESOURCES += \
     mapDefinitionFile.qrc

@@ -7,6 +7,7 @@
 #include <QWebElement>
 #include "googlemap.h"
 #include "aboutCET.h"
+#include "configurecet.h"
 #include "../CETClientApplication/DiseaseType.h"
 #include "../CETClientApplication/DataHandler.h"
 
@@ -46,6 +47,7 @@ private:
 
 
 private slots:
+    void on_actionConfigure_triggered();
     void initializeMap();
     void currentIndexChangedForESSelector(int index);
     void currentIndexChangedForTypeSelector(int index);
@@ -61,11 +63,11 @@ private slots:
     void EditDataHandler();
 
 
-
 public Q_SLOTS:
     void setNameIDValue(QString name, QString id);
     void hideLoadingLabel();
     void updateData();
+
 
 
 };
