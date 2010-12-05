@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>mapDefinition.html</file>
+        <file>CET.png</file>
     </qresource>
 </RCC>
