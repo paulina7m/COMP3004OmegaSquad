@@ -83,6 +83,8 @@ void MainWindow::initializeMap(){
 
 void MainWindow::updateData(){
     fetchDataForSelectedType();
+    calculateLowHighNormal();
+    gmap->updateIcons(this->ui->type_selector->currentIndex(), regionsWithDataForSelType_low, regionsWithDataForSelType_normal, regionsWithDataForSelType_high);
     this->ui->namebox->clear();;
     this->ui->idbox->clear();
     this->ui->numberofbox->clear();
