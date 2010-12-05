@@ -7,7 +7,8 @@ AboutCETDialog::AboutCETDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Ab
 }
 
 void AboutCETDialog::closeDialog(){
-    emit dialogToBeClosed();
+    this->close();
+    //emit dialogToBeClosed();
 }
 
 AboutCETDialog::~AboutCETDialog()
