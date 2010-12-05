@@ -416,7 +416,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
 void ManageTheShipmentsWindow::ManageTheShipmentsWindowSubmitButtonHandler() {
     CreateShipmentsWindow *createShipmentsWindow = new CreateShipmentsWindow;
     createShipmentsWindow->show();
-    createShipmentsWindow->isModal();
+    createShipmentsWindow->setModal(true);
     createShipmentsWindow->fromManager(1);
     ManageTheShipmentsWindow::close();
 }

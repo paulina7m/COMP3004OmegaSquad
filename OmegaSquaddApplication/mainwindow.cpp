@@ -386,7 +386,7 @@ void MainWindow::AddDiseaseHandler()
 {
     AddDiseasesWindow *addDiseasesWindow = new AddDiseasesWindow;
     addDiseasesWindow->showNormal();
-    addDiseasesWindow->isModal();
+    addDiseasesWindow->setModal(true);
     QObject::connect(addDiseasesWindow,SIGNAL(diseaseAdded()),this,SLOT(updateData()));
 }
 
@@ -394,7 +394,7 @@ void MainWindow::AddSupplyHandler()
 {
     AddSuppliesWindow *addSuppliesWindow = new AddSuppliesWindow;
     addSuppliesWindow->showNormal();
-    addSuppliesWindow->isModal();
+    addSuppliesWindow->setModal(true);
     QObject::connect(addSuppliesWindow,SIGNAL(suppliesAdded()),this,SLOT(updateData()));
 }
 
@@ -402,7 +402,7 @@ void MainWindow::ViewDiseasesHandler()
 {
     ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
     viewTheDiseasesWindow->showNormal();
-    viewTheDiseasesWindow->isModal();
+    viewTheDiseasesWindow->setModal(true);
     QObject::connect(viewTheDiseasesWindow,SIGNAL(diseasesViewedEdited()),this,SLOT(updateData()));
 }
 
@@ -410,7 +410,7 @@ void MainWindow::ViewSuppliesHandler()
 {
     ViewTheSuppliesWindow *viewTheSuppliesWindow = new ViewTheSuppliesWindow;
     viewTheSuppliesWindow->showNormal();
-    viewTheSuppliesWindow->isModal();
+    viewTheSuppliesWindow->setModal(true);
     QObject::connect(viewTheSuppliesWindow,SIGNAL(suppliesViewedEdited()),this,SLOT(updateData()));
 }
 
@@ -418,40 +418,40 @@ void MainWindow::AddShipmentHandler()
 {
     CreateShipmentsWindow *createShipmentsWindow = new CreateShipmentsWindow;
     createShipmentsWindow->showNormal();
-    createShipmentsWindow->isModal();
+    createShipmentsWindow->setModal(true);
 }
 
 void MainWindow::ManageShipmentsHandler()
 {
     ManageTheShipmentsWindow *manageTheShipmentsWindow = new ManageTheShipmentsWindow;
     manageTheShipmentsWindow->showNormal();
-    manageTheShipmentsWindow->isModal();
+    manageTheShipmentsWindow->setModal(true);
 }
 
 void MainWindow::AboutCETHandler()
 {
     aboutDialog = new AboutCETDialog;
     aboutDialog->showNormal();
-    aboutDialog->isModal();
+    aboutDialog->setModal(true);
 }
 
 void MainWindow::on_actionConfigure_triggered()
 {
     ConfigureCet *configCet = new ConfigureCet;
     configCet->showNormal();
-    configCet->isModal();
+    configCet->setModal(true);
 }
 
 void MainWindow::EditDataHandler(){
     if(this->ui->e_s_selector->currentIndex() == 0){
         ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
         viewTheDiseasesWindow->showNormal();
-        viewTheDiseasesWindow->isModal();
+        viewTheDiseasesWindow->setModal(true);
         QObject::connect(viewTheDiseasesWindow,SIGNAL(diseasesViewedEdited()),this,SLOT(updateData()));
     } else {
         ViewTheSuppliesWindow *viewTheSuppliesWindow = new ViewTheSuppliesWindow;
         viewTheSuppliesWindow->showNormal();
-        viewTheSuppliesWindow->isModal();
+        viewTheSuppliesWindow->setModal(true);
         QObject::connect(viewTheSuppliesWindow,SIGNAL(suppliesViewedEdited()),this,SLOT(updateData()));
     }
 }

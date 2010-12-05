@@ -65,7 +65,7 @@ void UpdateCaseReport::updateCaseReportSubmitButtonHandler() {
 
     ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
     viewTheDiseasesWindow->show();
-    viewTheDiseasesWindow->isModal();
+    viewTheDiseasesWindow->setModal(true);
 
     UpdateCaseReport::close();
 }
@@ -74,7 +74,7 @@ void UpdateCaseReport::updateCaseReportSubmitButtonHandler() {
 void UpdateCaseReport::updateCaseReportCancelButtonHandler() {
     ViewTheDiseasesWindow *viewTheDiseasesWindow = new ViewTheDiseasesWindow;
     viewTheDiseasesWindow->show();
-    viewTheDiseasesWindow->isModal();
+    viewTheDiseasesWindow->setModal(true);
 
     emit caseUpdated();
     UpdateCaseReport::close();

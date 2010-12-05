@@ -271,7 +271,7 @@ void CreateShipmentsWindow::CreateShipmentsWindowSubmitButtonHandler() {
                 //open the management window again
                 ManageTheShipmentsWindow *managementWindow = new ManageTheShipmentsWindow;
                 managementWindow->show();
-                managementWindow->isModal();
+                managementWindow->setModal(true);
             }
 
             //close the window
@@ -286,7 +286,7 @@ void CreateShipmentsWindow::CreateShipmentsWindowCancelButtonHandler() {
         //open the management window again
         ManageTheShipmentsWindow *managementWindow = new ManageTheShipmentsWindow;
         managementWindow->show();
-        managementWindow->isModal();
+        managementWindow->setModal(true);
     }
 
     CreateShipmentsWindow::close();

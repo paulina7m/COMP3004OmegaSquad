@@ -100,7 +100,7 @@ void ViewTheDiseasesWindow::editCase(int caseId) {
     //qDebug() << caseId;
     UpdateCaseReport *updateCaseReport = new UpdateCaseReport;
     updateCaseReport->show();
-    updateCaseReport->isModal();
+    updateCaseReport->setModal(true);
     updateCaseReport->updateCases(caseId);
 
     QObject::connect(updateCaseReport,SIGNAL(caseUpdated()),this,SLOT(emitDiseasesEditedSignal()));
@@ -115,7 +115,7 @@ void ViewTheDiseasesWindow::viewTheDiseasesWindowCancelButtonHandler() {
 void ViewTheDiseasesWindow::viewTheDiseasesWindowNewButtonHandler() {
     AddDiseasesWindow *addDiseasesWindow = new AddDiseasesWindow;
     addDiseasesWindow->show();
-    addDiseasesWindow->isModal();
+    addDiseasesWindow->setModal(true);
 
     QObject::connect(addDiseasesWindow,SIGNAL(diseaseAdded()),this,SLOT(emitDiseasesEditedSignal()));
     ViewTheDiseasesWindow::close();
