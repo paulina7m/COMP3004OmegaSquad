@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>AddDiseasesWindow</class>
  <widget class="QDialog" name="AddDiseasesWindow">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,12 +16,15 @@
   <property name="windowTitle">
    <string>Epidemics Data Entry Form</string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>46</x>
      <y>31</y>
-     <width>261</width>
+     <width>281</width>
      <height>24</height>
     </rect>
    </property>

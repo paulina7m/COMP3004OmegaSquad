@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>ManageTheShipmentsWindow</class>
  <widget class="QDialog" name="ManageTheShipmentsWindow">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,6 +20,9 @@
   </property>
   <property name="windowTitle">
    <string>Manage Shipments</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
