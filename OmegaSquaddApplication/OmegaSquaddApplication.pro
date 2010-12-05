@@ -84,4 +84,5 @@ RESOURCES += \
     mapDefinitionFile.qrc
 
 OTHER_FILES += \
-    mapDefinition.html
+    mapDefinition.html \
+    CET.png
