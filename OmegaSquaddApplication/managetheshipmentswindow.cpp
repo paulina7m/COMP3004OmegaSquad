@@ -224,11 +224,16 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
     //Cancelled
     if (shipmentState == "Cancelled") {
         QTableWidgetItem *quant;
+        QTableWidgetItem *cancelDate;
+        QTableWidgetItem *cancelString;
         ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
+        quant->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         quant->setData(Qt::DisplayRole, 0);
-        ui->tableWidget->setItem(row, 9, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        ui->tableWidget->setItem(row, 9, cancelDate = new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        cancelDate->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->removeCellWidget(row, 10);
-        ui->tableWidget->setItem(row, 10, new QTableWidgetItem("Cancelled"));
+        ui->tableWidget->setItem(row, 10, cancelString = new QTableWidgetItem("Cancelled"));
+        cancelString->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
         DataHandler *dh = new DataHandler();
         //Update the Shipment in the database
@@ -249,9 +254,13 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
     }
     //Received
     else if (shipmentState == "Received") {
-        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        QTableWidgetItem *receiveDate;
+        QTableWidgetItem *receiveString;
+        ui->tableWidget->setItem(row, 8, receiveDate = new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        receiveDate->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->removeCellWidget(row, 10);
-        ui->tableWidget->setItem(row, 10, new QTableWidgetItem("Received"));
+        ui->tableWidget->setItem(row, 10, receiveString = new QTableWidgetItem("Received"));
+        receiveString->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
         DataHandler *dh = new DataHandler();
         //Update the Shipment in the database
@@ -281,6 +290,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
 
                 QTableWidgetItem *quant;
                 ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
+                quant->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
                 quant->setData(Qt::DisplayRole, updateQuantity);
 
                 updateDestInventory = true;
@@ -305,7 +315,9 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
     }
     //Shipped
     else if (shipmentState == "Shipped") {
-        ui->tableWidget->setItem(row, 7, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        QTableWidgetItem *shipDate;
+        ui->tableWidget->setItem(row, 7, shipDate = new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+        shipDate->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->removeCellWidget(row, 10);
         QComboBox *Box = new QComboBox(this);
         shipStateList.clear();
@@ -341,16 +353,18 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
                     int updateQuantity = srcInventoryList[i].getQuantity();
                     shipmentQuantity = updateQuantity;
                     QString quantStr;
+                    QTableWidgetItem *shipQuant;
                     //Substract the updated quantity from the source regions inventory
                     dh->updateInventory(srcInventoryList[i].getId(), 0);
-                    ui->tableWidget->setItem(row, 5, new QTableWidgetItem(quantStr.setNum(shipmentQuantity)));
+                    ui->tableWidget->setItem(row, 5, shipQuant = new QTableWidgetItem(quantStr.setNum(shipmentQuantity)));
+                    shipQuant->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
                     updateSrcInventory = true;
                     break;
                 }
                 else {
                     int updateQuantity = srcInventoryList[i].getQuantity() - shipmentQuantity;
                     //shipmentQuantity = updateQuantity;
-                    qDebug() << shipmentQuantity;
+                    //qDebug() << shipmentQuantity;
                     //Substract the updated quantity from the source regions inventory
                     dh->updateInventory(srcInventoryList[i].getId(), updateQuantity);
                     updateSrcInventory = true;
@@ -360,11 +374,16 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
         }
 
         if (cancelled) {
-            ui->tableWidget->setItem(row, 9, new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
-            ui->tableWidget->removeCellWidget(row, 10);
-            ui->tableWidget->setItem(row, 10, new QTableWidgetItem("Cancelled"));
             QTableWidgetItem *quant;
+            QTableWidgetItem *cancelDate;
+            QTableWidgetItem *currStatus;
+            ui->tableWidget->setItem(row, 9, cancelDate = new QTableWidgetItem(QDate::currentDate().toString("yyyy-MM-dd")));
+            cancelDate->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+            ui->tableWidget->removeCellWidget(row, 10);
+            ui->tableWidget->setItem(row, 10, currStatus = new QTableWidgetItem("Cancelled"));
+            currStatus->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
+            quant->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             quant->setData(Qt::DisplayRole, 0);
 
             connect(Box, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));
@@ -385,6 +404,7 @@ void ManageTheShipmentsWindow::changeShipmentStatus(QString idState) {
             qDebug() << shipmentQuantity;
             QTableWidgetItem *quant;
             ui->tableWidget->setItem(row, 5, quant = new QTableWidgetItem());
+            quant->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             quant->setData(Qt::DisplayRole, shipmentQuantity);
 
             //Update the Shipment in the database

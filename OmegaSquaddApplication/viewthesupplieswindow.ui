@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>665</width>
+    <width>691</width>
     <height>375</height>
    </rect>
   </property>
@@ -34,7 +34,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Supplies Data</string>
+    <string>Inventory</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="tableWidget">
@@ -42,7 +42,7 @@
     <rect>
      <x>50</x>
      <y>80</y>
-     <width>551</width>
+     <width>591</width>
      <height>192</height>
     </rect>
    </property>
