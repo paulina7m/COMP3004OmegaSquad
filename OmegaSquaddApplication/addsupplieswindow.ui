@@ -13,6 +13,12 @@
     <height>432</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>356</width>
+    <height>432</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Supply Data Entry Form</string>
   </property>
