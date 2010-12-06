@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>597</width>
+    <width>665</width>
     <height>375</height>
    </rect>
   </property>
@@ -42,7 +42,7 @@
     <rect>
      <x>50</x>
      <y>80</y>
-     <width>491</width>
+     <width>551</width>
      <height>192</height>
     </rect>
    </property>
@@ -50,7 +50,7 @@
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>112</number>
+    <number>135</number>
    </attribute>
    <column>
     <property name="text">

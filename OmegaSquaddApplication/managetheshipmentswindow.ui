@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1341</width>
-    <height>499</height>
+    <width>1559</width>
+    <height>497</height>
    </rect>
   </property>
   <property name="font">
@@ -27,7 +27,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>0</x>
      <y>20</y>
      <width>251</width>
      <height>61</height>
@@ -45,9 +45,9 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>0</x>
      <y>80</y>
-     <width>1261</width>
+     <width>1561</width>
      <height>351</height>
     </rect>
    </property>
@@ -55,7 +55,7 @@
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>112</number>
+    <number>140</number>
    </attribute>
    <column>
     <property name="text">
