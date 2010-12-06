@@ -125,6 +125,9 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="maximum">
+     <number>9999999</number>
+    </property>
    </widget>
   </widget>
   <widget class="QWidget" name="layoutWidget">

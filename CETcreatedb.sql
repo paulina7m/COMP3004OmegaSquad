@@ -51,9 +51,16 @@ create table CaseReport(
 	);
 
 --inserting data into the table CaseReport
-insert into CaseReport values (14, 5931, "2010-11-09", 6202, 0, 15);
-insert into CaseReport values (15, 5932, "2010-10-12", 6202, 0, 45);
-insert into CaseReport values (16, 5932, "2010-10-30", 6203, 0, 16);
+insert into CaseReport values (14, 5931, "2010-06-09", 6202, 0, 15);
+insert into CaseReport values (15, 5932, "2010-06-12", 6202, 0, 45);
+insert into CaseReport values (16, 5932, "2010-07-30", 6203, 0, 16);
+insert into CaseReport values (17, 4615, "2010-08-10", 6207, 0, 100);
+insert into CaseReport values (18, 1218, "2010-08-11", 6209, 0, 260);
+insert into CaseReport values (19, 4615, "2010-09-19", 6210, 0, 19);
+insert into CaseReport values (20, 4707, "2010-10-16", 6206, 0, 78);
+insert into CaseReport values (21, 4826, "2010-10-23", 6209, 0, 24);
+insert into CaseReport values (22, 1011, "2010-11-18", 6208, 0, 47);
+insert into CaseReport values (23, 1305, "2010-11-23", 6208, 0, 57);
 
 
 --DiseaseType
@@ -327,9 +334,16 @@ create table Inventory(
 	);
 
 --inserting data into the table Inventory
-insert into Inventory values (17, 6001, 6211, 15, 40);
-insert into Inventory values (18, 5931, 6212, 9, 10);
-insert into Inventory values (19, 5932, 6213, null, 49);
+insert into Inventory values (24, 6001, 6211, 15, 40);
+insert into Inventory values (25, 5931, 6212, 9, 10);
+insert into Inventory values (26, 5932, 6213, 28, 49);
+insert into Inventory values (27, 1305, 6214, 44, 49);
+insert into Inventory values (28, 1011, 6214, 1001, 49);
+insert into Inventory values (29, 4826, 6220, 12, 49);
+insert into Inventory values (30, 4707, 6217, null, 49);
+insert into Inventory values (31, 4615, 6212, 117, 49);
+insert into Inventory values (32, 1218, 6216, 432, 49);
+insert into Inventory values (33, 5932, 6215, 49, 49);
 
 
 --SupplyType
@@ -379,4 +393,4 @@ create table IdNumbers(
 );
 
 --inserting data into the table recipe
-insert into IdNumbers values (6224);
+insert into IdNumbers values (6225);
